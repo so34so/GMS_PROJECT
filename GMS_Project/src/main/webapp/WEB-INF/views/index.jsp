@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,14 +16,14 @@
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
     </head>
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
                 <span class="d-block d-lg-none">P_Gallery</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="assets/img/20200830_142314.jpg" alt="..." /></span>
+                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath }/resources/img/20200830_142314.jpg" alt="..." /></span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -34,12 +35,12 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="shopHomepage.jsp">작품판매쳐</a></li>
                     <c:choose>
-                    	<c:when test="${id ne null }">
+                    	<c:when test="${galleryId ne null }">
         	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="mypage">마이페이지</a></li>
 		                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="logout">로그아웃</a></li>
         	            </c:when>
         	            <c:otherwise>
-							<li class="nav-item"><a class="nav-link js-scroll-trigger" href="login">로그인</a></li>
+							<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/login">로그인</a></li>
         	            </c:otherwise>	
                     </c:choose>
                 </ul>

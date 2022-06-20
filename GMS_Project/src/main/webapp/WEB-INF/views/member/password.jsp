@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,7 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>P Gallery - password</title>
-        <link href="css/styles1.css" rel="stylesheet" />
+        <link href="${contextPath}/resources/css/styles1.css" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="assets/img/user.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
