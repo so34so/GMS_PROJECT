@@ -14,7 +14,70 @@
         <link rel="icon" type="image/x-icon" href="assets/img/user.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+        
+        <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
+		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+		<script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>  
+        
     	<script>
+    	
+    	var validateGalleryId = false;
+    	var validateGalleryNickname = false;
+
+    	$().ready(function() {
+    		
+    		$("#userCheck").click(function(){
+    			
+    		    var id = $("#id").val();
+    		    if (id == ''){
+    		   		alert("ID를 입력하세요");
+    		   		return;
+    		    }
+    		   
+    		    $.ajax({
+    		       type : "post",
+    		       url : "${contextPath}/member/userCheck",
+    		       data : {"id" : id},
+    		       success : function(isOverLapped){
+    		          if (isOverLapped == "false"){
+    		          	alert("사용할 수 있는 ID입니다.");
+    		          	validateGalleryId = true;
+    		          }
+    		          else {
+    		          	alert("사용할 수 없는 ID입니다.");
+    		          	validateGalleryId = false;
+    		          }
+    		       }
+    		    });
+    		});	
+    		
+    		$("#nameCheck").click(function(){
+    			
+    		    var nickname = $("#nickname").val();
+    		    if (nickname == ''){
+    		   		alert("닉네임을 입력하세요");
+    		   		return;
+    		    }
+    		   
+    		    $.ajax({
+    		       type : "post",
+    		       url : "${contextPath}/member/nameCheck",
+    		       data : {"nickname" : nickname},
+    		       success : function(isOverLapped){
+    		          if (isOverLapped == "false"){
+    		          	alert("사용할 수 있는 닉네임입니다.");
+    		          	validateGalleryNickname = true;
+    		          }
+    		          else {
+    		          	alert("사용할 수 없는 닉네임입니다.");
+    		          	validateGalleryNickname = false;
+    		          }
+    		       }
+    		    });
+    		});	
+    		
+    	});
+    	
     	function formValidationCheck(){
     		
     		var name = document.getElementById("name");
@@ -30,6 +93,22 @@
     			return false;
     		}
     		
+    		if (!validateGalleryId) {
+    			alert("아이디를 확인해주세요.");
+    			return false;
+    		}
+    		
+    		var nickname = document.getElementById("nickname");
+    		if (nickname.value.length == 0) {
+    			alert("닉네임을 입력하세요.");
+    			nickname.focus();
+    			return false;
+    		}
+    		
+    		if (!validateGalleryNickname) {
+    			alert("닉네임을 확인해주세요.");
+    			return false;
+    		}
     		var email = document.getElementById("email");
     		if (email.value.length == 0) {
     			alert("이메일을 입력하세요.");
@@ -47,6 +126,10 @@
     		return true;
     		
     	}
+    	
+
+
+    	
     	</script>
     </head>
     <body class="bg-primary">
@@ -64,26 +147,32 @@
                                         <form action="register" method="post" onsubmit="return formValidationCheck()">
                                             <div class="form-row">
                                                 <div class="col-md-6">
-                                                    <!-- Form Group (first name)-->
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="name">이름</label>
                                                         <input class="form-control" id="name" name="name" type="text" autofocus/>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="form-row">
                                                 <div class="col-md-6">
-                                                    <!-- Form Group (last name)-->
                                                     <div class="form-group">
                                                         <label class="small mb-1" for="id">아이디</label>
-                                                        <input class="form-control" id="id" name="id" type="text" />
+                                                        <input class="form-control" id="id" name="id" type="text"  />
+                                                        <input type="button" id="userCheck" class = "btn btn-primary" value="중복확인"/>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <!-- Form Group (email address)            -->
-                                            <div class="form-group">
-                                                <label class="small mb-1" for="email">이메일</label>
-                                                <input class="form-control" id="email" name="email" type="email" />
+                                            <div class="form-row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label class="small mb-1" for="nickname">닉네임</label>
+                                                        <input class="form-control" id="nickname" name="nickname" type="text"  />
+                                                        <input type="button" id="nameCheck" class = "btn btn-primary" value="중복확인"/>
+                                                    </div>
+                                                </div>
+														
                                             </div>
-                                            <!-- Form Row    -->
+											 <!-- Form Row    -->
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <!-- Form Group (password)-->
@@ -93,19 +182,25 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <!-- Form Group (confirm password)-->
-<!--                                                     <div class="form-group">
+                                                     <!-- Form Group (confirm password) -->
+														<!-- 	 <div class="form-group">
                                                         <label class="small mb-1" for="inputConfirmPassword">비밀번호 확인</label>
                                                         <input class="form-control" id="inputConfirmPassword" type="password" />
-                                                    </div> -->
+                                                    </div>  -->
                                                 </div>
+                                             </div> 
+                                            <!-- Form Group (email address)  -->
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="email">이메일</label>
+                                                <input class="form-control" id="email" name="email" type="email" />
                                             </div>
+                                            
                                             <!-- Form Group (create account submit)-->
                                             <div class="form-group mt-4 mb-0"><input type="submit" value="회원가입" class = "btn btn-primary btn-block"></div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <div class="small"><a href="login">이미 회원이신가요? 로그인</a></div>
+                                        <div class="small"><a href="${contextPath }/member/login">이미 회원이신가요? 로그인</a></div>
                                     </div>
                                 </div>
                             </div>

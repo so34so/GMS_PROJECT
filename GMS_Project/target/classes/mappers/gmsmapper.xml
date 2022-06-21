@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="gmsmapper">
-
+<mapper namespace="gmsMapper">
+	<insert id="registerMember" parameterType="MemberDto">
+		INSERT INTO
+				GALLERY_TB
+		VALUES(
+			#{galleryId},
+			#{galleryName},
+			#{galleryPassword},
+			#{galleryNickname},
+			#{galleryEmail}
+		)
+		
+	</insert>
+	
+	<select id="userCheck" parameterType="String" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				GALLERY_TB
+		WHERE
+				GALLERY_ID = #{galleryId}
+	</select>
+	
+	<select id="nameCheck" parameterType="String" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				GALLERY_TB
+		WHERE
+				GALLERY_NICKNAME = #{galleryNickname}
+	</select>
 
 </mapper>

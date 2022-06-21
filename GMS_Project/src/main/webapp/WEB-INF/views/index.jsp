@@ -165,7 +165,7 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="team-member">
-                                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/20200830_142314.jpg" alt="..."style="width:250px;height:250px;" />
+                                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${contextPath }/resources/img/20200830_142314.jpg" alt="..."style="width:250px;height:250px;" />
                                 <h4>김민석</h4>
                                 <p class="text-muted">대학생(졸업예정자)</p>
                                 <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile" data-bs-toggle="modal" data-bs-target="#Infomation"><i class="fa-solid fa-book"></i></a>
@@ -175,7 +175,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="team-member">
-                                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/blank-profile-picture-g35fe79848_640.png" alt="..."style="width:250px;height:250px;" />
+                                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${contextPath }/resources/img/blank-profile-picture-g35fe79848_640.png" alt="..."style="width:250px;height:250px;" />
                                 <h4>누구든 환영</h4>
                                 <p class="text-muted">당신은 최고!</p>
                                 <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fa-solid fa-book"></i></a>
@@ -185,7 +185,7 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="team-member">
-                                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="assets/img/blank-profile-picture-g35fe79848_640.png" alt="..."style="width:250px;height:250px;" />
+                                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${contextPath }/resources/img/blank-profile-picture-g35fe79848_640.png" alt="..."style="width:250px;height:250px;" />
                                 <h4>누구든 환영</h4>
                                 <p class="text-muted">당신은 최고!</p>
                                 <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fa-solid fa-book"></i></a>
@@ -262,7 +262,7 @@
                                     <!-- Portfolio Modal - Title-->
 						            <div class="container px-4 px-lg-5 my-5">
 						                <div class="row gx-4 gx-lg-5 align-items-center">
-						                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="assets/img/20200830_142314.jpg" alt="..." /></div>
+						                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="${context}/resources/img/20200830_142314.jpg" alt="..." /></div>
 						                    <div class="col-md-6">
 						                        <h2 class="display-5 fw-bolder">작가 : 김민석</h2>
 						                        <div class="fs-5 mb-5">
