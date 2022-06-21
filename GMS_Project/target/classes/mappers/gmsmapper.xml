@@ -3,8 +3,13 @@
 
 <mapper namespace="gmsMapper">
 	<insert id="registerMember" parameterType="MemberDto">
-		INSERT INTO
-				GALLERY_TB
+		INSERT INTO GALLERY_TB(
+			GALLERY_ID,
+			GALLERY_NAME,
+			GALLERY_PASSWORD,
+			GALLERY_NICKNAME,
+			GALLERY_EMAIL
+		)
 		VALUES(
 			#{galleryId},
 			#{galleryName},
@@ -12,7 +17,6 @@
 			#{galleryNickname},
 			#{galleryEmail}
 		)
-		
 	</insert>
 	
 	<select id="userCheck" parameterType="String" resultType="MemberDto">

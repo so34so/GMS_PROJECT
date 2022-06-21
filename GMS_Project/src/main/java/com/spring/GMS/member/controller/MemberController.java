@@ -24,22 +24,23 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@RequestMapping(value="/index" , method=RequestMethod.GET)
-	public ModelAndView index() {
+	public ModelAndView index() throws Exception {
 		return new ModelAndView("index");
 	}
 	
 	@RequestMapping(value="/login" , method=RequestMethod.GET)
-	public ModelAndView login() {
+	public ModelAndView login() throws Exception {
 		return new ModelAndView("member/login");
 	}
 	
 	@RequestMapping(value="/register" , method=RequestMethod.GET)
-	public ModelAndView register() {
+	public ModelAndView register() throws Exception {
 		return new ModelAndView("member/register");
 	}
 	
 	@RequestMapping(value="/register" , method=RequestMethod.POST)
-	public @ResponseBody String register(MemberDto memberDto , HttpServletRequest request) {
+	public @ResponseBody String register(MemberDto memberDto , HttpServletRequest request) throws Exception {
+		
 		memberService.registerMember(memberDto);
 		
 		String htmlBody = "<script>";
@@ -51,17 +52,17 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/userCheck" , method=RequestMethod.POST)
-	public ResponseEntity<Object> userCheck(@RequestParam("id") String id){
-		return new ResponseEntity<Object>(memberService.overlapped(id) , HttpStatus.OK);
+	public ResponseEntity<Object> userCheck(@RequestParam("galleryId") String galleryId) throws Exception {
+		return new ResponseEntity<Object>(memberService.overlapped(galleryId) , HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/nameCheck" , method=RequestMethod.POST)
-	public ResponseEntity<Object> nameCheck(@RequestParam("nickname") String nickname){
-		return new ResponseEntity<Object>(memberService.nameCheck(nickname) , HttpStatus.OK);
+	public ResponseEntity<Object> nameCheck(@RequestParam("galleryNickname") String galleryNickname) throws Exception {
+		return new ResponseEntity<Object>(memberService.nameCheck(galleryNickname) , HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/password" , method=RequestMethod.GET)
-	public ModelAndView password() {
+	public ModelAndView password() throws Exception {
 		return new ModelAndView("member/password");
 	}
 	

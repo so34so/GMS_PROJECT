@@ -13,17 +13,17 @@ public class MemberDaoImpl implements MemberDao {
 	private SqlSession sqlSession;
 
 	@Override
-	public void insertMember(MemberDto memberDto) {
+	public void insertMember(MemberDto memberDto) throws Exception {
 		sqlSession.insert("gmsMapper.registerMember", memberDto);
 	}
 
 	@Override
-	public MemberDto overlapped(String galleryId) {
+	public MemberDto overlapped(String galleryId) throws Exception {
 		return sqlSession.selectOne("gmsMapper.userCheck" , galleryId);
 	}
 
 	@Override
-	public MemberDto nameCheck(String galleryNickname) {
+	public MemberDto nameCheck(String galleryNickname) throws Exception {
 		return sqlSession.selectOne("gmsMapper.nameCheck" , galleryNickname);
 	}
 	

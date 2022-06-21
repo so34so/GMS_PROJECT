@@ -28,8 +28,8 @@
     		
     		$("#userCheck").click(function(){
     			
-    		    var id = $("#id").val();
-    		    if (id == ''){
+    		    var galleryId = $("#galleryId").val();
+    		    if (galleryId == ''){
     		   		alert("ID를 입력하세요");
     		   		return;
     		    }
@@ -37,7 +37,7 @@
     		    $.ajax({
     		       type : "post",
     		       url : "${contextPath}/member/userCheck",
-    		       data : {"id" : id},
+    		       data : {"galleryId" : galleryId},
     		       success : function(isOverLapped){
     		          if (isOverLapped == "false"){
     		          	alert("사용할 수 있는 ID입니다.");
@@ -53,8 +53,8 @@
     		
     		$("#nameCheck").click(function(){
     			
-    		    var nickname = $("#nickname").val();
-    		    if (nickname == ''){
+    		    var galleryNickname = $("#galleryNickname").val();
+    		    if (galleryNickname == ''){
     		   		alert("닉네임을 입력하세요");
     		   		return;
     		    }
@@ -62,7 +62,7 @@
     		    $.ajax({
     		       type : "post",
     		       url : "${contextPath}/member/nameCheck",
-    		       data : {"nickname" : nickname},
+    		       data : {"galleryNickname" : galleryNickname},
     		       success : function(isOverLapped){
     		          if (isOverLapped == "false"){
     		          	alert("사용할 수 있는 닉네임입니다.");
@@ -80,13 +80,13 @@
     	
     	function formValidationCheck(){
     		
-    		var name = document.getElementById("name");
+    		var name = document.getElementById("galleryName");
     		if (name.value.length == 0) {
     			alert("이름을 입력하세요.");
     			name.focus();
     			return false;
     		}
-    		var id = document.getElementById("id");
+    		var id = document.getElementById("galleryId");
     		if (id.value.length == 0) {
     			alert("아이디를 입력하세요.");
     			id.focus();
@@ -98,7 +98,7 @@
     			return false;
     		}
     		
-    		var nickname = document.getElementById("nickname");
+    		var nickname = document.getElementById("galleryNickname");
     		if (nickname.value.length == 0) {
     			alert("닉네임을 입력하세요.");
     			nickname.focus();
@@ -109,14 +109,14 @@
     			alert("닉네임을 확인해주세요.");
     			return false;
     		}
-    		var email = document.getElementById("email");
+    		var email = document.getElementById("galleryEmail");
     		if (email.value.length == 0) {
     			alert("이메일을 입력하세요.");
     			email.focus();
     			return false;
     		}
     		
-    		var pw = document.getElementById("pw");
+    		var pw = document.getElementById("galleryPassword");
     		if (pw.value.length == 0) {
     			alert("비밀번호를 입력하세요.");
     			pw.focus();
@@ -148,26 +148,26 @@
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="name">이름</label>
-                                                        <input class="form-control" id="name" name="name" type="text" autofocus/>
+                                                        <label class="small mb-1" for="galleryName">이름</label>
+                                                        <input class="form-control" id="galleryName" name="galleryName" type="text" autofocus/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="id">아이디</label>
-                                                        <input class="form-control" id="id" name="id" type="text"  />
-                                                        <input type="button" id="userCheck" class = "btn btn-primary" value="중복확인"/>
+                                                        <label class="small mb-1" for="galleryId">아이디</label>
+                                                        <input class="form-control" id="galleryId" name="galleryId" type="text"  />
+                                                        <input type="button" id="userCheck" class = "btn btn-primary" value="중복확인" style="padding: 0.5em;"/>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="nickname">닉네임</label>
-                                                        <input class="form-control" id="nickname" name="nickname" type="text"  />
-                                                        <input type="button" id="nameCheck" class = "btn btn-primary" value="중복확인"/>
+                                                        <label class="small mb-1" for="galleryNickname">닉네임</label>
+                                                        <input class="form-control" id="galleryNickname" name="galleryNickname" type="text"  />
+                                                        <input type="button" id="nameCheck" class = "btn btn-primary" value="중복확인" style="padding: 0.5em;"/>
                                                     </div>
                                                 </div>
 														
@@ -177,24 +177,18 @@
                                                 <div class="col-md-6">
                                                     <!-- Form Group (password)-->
                                                     <div class="form-group">
-                                                        <label class="small mb-1" for="pw">비밀번호</label>
-                                                        <input class="form-control" id="pw" name="pw" type="password"  />
+                                                        <label class="small mb-1" for="galleryPassword">비밀번호</label>
+                                                        <input class="form-control" id="galleryPassword" name="galleryPassword" type="password"  />
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                     <!-- Form Group (confirm password) -->
-														<!-- 	 <div class="form-group">
-                                                        <label class="small mb-1" for="inputConfirmPassword">비밀번호 확인</label>
-                                                        <input class="form-control" id="inputConfirmPassword" type="password" />
-                                                    </div>  -->
                                                 </div>
                                              </div> 
                                             <!-- Form Group (email address)  -->
                                             <div class="form-group">
-                                                <label class="small mb-1" for="email">이메일</label>
-                                                <input class="form-control" id="email" name="email" type="email" />
+                                                <label class="small mb-1" for="galleryEmail">이메일</label>
+                                                <input class="form-control" id="galleryEmail" name="galleryEmail" type="email" />
                                             </div>
-                                            
                                             <!-- Form Group (create account submit)-->
                                             <div class="form-group mt-4 mb-0"><input type="submit" value="회원가입" class = "btn btn-primary btn-block"></div>
                                         </form>
@@ -225,6 +219,6 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="${context }/resources/js/scripts.js"></script>
     </body>
 </html>

@@ -18,13 +18,13 @@ public class MemberServiceImpl implements MemberService {
 	private BCryptPasswordEncoder passwordEncoder;
 
 	@Override
-	public void registerMember(MemberDto memberDto) {
+	public void registerMember(MemberDto memberDto) throws Exception  {
 		memberDto.setGalleryPassword(passwordEncoder.encode(memberDto.getGalleryPassword()));
 		memberDao.insertMember(memberDto);
 	}
 
 	@Override
-	public String overlapped(String galleryId) {
+	public String overlapped(String galleryId) throws Exception  {
 		
 		String isOverLapped = "true";
 		
@@ -35,7 +35,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public String nameCheck(String galleryNickname) {
+	public String nameCheck(String galleryNickname) throws Exception  {
 		
 		String isOverLapped = "true";
 		
