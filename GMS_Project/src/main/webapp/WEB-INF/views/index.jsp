@@ -35,9 +35,9 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="shopHomepage.jsp">작품판매쳐</a></li>
                     <c:choose>
-                    	<c:when test="${galleryId ne null }">
-        	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="mypage">마이페이지</a></li>
-		                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="logout">로그아웃</a></li>
+                    	<c:when test="${loginUser ne null }">
+        	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/myPage">마이페이지</a></li>
+		                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/logout">로그아웃</a></li>
         	            </c:when>
         	            <c:otherwise>
 							<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/login">로그인</a></li>

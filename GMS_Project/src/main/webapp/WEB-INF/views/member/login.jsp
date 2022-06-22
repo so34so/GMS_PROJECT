@@ -30,13 +30,13 @@
                                         <form action="login" method="post">
                                             <!-- Form Group (id)-->
                                             <div class="form-group">
-                                                <label class="small mb-1" for="id">아이디</label>
-                                                <input class="form-control" id="id" name = "id" type="text" />
+                                                <label class="small mb-1" for="galleryId">아이디</label>
+                                                <input class="form-control" id="galleryId" name = "galleryId" type="text" />
                                             </div>
                                             <!-- Form Group (password)-->
                                             <div class="form-group">
-                                                <label class="small mb-1" for="pw">비밀번호</label>
-                                                <input class="form-control" id="pw" name="pw" type="password"  />
+                                                <label class="small mb-1" for="galleryPassword">비밀번호</label>
+                                                <input class="form-control" id="galleryPassword" name="galleryPassword" type="password"  />
                                             </div>
                                             <!-- Form Group (remember password checkbox)-->
                                             <div class="form-group">
@@ -47,7 +47,7 @@
                                             </div>
                                             <!-- Form Group (login box)-->
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="${contextPath}/member/password">비밀번호 찾기</a>
+                                                <a class="small" href="${contextPath}/member/password">비밀번호 재설정</a>
                                                 <input type="submit" value="로그인" class="btn btn-primary">
                                             </div>
                                         </form>

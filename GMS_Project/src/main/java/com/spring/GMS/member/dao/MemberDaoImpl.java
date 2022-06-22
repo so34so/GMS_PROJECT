@@ -26,6 +26,16 @@ public class MemberDaoImpl implements MemberDao {
 	public MemberDto nameCheck(String galleryNickname) throws Exception {
 		return sqlSession.selectOne("gmsMapper.nameCheck" , galleryNickname);
 	}
+
+	@Override
+	public MemberDto login(MemberDto memberDto) throws Exception {
+		return sqlSession.selectOne("gmsMapper.loginMember" , memberDto);
+	}
+
+	@Override
+	public MemberDto selectOneMember(String galleryId) throws Exception {
+		return sqlSession.selectOne("gmsMapper.showOneMember" , galleryId);
+	}
 	
 	
 	

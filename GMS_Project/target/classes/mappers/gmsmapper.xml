@@ -36,5 +36,23 @@
 		WHERE
 				GALLERY_NICKNAME = #{galleryNickname}
 	</select>
+	
+	<select id="loginMember" parameterType="MemberDto" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				GALLERY_TB
+		WHERE
+				GALLERY_ID = #{galleryId}
+	</select>
+	
+	<select id="showOneMember" parameterType="String" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				GALLERY_TB
+		WHERE
+				GALLERY_ID = #{galleryId}
+	</select>
 
 </mapper>

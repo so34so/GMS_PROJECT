@@ -45,5 +45,24 @@ public class MemberServiceImpl implements MemberService {
 		return isOverLapped;
 		
 	}
+
+	@Override
+	public MemberDto loginMember(MemberDto memberDto) throws Exception {
+		MemberDto dbMemberDto = memberDao.login(memberDto);
+		
+		if(dbMemberDto != null) {
+			if(passwordEncoder.matches(memberDto.getGalleryPassword(), dbMemberDto.getGalleryPassword())) {
+			return memberDto;
+			}
+		}
+		
+		return null;
+	}
+
+	@Override
+	public MemberDto showOneMember(String galleryId) throws Exception {
+		return memberDao.selectOneMember(galleryId);
+	}
+
 	
 }

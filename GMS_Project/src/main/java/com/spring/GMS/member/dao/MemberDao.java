@@ -7,5 +7,6 @@ public interface MemberDao {
 	public void insertMember(MemberDto memberDto) throws Exception ;
 	public MemberDto overlapped(String galleryId) throws Exception ;
 	public MemberDto nameCheck(String galleryNickname) throws Exception ;
-
+	public MemberDto login(MemberDto memberDto) throws Exception;
+	public MemberDto selectOneMember(String galleryId) throws Exception;
 }

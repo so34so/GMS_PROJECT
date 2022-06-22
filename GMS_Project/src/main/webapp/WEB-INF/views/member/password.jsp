@@ -24,25 +24,29 @@
                             <div class="col-lg-5">
                                 <!-- Basic forgot password form-->
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">비밀번호 찾기</h3></div>
+                                    <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">비밀번호 재설정</h3></div>
                                     <div class="card-body">
                                         <div class="small mb-3 text-muted">당신의 아이디를 입력하세요.</div>
                                         <!-- Forgot password form-->
                                         <form action="password" method="post">
                                             <!-- Form Group (email address)-->
                                             <div class="form-group">
-                                                <label class="small mb-1" for="inputName">아이디</label>
-                                                <input class="form-control" id="inputName" name="id" type="text" aria-describedby="emailHelp"  />
+                                                <label class="small mb-1" for="galleryId">아이디</label>
+                                                <input class="form-control" id="galleryId" name="galleryId" type="text" aria-describedby="emailHelp"  />
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="small mb-1" for="galleryPassword">바꿀 비밀번호</label>
+                                                <input class="form-control" id="galleryPassword" name="galleryPassword" type="text" />
                                             </div>
                                             <!-- Form Group (submit options)-->
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="login">로그인</a>
-                                                <input type="submit" value="비밀번호 찾기" class="btn btn-primary">
+                                                <a class="small" href="${contextPath }/member/login">로그인</a>
+                                                <input type="submit" value="비밀번호 재설정" class="btn btn-primary">
                                             </div>
                                         </form>
                                     </div>
                                     <div class="card-footer text-center">
-                                        <div class="small"><a href="register.jsp">회원가입</a></div>
+                                        <div class="small"><a href="${contextPath }/member/register">회원가입</a></div>
                                     </div>
                                 </div>
                             </div>
