@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="default" template="/WEB-INF/views/user/userlayout.jsp">
+		<put-attribute name="menu" value="/WEB-INF/views/user/MyPage.jsp"/>
+	</definition>
+	
+	<definition name="user/update" extends="default">
+		<put-attribute name="content" value="/WEB-INF/views/user/update.jsp"/>
+		<put-attribute name="title" value="개인정보 변경"/>
+	</definition>
+	
+	<definition name="user/delete" extends="default">
+		<put-attribute name="content" value="/WEB-INF/views/user/delete.jsp"/>
+		<put-attribute name="title" value="탈퇴하기"/>
+	</definition>
+	
+	<definition name="user/pwupdate" extends="default">
+		<put-attribute name="content" value="/WEB-INF/views/user/pwupdate.jsp"/>
+		<put-attribute name="title" value="비밀번호 변경"/>
+	</definition>
+	
+</tiles-definitions>

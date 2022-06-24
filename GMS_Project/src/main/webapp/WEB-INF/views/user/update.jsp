@@ -18,9 +18,10 @@
 </head>
 <body>
 <div class="col-xl-8">
+								<h1>개인정보 변경</h1>
                                 <!-- Account details card-->
                                 <div class="card mb-4">
-                                    <div class="card-header">Account Details</div>
+                                    <div class="card-header">정보 변경하기</div>
                                     <div class="card-body">
                                         <form>
                                             <!-- Form Row-->

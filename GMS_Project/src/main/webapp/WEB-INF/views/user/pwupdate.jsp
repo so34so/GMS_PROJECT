@@ -18,9 +18,10 @@
 </head>
 <body>
 <div class="col-xl-8">
+								<h1>비밀번호 변경</h1>
                                 <!-- Account details card-->
                                 <div class="card mb-4">
-                                    <div class="card-header">Account Details</div>
+                                    <div class="card-header">비밀번호 변경</div>
                                     <div class="card-body">
                                         <form>
                                             <!-- Form Group (username)-->
