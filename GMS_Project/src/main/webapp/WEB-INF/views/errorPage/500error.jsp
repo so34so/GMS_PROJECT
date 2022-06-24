@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,8 +10,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>500 Error</title>
-        <link href="css/styles5.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+        <link href="${contextPath }/resources/css/styles5.css" rel="stylesheet" />
+        <link rel="icon" type="image/x-icon" href="${contextPath }/resources//img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
     </head>
@@ -21,9 +23,9 @@
                         <div class="row justify-content-center">
                             <div class="col-lg-6">
                                 <div class="text-center mt-4">
-                                    <img class="img-fluid p-4" src="assets/img/500-internal-server-error.svg" alt="" />
+                                    <img class="img-fluid p-4" src="${contextPath }/resources//img/500-internal-server-error.svg" alt="" />
                                     <p class="lead">The server encountered an internal error or misconfiguration and was unable to complete your request.</p>
-                                    <a class="text-arrow-icon" href="index.html">
+                                    <a class="text-arrow-icon" href="${contextPath }/member/index">
                                         <i class="ml-0 mr-1" data-feather="arrow-left"></i>
                                         Return to Dashboard
                                     </a>
@@ -50,6 +52,6 @@
         </div>
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="${contextPath }/resources/js/scripts.js"></script>
     </body>
 </html>

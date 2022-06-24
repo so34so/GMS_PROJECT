@@ -74,7 +74,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/register" , method=RequestMethod.POST)
-	public @ResponseBody String register(MemberDto memberDto , HttpServletRequest request) throws Exception {
+	public ResponseEntity<Object> register(MemberDto memberDto , HttpServletRequest request) throws Exception {
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type" , "text/html; charset=UTF-8");
 		
 		memberService.registerMember(memberDto);
 		
@@ -83,7 +86,7 @@ public class MemberController {
 			   htmlBody += "location.href='" + request.getContextPath() + "/member/login';";
 			   htmlBody += "</script>";
 			   
-		return htmlBody;
+		return new ResponseEntity<Object> (htmlBody, responseHeaders , HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/userCheck" , method=RequestMethod.POST)
@@ -115,20 +118,7 @@ public class MemberController {
 		
 	}	
 	
-	@RequestMapping(value="/update" , method=RequestMethod.GET)
-	public ModelAndView update() {
-		return new ModelAndView("user/update");
-	}
-	
-	@RequestMapping(value="/delete" , method=RequestMethod.GET)
-	public ModelAndView delete() {
-		return new ModelAndView("user/delete");
-	}
-	
-	@RequestMapping(value="/pwupdate" , method=RequestMethod.GET)
-	public ModelAndView pwupdate() {
-		return new ModelAndView("user/pwupdate");
-	}
+
 	
 	
 	

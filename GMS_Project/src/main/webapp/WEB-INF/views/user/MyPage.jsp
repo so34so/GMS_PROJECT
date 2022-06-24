@@ -22,10 +22,10 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><h4>${memberDto.galleryNickname }님의 페이지</h4></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/update">정보 수정하기</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/pwupdate">비밀번호 변경하기</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/delete">탈퇴하기</a></li>
+                    <h4>${sessionScope.loginUser }님의 페이지</h4>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/update">정보 수정하기</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/pwupdate">비밀번호 변경하기</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/delete">탈퇴하기</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/index">메인 페이지</a></li>
                 </ul>
             </div>

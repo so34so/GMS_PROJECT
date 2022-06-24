@@ -148,6 +148,17 @@ public class MemberDto {
 		this.artistComent = artistComent;
 	}
 	
+	@Override
+	public String toString() {
+		return "MemberDto [galleryId=" + galleryId + ", galleryName=" + galleryName + ", galleryPassword="
+				+ galleryPassword + ", galleryNickname=" + galleryNickname + ", galleryEmail=" + galleryEmail
+				+ ", artTitle=" + artTitle + ", artContent=" + artContent + ", artSell=" + artSell + ", artStatus="
+				+ artStatus + ", artArtnum=" + artArtnum + ", comentDate=" + comentDate + ", comentTitle=" + comentTitle
+				+ ", comentContent=" + comentContent + ", comentBest=" + comentBest + ", comentBestNum=" + comentBestNum
+				+ ", comentWorst=" + comentWorst + ", comentWorstNum=" + comentWorstNum + ", artist=" + artist
+				+ ", artistArt=" + artistArt + ", artistComent=" + artistComent + "]";
+	}
+	
 	
 	
 

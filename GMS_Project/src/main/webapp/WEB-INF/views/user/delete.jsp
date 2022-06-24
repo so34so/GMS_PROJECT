@@ -10,7 +10,8 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Account Settings - Profile - SB Admin Pro</title>
-        <link href="${contextPath }/resources/css/styles6.css" rel="stylesheet" />
+        <link href="${contextPath }/resources/css/mypage.css" rel="stylesheet" />
+        <link href="${contextPath }/resources/css/styles5.css" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet" crossorigin="anonymous" />
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
@@ -23,35 +24,36 @@
                                 <div class="card mb-4">
                                     <div class="card-header">탈퇴하기</div>
                                     <div class="card-body">
-                                        <form>
+                                        <form action="delete" method="post">
                                             <!-- Form Row-->
                                             <div class="form-row">
                                                 <!-- Form Group (first name)-->
                                                 <div class="form-group col-md-6">
                                                     <label class="small mb-1" for="galleryName">성명</label>
-	                                                <input class="form-control" id="galleryName" type="text" placeholder="Enter your username" value="username" />
+	                                                <input class="form-control" id="galleryName" name="galleryName" type="text" readonly="true" value="${memberDto.galleryName }" />
 	                                            </div>
 	                                                <!-- Form Group (last name)-->
 	                                            <div class="form-group col-md-6">
 	                                                <label class="small mb-1" for="galleryNickname">닉네임</label>
-	                                                <input class="form-control" id="galleryNickname" type="text" placeholder="Enter your username" value="username" />
+	                                                <input class="form-control" id="galleryNickname" name="galleryNickname" type="text" readonly="true" value="${memberDto.galleryNickname }" />
 	                                            </div>
                                             </div>
                                             <!-- Form Group (email address)-->
                                             <div class="form-group">
                                                 <label class="small mb-1" for="galleryEmail">이메일</label>
-                                                <input class="form-control" id="galleryEmail" type="email" placeholder="Enter your email address" value="name@example.com" />
+                                                <input class="form-control" id="galleryEmail" name="galleryEmail" type="email" readonly="true" value="${memberDto.galleryEmail }" />
                                             </div>
                                                                                         <!-- Form Row-->
                                             <div class="form-row">
                                                 <!-- Form Group (first name)-->
                                                 <div class="form-group col-md-6">
                                                     <label class="small mb-1" for="galleryPassword">비밀번호</label>
-	                                                <input class="form-control" id="galleryPassword" type="password" placeholder="Enter your username" value="username" />
+	                                                <input class="form-control" id="galleryPassword" name="galleryPassword" type="password" placeholder="비밀번호를 입력하세요."/>
 	                                            </div>
                                             </div>
                                             <!-- Save changes button-->
-                                            <button class="btn btn-primary" type="button">탈퇴하기</button>
+                                            <input type="hidden" name="galleryId" value="${memberDto.galleryId}" /> 
+                                            <button class="btn btn-primary" type="submit">탈퇴하기</button>
                                         </form>
                                     </div>
                                 </div>

@@ -8,22 +8,13 @@
 </head>
 <body>
 	
-	<div style="background-color: lime; height:100px;">
-		<tiles:insertAttribute name="header"/>
-	</div>
-	
-	<div style="background-color: skyblue; height:100px;">
+	<div>
 		<tiles:insertAttribute name="menu"/>
 	</div>
 	
-	<div style="background-color: white; height:500px;">
+	<div>
 		<tiles:insertAttribute name="content"/>
 	</div>
-	
-	<div style="background-color: pink; height:100px;">
-		<tiles:insertAttribute name="footer"/>
-	</div>
-	
 	
 </body>
 </html>
