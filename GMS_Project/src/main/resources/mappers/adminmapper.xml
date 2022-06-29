@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adminMapper">
+	<select id="allUserList" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				GALLERY_TB
+	</select>
+	
+	<insert id="categoryadd" parameterType="MemberDto">
+		INSERT INTO GALLERY_TB(
+			ART_STATUS,
+			SHOW_NAME,
+			ARTIST,
+			START_DATE,
+			END_DATE
+		)
+		VALUES(
+			#{artStatus},
+			#{showName},
+			#{artist},
+			#{startDate},
+			#{endDate}
+		)
+	</insert>
+	
+	<select id="listCategory" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				GALLERY_TB
+	</select>
+</mapper>

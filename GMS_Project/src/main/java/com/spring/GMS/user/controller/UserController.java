@@ -81,6 +81,8 @@ public class UserController {
 		
 		String htmlBody ="";
 		if(userService.deleteUser(memberDto)) {
+			HttpSession session = request.getSession();
+			session.invalidate();
 			htmlBody += "<script>";
 			htmlBody += "alert('탈퇴 완료되었습니다.');";
 			htmlBody += "location.href='" + request.getContextPath() + "/member/index';";

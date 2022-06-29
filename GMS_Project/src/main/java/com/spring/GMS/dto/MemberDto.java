@@ -27,6 +27,14 @@ public class MemberDto {
 	private String artist;
 	private String artistArt;
 	private String artistComent;
+	private String zipcode;
+	private String roadAddress;
+	private String jibunAddress;
+	private String namujiAddress;
+	private Date joinDate;
+	private String showName;
+	private Date startDate;
+	private Date endDate;
 	public String getGalleryId() {
 		return galleryId;
 	}
@@ -147,21 +155,56 @@ public class MemberDto {
 	public void setArtistComent(String artistComent) {
 		this.artistComent = artistComent;
 	}
-	
-	@Override
-	public String toString() {
-		return "MemberDto [galleryId=" + galleryId + ", galleryName=" + galleryName + ", galleryPassword="
-				+ galleryPassword + ", galleryNickname=" + galleryNickname + ", galleryEmail=" + galleryEmail
-				+ ", artTitle=" + artTitle + ", artContent=" + artContent + ", artSell=" + artSell + ", artStatus="
-				+ artStatus + ", artArtnum=" + artArtnum + ", comentDate=" + comentDate + ", comentTitle=" + comentTitle
-				+ ", comentContent=" + comentContent + ", comentBest=" + comentBest + ", comentBestNum=" + comentBestNum
-				+ ", comentWorst=" + comentWorst + ", comentWorstNum=" + comentWorstNum + ", artist=" + artist
-				+ ", artistArt=" + artistArt + ", artistComent=" + artistComent + "]";
+	public String getZipcode() {
+		return zipcode;
+	}
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	public String getRoadAddress() {
+		return roadAddress;
+	}
+	public void setRoadAddress(String roadAddress) {
+		this.roadAddress = roadAddress;
+	}
+	public String getJibunAddress() {
+		return jibunAddress;
+	}
+	public void setJibunAddress(String jibunAddress) {
+		this.jibunAddress = jibunAddress;
+	}
+	public String getNamujiAddress() {
+		return namujiAddress;
+	}
+	public void setNamujiAddress(String namujiAddress) {
+		this.namujiAddress = namujiAddress;
+	}
+	public Date getJoinDate() {
+		return joinDate;
+	}
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
+	public String getShowName() {
+		return showName;
+	}
+	public void setShowName(String showName) {
+		this.showName = showName;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	
 	
-	
-
 	
 	
 }

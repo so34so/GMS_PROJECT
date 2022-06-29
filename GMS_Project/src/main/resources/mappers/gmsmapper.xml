@@ -8,14 +8,24 @@
 			GALLERY_NAME,
 			GALLERY_PASSWORD,
 			GALLERY_NICKNAME,
-			GALLERY_EMAIL
+			GALLERY_EMAIL,
+			ZIPCODE,
+			ROADADDRESS,
+			JIBUNADDRESS,
+			NAMUJIADDRESS,
+			JOIN_DATE
 		)
 		VALUES(
 			#{galleryId},
 			#{galleryName},
 			#{galleryPassword},
 			#{galleryNickname},
-			#{galleryEmail}
+			#{galleryEmail},
+			#{zipcode},
+			#{roadAddress},
+			#{jibunAddress},
+			#{namujiAddress},
+			NOW()
 		)
 	</insert>
 	

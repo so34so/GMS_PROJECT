@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="admindefault" template="/WEB-INF/views/admin/adminlayout.jsp">
+		<put-attribute name="adminmenu" value="/WEB-INF/views/admin/adminpage.jsp"/>
+	</definition>
+	
+	<definition name="admin/adminuser" extends="admindefault">
+		<put-attribute name="admincontent" value="/WEB-INF/views/admin/adminuser.jsp"/>
+		<put-attribute name="admintitle" value="회원 관리"/>
+	</definition>
+	
+	<definition name="admin/adminproduct" extends="admindefault">
+		<put-attribute name="admincontent" value="/WEB-INF/views/admin/adminproduct.jsp"/>
+		<put-attribute name="admintitle" value="상품 관리"/>
+	</definition>
+	
+	<definition name="admin/adminorder" extends="admindefault">
+		<put-attribute name="admincontent" value="/WEB-INF/views/admin/adminorder.jsp"/>
+		<put-attribute name="admintitle" value="주문 관리"/>
+	</definition>
+	
+	<definition name="admin/admincategory" extends="admindefault">
+		<put-attribute name="admincontent" value="/WEB-INF/views/admin/admincategory.jsp"/>
+		<put-attribute name="admintitle" value="카테고리 등록"/>
+	</definition>
+	
+	<definition name="admin/categoryadd" extends="admindefault">
+		<put-attribute name="admincontent" value="/WEB-INF/views/admin/categoryadd.jsp"/>
+		<put-attribute name="admintitle" value="카테고리 등록"/>
+	</definition>
+	
+</tiles-definitions>

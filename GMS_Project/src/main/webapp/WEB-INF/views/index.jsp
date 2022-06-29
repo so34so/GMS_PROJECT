@@ -35,12 +35,17 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">FAQ</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="shopHomepage.jsp">작품판매쳐</a></li>
                     <c:choose>
-                    	<c:when test="${loginUser ne null }">
+                        <c:when test="${isLogOn == true and loginUser == 'admin'}">
+        	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminpage">관리페이지</a></li>
+		                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/logout">로그아웃</a></li>
+        	            </c:when>
+                    	<c:when test="${isLogOn == true and not empty loginUser}">
         	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/myPage">마이페이지</a></li>
 		                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/logout">로그아웃</a></li>
         	            </c:when>
         	            <c:otherwise>
 							<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/login">로그인</a></li>
+							<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/register">회원가입</a></li>
         	            </c:otherwise>	
                     </c:choose>
                 </ul>
@@ -72,88 +77,36 @@
             <section class="section-meals resume-section"id="experience">
                 <div class="resume-section-content">
                     <h2 class="mb-5">사진 전시</h2>
-                        <h3 class="mb-0"style="text-align:center;">김민석 전</h3>
-                        <ul class="showcase clearfix">
-                            <li>
-                                <div class="wrapper">
-                                    <div class="parent" onclick="location.href='gallery1'">
-                                      <div class="child photo-one">
-                                        <a href="gallery1" class="classic">김민석 전<br>(미니어쳐)</a>
-                                      </div>
-                                    </div>
-                            </li>
-                            <li>
-                                <div class="wrapper">
-                                    <div class="parent" onclick="">
-                                      <div class="child photo-two">
-                                        <a href="#" class="classic">김민석 전<br>(해외여행)</a>
-                                      </div>
-                                    </div>
-                            </li>
-                        </ul>
-                        <ul class="showcase clearfix">
-                            <li>
-                                <div class="wrapper">
-                                    <div class="parent" onclick="">
-                                      <div class="child photo-three">
-                                        <a href="#" class="classic">김민석 전<br>(우리집 고양이)</a>
-                                      </div>
-                                    </div>
-                            </li>
-                            <li>
-                                <div class="wrapper">
-                                    <div class="parent" onclick="">
-                                      <div class="child photo-four">
-                                        <a href="#" class="classic">김민석 전<br>(흑백사진)</a>
-                                      </div>
-                                    </div>
-                            </li>
-                        </ul>
+                     	<div class="row">
+	                    	<%-- <c:forEach var="item" items="${artList }"> --%>
+		                        <div class="col-lg-4">
+		                            <div class="team-member">
+		                                <a href="${contextPath }/gallery1?artTitle=${memberDto.artTitle}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath }/resources/img/20200830_142314.jpg" alt="..."style="width:250px;height:250px;" /></a>
+		                                <h4>미니어쳐</h4>
+		                                <p class="text-muted">김민석 전</p>
+		                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery1?artTitle=${memberDto.artTitle}" role="button">보러가기</a></div>
+		                            </div>
+		                        </div>
+	                        <%-- </c:forEach> --%>
                     </div>
                 </div>
             </section>
-            <hr class="m-0" />
+            <hr class="m-0"/>
             <!-- Education-->
-            <section class="section-meals resume-section"id="education">
+ 			<section class="resume-section" id="education">
                 <div class="resume-section-content">
                     <h2 class="mb-5">그림 전시</h2>
-                        <h3 class="mb-0"style="text-align:center;">김민석 전</h3>
-                        <ul class="showcase clearfix">
-                            <li>
-                                <div class="wrapper">
-                                    <div class="parent" onclick="">
-                                      <div class="child paint-one ">
-                                        <a href="#" class="classic">김민석 전<br>(네모)</a>
-                                      </div>
-                                    </div>
-                            </li>
-                            <li>
-                                <div class="wrapper">
-                                    <div class="parent" onclick="">
-                                      <div class="child paint-two">
-                                        <a href="#" class="classic">김민석 전<br>(원)</a>
-                                      </div>
-                                    </div>
-                            </li>
-                        </ul>
-                        <ul class="showcase clearfix">
-                            <li>
-                                <div class="wrapper">
-                                    <div class="parent" onclick="">
-                                      <div class="child paint-three">
-                                        <a href="#" class="classic">김민석 전<br>(세모)</a>
-                                      </div>
-                                    </div>
-                            </li>
-                            <li>
-                                <div class="wrapper">
-                                    <div class="parent" onclick="">
-                                      <div class="child paint-four">
-                                        <a href="#" class="classic">김민석 전<br>(선)</a>
-                                      </div>
-                                    </div>
-                            </li>
-                        </ul>
+                    <div class="row">
+                    	<%-- <c:forEach var="item" items="${artList }"> --%>
+	                        <div class="col-lg-4">
+	                            <div class="team-member">
+	                                <a href="${contextPath }/gallery1?artTitle=${memberDto.artTitle}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath }/resources/img/20200830_142314.jpg" alt="..."style="width:250px;height:250px;" /></a>
+	                                <h4>미니어쳐</h4>
+	                                <p class="text-muted">김민석 전</p>
+	                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery1?artTitle=${memberDto.artTitle}" role="button">보러가기</a></div>
+	                            </div>
+	                        </div>
+                        <%-- </c:forEach> --%>
                     </div>
                 </div>
             </section>
@@ -262,7 +215,7 @@
                                     <!-- Portfolio Modal - Title-->
 						            <div class="container px-4 px-lg-5 my-5">
 						                <div class="row gx-4 gx-lg-5 align-items-center">
-						                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="${context}/resources/img/20200830_142314.jpg" alt="..." /></div>
+						                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="${contextPath}/resources/img/20200830_142314.jpg" alt="..." /></div>
 						                    <div class="col-md-6">
 						                        <h2 class="display-5 fw-bolder">작가 : 김민석</h2>
 						                        <div class="fs-5 mb-5">
@@ -288,7 +241,7 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="${context }/resources/js/scripts.js"></script>
+        <script src="${contextPath }/resources/js/scripts.js"></script>
                         <!-- Bootstrap core JS-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->

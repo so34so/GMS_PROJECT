@@ -46,6 +46,7 @@ public class MemberController {
 		if(memberService.loginMember(memberDto) != null) {
 			
 			HttpSession session = request.getSession();
+			session.setAttribute("isLogOn" , true);	
 			session.setAttribute("loginUser", memberDto.getGalleryId());
 			htmlBody += "<script>";
 			htmlBody += "alert('로그인 성공');";

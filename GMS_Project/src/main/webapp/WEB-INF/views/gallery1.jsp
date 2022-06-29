@@ -29,6 +29,7 @@
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">
                     <!-- Portfolio Item 1-->
+                    <%-- <c:forEach var="item" items="${artList }"> --%>
                     <div class="col-md-6 col-lg-3 mb-5">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
@@ -37,6 +38,7 @@
                             <img class="img-fluid" src="assets/img/미니어쳐1.png" alt="미니어쳐1" />
                         </div>
                     </div>
+                     <%-- </c:forEach> --%>
                     <!-- Portfolio Item 2-->
                     <div class="col-md-6 col-lg-3 mb-5">
                         <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal2">
@@ -102,9 +104,7 @@
                     </div>
                 </div>
                 <input type="button" value="Go Homepage" class="btn btn-primary" onclick="location.href='index'" >
-<!--                 <button class="btn btn-primary" onclick="location.href='index'" >
-                Go Homepage
-                </button> -->
+
             </div>
         </section>
         

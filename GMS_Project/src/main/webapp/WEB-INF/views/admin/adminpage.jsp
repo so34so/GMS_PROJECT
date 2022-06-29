@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>MyPage</title>
+<title>AdminPage</title>
+        
         <link href="${contextPath }/resources/css/styles.css" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="assets/img/user.png" />
         <!-- Font Awesome icons (free version)-->
@@ -17,24 +18,25 @@
 </head>
 <body>
 <div id="page-wrapper">
- <!-- 사이드바 -->
-			<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-	            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-	                <span class="d-block d-lg-none">P_Gallery</span>
-	                <span class="d-none d-lg-block"></span>
-	            </a>
-	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+  <!-- 사이드바 -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                <span class="d-block d-lg-none">P_Gallery</span>
+                <span class="d-none d-lg-block"></span>
+            </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <h4>${sessionScope.loginUser }님의 페이지</h4>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/update">정보 수정하기</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/pwupdate">비밀번호 변경하기</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/delete">탈퇴하기</a></li>
+                    <h4>관리 페이지</h4>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminuser">회원 관리</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/admincategory">상품 관리</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminorder">주문 관리</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/index">메인 페이지</a></li>
                 </ul>
             </div>
         </nav>
 </div>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
