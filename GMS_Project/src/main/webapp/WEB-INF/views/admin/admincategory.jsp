@@ -18,20 +18,14 @@
 		$().ready(function() {
 			
 			$("#delete").click(function(){
-				
 			    $.ajax({
-			       type : "post",
+			       type : "get",
 			       url : "${contextPath}/admin/categorydelete",
-			       data : {"mainArt" : mainArt},
-			       success : function(isOverLapped){
-			          if (isOverLapped == "false"){
-			        	  
-			          }
-			          else {
-			        	  
-			          }
+			       data : {"mainArt" : $("#mainArt").val()},
+			       success : function(){
 			       }
 			    });
+			    
 			});	
 			
 		});
@@ -61,14 +55,17 @@
 					    </tr>
 				 	</c:when>
 				 	<c:otherwise>
-	     				<c:forEach var="category" items="${categoryList}">
+	     				<c:forEach var="category" items="${categoryList}" varStatus="i">
 							<tr>       
 								<td><strong>${category.artStatus}</strong></td>
 								<td><a href="${contextPath}/admin/adminproduct?showName=${category.showName}"><strong>${category.showName} </strong></a> </td>
 								<td><strong>${category.artist}</strong></td>
 								<td><strong><fmt:formatDate value="${category.startDate}" pattern="yyyy-MM-dd"/></strong></td>
 								<td><strong><fmt:formatDate value="${category.endDate}" pattern="yyyy-MM-dd"/> </strong></td>
-								<td><strong>${category.mainArt}</strong></td>
+								<td>
+									<strong>${category.mainArt}</strong>
+									<input type="hidden"  value="${category.mainArt}"/>
+								</td>
 								<td><input type="button" value="삭제" id="delete"></td>
 							</tr>
 						</c:forEach>

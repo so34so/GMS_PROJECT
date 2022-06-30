@@ -133,13 +133,15 @@ public class AdminController {
 		
 	}
 	
-	@RequestMapping(value="/categorydelete" , method = RequestMethod.POST)
+	@RequestMapping(value="/categorydelete" , method = RequestMethod.GET)
 	public ResponseEntity<Object> categorydelete(@RequestParam("mainArt") String fileName , HttpServletRequest request) throws Exception {
-        	
+        
+		System.out.println(fileName);
+		
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type" , "text/html; charset=UTF-8");
 		
-		File file = new File("C:\\file_repo\\" + fileName);		// 파일 정보를 읽어온다.
+		File file = new File(CURR_IMAGE_REPO_PATH + seperatorPath + fileName);		// 파일 정보를 읽어온다.
         
 		String result = "";
 		
