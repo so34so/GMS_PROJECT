@@ -1,8 +1,11 @@
 package com.spring.GMS.admin.controller;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,12 +26,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.GMS.dto.AdminDto;
 import com.spring.GMS.dto.MemberDto;
 import com.spring.GMS.admin.service.AdminService;
 
@@ -36,6 +43,12 @@ import com.spring.GMS.admin.service.AdminService;
 @Controller
 @RequestMapping("admin")
 public class AdminController {
+	
+	private static final String CURR_IMAGE_REPO_PATH = "C:\\file_repo";
+	String seperatorPath = "\\";	// window
+
+	//private static final String CURR_IMAGE_REPO_PATH = "/var/lib/tomcat8/file_repo";
+	//String seperatorPath = "/";		// linux
 	
 	@Autowired
 	private AdminService adminService;
@@ -77,21 +90,77 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/categoryadd" , method=RequestMethod.POST)
-	public ResponseEntity<Object> categoryadd(MemberDto memberDto, HttpServletRequest request) throws Exception {
+	public ResponseEntity<String> categoryadd(MultipartHttpServletRequest multipartRequest , HttpServletResponse response) throws Exception {
 		
+		multipartRequest.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=UTF-8");
+
+		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
+
+		AdminDto adminDto = new AdminDto();
+		adminDto.setArtStatus(multipartRequest.getParameter("artStatus"));
+		adminDto.setShowName(multipartRequest.getParameter("showName"));
+		adminDto.setArtist(multipartRequest.getParameter("artist"));
+		adminDto.setStartDate(fm.parse(multipartRequest.getParameter("startDate")));
+		adminDto.setEndDate(fm.parse(multipartRequest.getParameter("endDate")));
+		
+		
+		Iterator<String> file = multipartRequest.getFileNames();
+		if (file.hasNext()) {
+			
+			MultipartFile uploadFile = multipartRequest.getFile(file.next()); 	
+			
+			if (!uploadFile.getOriginalFilename().isEmpty()) {
+				
+				String fileName = UUID.randomUUID() + "_" + uploadFile.getOriginalFilename();
+				File f = new File(CURR_IMAGE_REPO_PATH + seperatorPath + fileName);	
+				uploadFile.transferTo(f); 
+				adminDto.setMainArt(fileName);
+			}
+		
+		}
+		
+		adminService.categoryadd(adminDto);
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		String message= "<script>";
+			   message += " alert('카테고리 등록 성공');";
+			   message +=" location.href='" + multipartRequest.getContextPath() + "/admin/admincategory';";
+			   message +="</script>";
+		
+		return new ResponseEntity<String>(message, responseHeaders, HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/categorydelete" , method = RequestMethod.POST)
+	public ResponseEntity<Object> categorydelete(@RequestParam("mainArt") String fileName , HttpServletRequest request) throws Exception {
+        	
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type" , "text/html; charset=UTF-8");
 		
-		adminService.categoryadd(memberDto);
+		File file = new File("C:\\file_repo\\" + fileName);		// 파일 정보를 읽어온다.
+        
+		String result = "";
 		
-		String goods = "<script>";
-			   goods += "alert('카테고리 등록 완료!');";
-			   goods += "location.href='" + request.getContextPath() + "/admin/categoryadd';";
-			   goods += "</script>";
-			   
-		return new ResponseEntity<Object> (goods, responseHeaders , HttpStatus.OK);
-	}
-	
+    	if (file.exists()) {											// 읽어온 파일이 존재하면
+    		file.delete();												// 파일을 삭제한다.
+    		adminService.deleteFile("mainArt");
+    		result= "<script>";
+    		result += "alert('파일삭제 완료');";
+    		result += "location.href='"+request.getContextPath()+"/admin/admincategory';";
+    		result +="</script>";
+    	} 
+    	else {
+    		result= "<script>";
+    		result += "alert('삭제 실패');";
+    		result += "history.go(-1);";
+    		result +="</script>";
+    	}
+    	
+    	return new ResponseEntity<Object> (result, responseHeaders , HttpStatus.OK);
+                
+    }
 	@RequestMapping(value="/adminorder" , method=RequestMethod.GET)
 	public ModelAndView adminorder() {
 		return new ModelAndView("admin/adminorder");

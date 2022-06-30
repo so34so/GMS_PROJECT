@@ -6,30 +6,50 @@
 		SELECT
 				*
 		FROM
-				GALLERY_TB
+				GALLERY_MEMBER
 	</select>
 	
-	<insert id="categoryadd" parameterType="MemberDto">
-		INSERT INTO GALLERY_TB(
+	<insert id="categoryadd" parameterType="AdminDto">
+		INSERT INTO GALLERY_ADMIN(
 			ART_STATUS,
 			SHOW_NAME,
 			ARTIST,
 			START_DATE,
-			END_DATE
+			END_DATE,
+			MAIN_ART
 		)
 		VALUES(
 			#{artStatus},
 			#{showName},
 			#{artist},
 			#{startDate},
-			#{endDate}
+			#{endDate},
+			#{mainArt}
 		)
 	</insert>
 	
-	<select id="listCategory" resultType="MemberDto">
+	<select id="listCategory" resultType="AdminDto">
 		SELECT
 				*
 		FROM
-				GALLERY_TB
+				GALLERY_ADMIN
 	</select>
+	
+	<select id="selectStatusList" parameterType="String" resultType="AdminDto">
+		SELECT
+				*
+		FROM
+				GALLERY_ADMIN
+		WHERE
+				ART_STATUS = #{artStatus}
+		ORDER BY
+				END_DATE DESC
+	</select>
+	
+	<delete id="deleteFile" parameterType="String">
+		DELETE FROM
+				GALLERY_ADMIN
+		WHERE
+				MAIN_ART = #{mainArt}
+	</delete>
 </mapper>

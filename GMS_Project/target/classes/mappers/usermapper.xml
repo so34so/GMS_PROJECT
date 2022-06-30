@@ -6,14 +6,14 @@
 		SELECT
 				*
 		FROM
-				GALLERY_TB
+				GALLERY_MEMBER
 		WHERE
 				GALLERY_ID = #{galleryId}
 	</select>
 	
 	<update id="modifyUser" parameterType="MemberDto">
 		UPDATE
-				GALLERY_TB
+				GALLERY_MEMBER
 		<set>
 			<if test='galleryNickname != null and !galleryNickname.equals("")'>
 				GALLERY_NICKNAME = #{galleryNickname},
@@ -28,7 +28,7 @@
 	
 	<delete id="deleteUser" parameterType="MemberDto">
 		DELETE FROM
-				GALLERY_TB
+				GALLERY_MEMBER
 		WHERE
 				GALLERY_ID = #{galleryId}
 	</delete>

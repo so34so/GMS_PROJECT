@@ -48,6 +48,13 @@
 			return false;
 		}
 		
+		var mainArt = document.getElementById("mainArt");
+		if (mainArt.value == ""){
+			alert("카테고리 사진을 추가해야 합니다.");
+			mainArt.focus();
+			return false;
+		}
+		
 	}
 </script>
 <style>
@@ -58,7 +65,7 @@
 </style>
 </head>
 <body>
-	<form action="${contextPath }/admin/categoryadd" method="post" onsubmit="return formValidationCheck()">
+	<form action="${contextPath }/admin/categoryadd" method="post" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
 		<h3>카테고리 등록창</h3>
 			<div class="tab_container">
 				<div class="tab_content">
@@ -67,8 +74,8 @@
 							<td width=100>전시회 종류</td>
 							<td width=200>
 								<select name="artStatus" id="artStatus" class="form-control" style="padding-bottom:0; padding-top:0; height:35px;">
-									<option value="paint" selected>사진
-									<option value="photo">그림
+									<option value="사진" selected>사진
+									<option value="그림">그림
 								</select>
 							</td>
 						</tr>
@@ -87,6 +94,10 @@
 						<tr>
 							<td>전시종료일</td>
 							<td><input name="endDate" id="endDate" type="date" class="form-control"/></td>
+						</tr>
+						<tr>
+							<td>카테고리 사진</td>
+							<td><input name="mainArt" id="mainArt" type="file" class="form-control"/></td>
 						</tr>
 					</table>	
 				</div>

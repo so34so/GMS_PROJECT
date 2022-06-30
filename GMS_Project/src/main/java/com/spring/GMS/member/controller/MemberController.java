@@ -1,5 +1,7 @@
 package com.spring.GMS.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.GMS.admin.service.AdminService;
+import com.spring.GMS.dto.AdminDto;
 import com.spring.GMS.dto.MemberDto;
 import com.spring.GMS.member.service.MemberService;
 
@@ -26,9 +30,22 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	@Autowired
+	private AdminService adminService;
+	
 	@RequestMapping(value="/index" , method=RequestMethod.GET)
 	public ModelAndView index() throws Exception {
-		return new ModelAndView("index");
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index");
+		
+		List<AdminDto> photoList = adminService.listStatus("사진");
+		List<AdminDto> paintList = adminService.listStatus("그림");
+		
+		mv.addObject("photoList" , photoList);
+		mv.addObject("paintList" , paintList);
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/login" , method=RequestMethod.GET)

@@ -78,16 +78,16 @@
                 <div class="resume-section-content">
                     <h2 class="mb-5">사진 전시</h2>
                      	<div class="row">
-	                    	<%-- <c:forEach var="item" items="${artList }"> --%>
-		                        <div class="col-lg-4">
+	                    	<c:forEach var="item1" items="${photoList }">
+		                        <div class="col-lg-6">
 		                            <div class="team-member">
-		                                <a href="${contextPath }/gallery1?artTitle=${memberDto.artTitle}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath }/resources/img/20200830_142314.jpg" alt="..."style="width:250px;height:250px;" /></a>
-		                                <h4>미니어쳐</h4>
-		                                <p class="text-muted">김민석 전</p>
-		                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery1?artTitle=${memberDto.artTitle}" role="button">보러가기</a></div>
+		                                <a href="${contextPath }/gallery?showName=${item1.showName}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath}/thumbnails?mainArt=${item1.mainArt}" alt="카테고리 사진"style="width:250px;height:250px;" /></a>
+		                                <h4>${item1.showName } 전시회</h4>
+		                                <p class="text-muted">${item1.artist }</p>
+		                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery?showName=${item1.showName}" role="button">보러가기</a></div>
 		                            </div>
 		                        </div>
-	                        <%-- </c:forEach> --%>
+	                        </c:forEach>
                     </div>
                 </div>
             </section>
@@ -97,16 +97,16 @@
                 <div class="resume-section-content">
                     <h2 class="mb-5">그림 전시</h2>
                     <div class="row">
-                    	<%-- <c:forEach var="item" items="${artList }"> --%>
-	                        <div class="col-lg-4">
+                    	<c:forEach var="item2" items="${paintList }"> 
+	                        <div class="col-lg-6">
 	                            <div class="team-member">
-	                                <a href="${contextPath }/gallery1?artTitle=${memberDto.artTitle}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath }/resources/img/20200830_142314.jpg" alt="..."style="width:250px;height:250px;" /></a>
-	                                <h4>미니어쳐</h4>
-	                                <p class="text-muted">김민석 전</p>
-	                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery1?artTitle=${memberDto.artTitle}" role="button">보러가기</a></div>
+	                                <a href="${contextPath }/gallery?showName=${item2.showName}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath}/thumbnails?mainArt=${item2.mainArt}" alt="..."style="width:250px;height:250px;" /></a>
+	                                <h4>${item2.showName } 전시회</h4>
+		                                <p class="text-muted">${item2.artist }</p>
+	                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery?showName=${item2.showName}" role="button">보러가기</a></div>
 	                            </div>
 	                        </div>
-                        <%-- </c:forEach> --%>
+                        </c:forEach>
                     </div>
                 </div>
             </section>

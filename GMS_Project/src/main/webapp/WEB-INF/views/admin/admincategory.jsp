@@ -14,12 +14,31 @@
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
+<script>
+		$().ready(function() {
+			
+			$("#delete").click(function(){
+				
+			    $.ajax({
+			       type : "post",
+			       url : "${contextPath}/admin/categorydelete",
+			       data : {"mainArt" : mainArt},
+			       success : function(isOverLapped){
+			          if (isOverLapped == "false"){
+			        	  
+			          }
+			          else {
+			        	  
+			          }
+			       }
+			    });
+			});	
+			
+		});
+</script>
 </head>
 <body>
 	<h3>상품 조회</h3>
-	<div align="right">
-		<input type="button" class="btn btn-Light btn-sm" value="Excel Export" onclick="location.href='${contextPath}/admin/goods/goodsExcelExport'" />
-	</div>
 		<table class="list_view">
 			<tbody align="center">
 				<tr style="background:blue; color:#fff; height: 50px;">
@@ -28,11 +47,12 @@
 					<td width=10%>작가</td>
 					<td width=20%>전시시작일</td>
 					<td width=20%>전시종료일</td>
-<%-- 					<c:choose>
+					<td width=20%>카테고리 사진</td>
+ 					<c:choose>
 						<c:when test="${!empty categoryList }">
 							<td width=20%>삭제</td>
 						</c:when>
-					</c:choose> --%>
+					</c:choose>
 				</tr>
 	  				<c:choose>
 	    				<c:when test="${empty categoryList }">			
@@ -41,14 +61,15 @@
 					    </tr>
 				 	</c:when>
 				 	<c:otherwise>
-	     				<c:forEach var="goods" items="${categoryList}">
+	     				<c:forEach var="category" items="${categoryList}">
 							<tr>       
-								<td><strong>${memberDto.artStatus}</strong></td>
-								<td><a href="${contextPath}/admin/adminproduct?showName=${memberDto.showName}"><strong>${memberDto.showName} </strong></a> </td>
-								<td><strong>${memberDto.artist}</strong></td>
-								<td><strong><fmt:formatDate value="${memberDto.startDate}" pattern="yyyy-MM-dd"/></strong></td>
-								<td><strong><fmt:formatDate value="${memberDto.endDate}" pattern="yyyy-MM-dd"/> </strong></td>
-								<!-- <td><input type="button" value="삭제" id="delete"></td> -->
+								<td><strong>${category.artStatus}</strong></td>
+								<td><a href="${contextPath}/admin/adminproduct?showName=${category.showName}"><strong>${category.showName} </strong></a> </td>
+								<td><strong>${category.artist}</strong></td>
+								<td><strong><fmt:formatDate value="${category.startDate}" pattern="yyyy-MM-dd"/></strong></td>
+								<td><strong><fmt:formatDate value="${category.endDate}" pattern="yyyy-MM-dd"/> </strong></td>
+								<td><strong>${category.mainArt}</strong></td>
+								<td><input type="button" value="삭제" id="delete"></td>
 							</tr>
 						</c:forEach>
 					</c:otherwise>
