@@ -33,6 +33,11 @@ public class MemberController {
 	@Autowired
 	private AdminService adminService;
 	
+	@RequestMapping(value="/" , method=RequestMethod.GET)
+	public ModelAndView home() throws Exception{
+		return new ModelAndView("redirect:/member/index");
+	}
+	
 	@RequestMapping(value="/index" , method=RequestMethod.GET)
 	public ModelAndView index() throws Exception {
 		

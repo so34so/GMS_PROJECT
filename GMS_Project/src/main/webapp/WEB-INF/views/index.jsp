@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +34,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">그림 전시</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">전시인물 소개</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="shopHomepage.jsp">작품판매쳐</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/shop/Homepage">작품판매쳐</a></li>
                     <c:choose>
                         <c:when test="${isLogOn == true and loginUser == 'admin'}">
         	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminpage">관리페이지</a></li>
@@ -63,7 +64,7 @@
                     <div class="subheading mb-5">
                         오프라인으로 즐기던 전시회를 온라인으로!
                     </div>
-                    <p class="lead mb-5">사진 및 그림 작가들의 다양한 전시를 바로 이곳에서 즐기세요!<br>보시다 원하는게 있으면 바로 구매 가능합니다!</p>
+                    <p class="lead mb-5">사진 및 그림 작가들의 다양한 작품을 바로 이곳에서 즐기세요!<br>보시다 원하는게 있으면 바로 구매 가능합니다!</p>
                     <div class="social-icons">
                         <a class="social-icon" href="https://www.instagram.com"><i class="fab fa-linkedin-in"></i></a>
                         <a class="social-icon" href="https://www.youtube.com"><i class="fa-brands fa-youtube"></i></a>
@@ -78,15 +79,18 @@
                 <div class="resume-section-content">
                     <h2 class="mb-5">사진 전시</h2>
                      	<div class="row">
-	                    	<c:forEach var="item1" items="${photoList }">
-		                        <div class="col-lg-6">
-		                            <div class="team-member">
-		                                <a href="${contextPath }/gallery?showName=${item1.showName}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath}/thumbnails?mainArt=${item1.mainArt}" alt="카테고리 사진"style="width:250px;height:250px;" /></a>
-		                                <h4>${item1.showName } 전시회</h4>
-		                                <p class="text-muted">${item1.artist }</p>
-		                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery?showName=${item1.showName}" role="button">보러가기</a></div>
-		                            </div>
-		                        </div>
+	                    	<c:forEach var="item1" items="${photoList }" varStatus="status">
+	                    		<c:if test="${item1.mainArt eq 'Y' }">
+			                        <div class="col-lg-6">
+			                            <div class="team-member">
+			                                <a href="${contextPath }/gallery/In?artImage=${item1.artImage}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath}/thumbnails?artImage=${item1.artImage}" alt="카테고리 사진"style="width:250px;height:250px;" /></a>
+			                                <h4>${item1.showName } 전시회</h4>
+			                                <p class="text-muted">${item1.artist }</p>
+			                                <p><strong>전시기한 : <fmt:formatDate value="${item1.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item1.endDate}" pattern="yyyy-MM-dd"/></strong></p>
+			                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery/In?artImage=${item1.artImage}" role="button">보러가기</a></div>
+			                            </div>
+			                        </div>
+		                        </c:if>
 	                        </c:forEach>
                     </div>
                 </div>
@@ -97,15 +101,18 @@
                 <div class="resume-section-content">
                     <h2 class="mb-5">그림 전시</h2>
                     <div class="row">
-                    	<c:forEach var="item2" items="${paintList }"> 
-	                        <div class="col-lg-6">
-	                            <div class="team-member">
-	                                <a href="${contextPath }/gallery?showName=${item2.showName}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath}/thumbnails?mainArt=${item2.mainArt}" alt="..."style="width:250px;height:250px;" /></a>
-	                                <h4>${item2.showName } 전시회</h4>
-		                                <p class="text-muted">${item2.artist }</p>
-	                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery?showName=${item2.showName}" role="button">보러가기</a></div>
-	                            </div>
-	                        </div>
+                    	<c:forEach var="item2" items="${paintList }" varStatus="status"> 
+	                    	<c:if test="${item2.mainArt eq 'Y' }">
+		                        <div class="col-lg-6">
+		                            <div class="team-member">
+		                                <a href="${contextPath }/gallery/In?artImage=${item2.artImage}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath}/thumbnails?artImage=${item2.artImage}" alt="..."style="width:250px;height:250px;" /></a>
+		                                <h4>${item2.showName } 전시회</h4>
+			                                <p class="text-muted">${item2.artist }</p>
+			                                <p><strong>전시기한 : <fmt:formatDate value="${item2.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item2.endDate}" pattern="yyyy-MM-dd"/></strong></p>
+		                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery/In?sartImage=${item2.artImage}" role="button">보러가기</a></div>
+		                            </div>
+		                        </div>
+		                    </c:if>
                         </c:forEach>
                     </div>
                 </div>

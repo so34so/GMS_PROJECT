@@ -1,6 +1,7 @@
 package com.spring.GMS.admin.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,13 @@ public class AdminDaoImpl implements AdminDao {
 	private SqlSession sqlSession;
 
 	@Override
-	public List<MemberDto> userList() {
-		return sqlSession.selectList("adminMapper.allUserList");
+	public List<MemberDto> userList(Map<String, Object> searchInfo) throws Exception {
+		return sqlSession.selectList("adminMapper.userList" , searchInfo);
+	}
+	
+	@Override
+	public int getAlluserCount(Map<String, String> searchCountInfo) throws Exception {
+		return sqlSession.selectOne("adminMapper.getAlluserCount" , searchCountInfo);
 	}
 
 	@Override
@@ -36,8 +42,47 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public void fileDelete(String mainArt) {
-		sqlSession.delete("adminmapper.deleteFile" , mainArt);
+	public void Infodelete(int artArtnum) {
+		sqlSession.delete("adminMapper.deleteInfo" , artArtnum);
+	}
+
+	@Override
+	public void addart(AdminDto adminDto) {
+		sqlSession.insert("adminMapper.artadd" , adminDto);
+	}
+
+	@Override
+	public List<AdminDto> seleteAllArt() {
+		return sqlSession.selectList("adminMapper.listArt");
+	}
+
+	@Override
+	public AdminDto artArtnumselect(String artArtnum) {
+		return sqlSession.selectOne("adminMapper.artArtnumselect" , artArtnum);
+	}
+	@Override
+	public AdminDto showNameselect(String artImage) {
+		return sqlSession.selectOne("adminMapper.showNameselect" , artImage);
+	}
+
+	@Override
+	public List<AdminDto> getSearchBoard(Map<String, Object> searchInfo) throws Exception {
+		return sqlSession.selectList("adminMapper.getSearchBoard" , searchInfo);
+	}
+
+	@Override
+	public int getAllBoardCount(Map<String, String> searchCountInfo) throws Exception {
+		return sqlSession.selectOne("adminMapper.getAllBoardCount" , searchCountInfo);
+	}
+
+	@Override
+	public List<MemberDto> userList() {
+		return sqlSession.selectList("adminMapper.AlluserList");
+	}
+
+	@Override
+	public void updateInfo(Map<String, Object> goodsMap) throws Exception {
+		sqlSession.update("adminMapper.updateInfo" , goodsMap);
 	}
 	
 	

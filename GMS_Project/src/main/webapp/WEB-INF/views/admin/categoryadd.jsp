@@ -16,6 +16,7 @@
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
+        <script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>  
 <script>
 
 	function formValidationCheck(){
@@ -50,8 +51,15 @@
 		
 		var mainArt = document.getElementById("mainArt");
 		if (mainArt.value == ""){
-			alert("카테고리 사진을 추가해야 합니다.");
+			alert("작품 사진을 추가해야 합니다.");
 			mainArt.focus();
+			return false;
+		}
+		
+		var artContent = document.getElementById("artContent");
+		if (artContent.value == ""){
+			alert("작품설명은 반드시 입력해야 합니다.");
+			artContent.focus();
 			return false;
 		}
 		
@@ -84,6 +92,11 @@
 							<td><input name="showName" id="showName" type="text" class="form-control"/></td>
 						 </tr>
 						<tr>
+						<tr>
+							<td>작품 이름</td>
+							<td><input name="artTitle" id="artTitle" type="text" class="form-control"/></td>
+						 </tr>
+						<tr>
 							<td>작가</td>
 							<td><input name="artist" id="artist" type="text" class="form-control"/></td>
 						</tr>
@@ -96,8 +109,24 @@
 							<td><input name="endDate" id="endDate" type="date" class="form-control"/></td>
 						</tr>
 						<tr>
-							<td>카테고리 사진</td>
-							<td><input name="mainArt" id="mainArt" type="file" class="form-control"/></td>
+							<td>작품 사진</td>
+							<td>
+							<input name="artImage" id="artImage" type="file" class="form-control"/>
+							</td>
+						</tr>
+						<tr>
+							<td>메인페이지 설정</td>
+							<td>
+							<input name="mainArt" id="mainArt" type="radio" style="width:10px;"class="form-control" value="Y"/>
+							<label for="mainArt" >메인페이지에 이 사진이 나오게 됩니다.</label>
+							</td>
+						</tr>
+						<tr>
+							<td>작품설명</td>
+							<td>
+							<textarea rows="10" cols="10" name="artContent"></textarea>
+		        			<script>CKEDITOR.replace('artContent');</script>
+							</td>
 						</tr>
 					</table>	
 				</div>

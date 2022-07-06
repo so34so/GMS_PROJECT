@@ -19,6 +19,7 @@ public class AdminDto {
 	private Date startDate;
 	private Date endDate;
 	private String mainArt;
+	private String artImage;
 	public String getArtTitle() {
 		return artTitle;
 	}
@@ -90,6 +91,12 @@ public class AdminDto {
 	}
 	public void setMainArt(String mainArt) {
 		this.mainArt = mainArt;
+	}
+	public String getartImage() {
+		return artImage;
+	}
+	public void setartImage(String artImage) {
+		this.artImage = artImage;
 	}
 	
 	

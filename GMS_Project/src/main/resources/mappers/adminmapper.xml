@@ -2,29 +2,118 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="adminMapper">
-	<select id="allUserList" resultType="MemberDto">
-		SELECT
-				*
-		FROM
-				GALLERY_MEMBER
+	<select id="userList" parameterType="hashmap" resultType="MemberDto">
+		<choose>
+			<when test="searchKeyword.equals('total')">	<!-- 전체 검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')">	<!-- 전체 검색중 검색 문자가 없을 경우 -->
+						SELECT
+								*
+						FROM
+								GALLERY_MEMBER
+						LIMIT
+								#{startBoardIdx} , #{onePageViewCount}
+					</when>
+					<otherwise>	<!-- 전체 검색중 검색 문자가 있을 경우 -->
+						SELECT 
+								*
+						FROM
+								GALLERY_MEMBER
+						WHERE
+								GALLERY_ID LIKE CONCAT('%' , #{searchWord} , '%') OR
+								GALLERY_NAME LIKE CONCAT('%' , #{searchWord} , '%') OR
+								GALLERY_NICKNAME LIKE CONCAT('%' , #{searchWord} , '%') 
+						LIMIT
+								#{startBoardIdx},#{onePageViewCount}
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- 서치 키워드를 이용하여 검색하는 경우 -->
+				SELECT
+						*
+				FROM
+						GALLERY_MEMBER
+				WHERE
+					
+					<if test="searchKeyword.equals('galleryId')">
+						GALLERY_ID LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('galleryName')">
+						GALLERY_NAME LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('galleryNickname')">
+						GALLERY_NICKNAME LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+				LIMIT
+						#{startBoardIdx} , #{onePageViewCount}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 게시글의 개수를 반환하는 쿼리 -->
+	<select id="getAlluserCount" parameterType="hashmap" resultType="int">
+		<choose>
+			<when test="searchKeyword.equals('total')"> <!-- searchKeyword가 전체검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')"> <!--  특정 키워드가 없을경우 (보통의 경우)  -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								GALLERY_MEMBER
+					</when>
+					<otherwise>	<!-- 특정 키워드가 있을 경우 -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								GALLERY_MEMBER
+						WHERE
+								GALLERY_ID LIKE CONCAT('%' , #{searchWord} , '%') OR
+								GALLERY_NAME LIKE CONCAT('%' , #{searchWord} , '%') OR
+								GALLERY_NICKNAME LIKE CONCAT('%' , #{searchWord} , '%') 
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- searchKeyword가 전체 검색이 아닐 경우 -->
+				SELECT 
+						COUNT(*) 
+				FROM
+						GALLERY_MEMBER
+				WHERE
+					<if test="searchKeyword.equals('galleryId')">
+						GALLERY_ID LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('galleryName')">
+						GALLERY_NAME LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('galleryNickname')">
+						GALLERY_NICKNAME LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+			</otherwise>
+		</choose>	
 	</select>
 	
 	<insert id="categoryadd" parameterType="AdminDto">
 		INSERT INTO GALLERY_ADMIN(
 			ART_STATUS,
 			SHOW_NAME,
+			ART_TITLE,
 			ARTIST,
 			START_DATE,
 			END_DATE,
-			MAIN_ART
+			MAIN_ART,
+			ART_IMAGE,
+			ART_CONTENT
 		)
 		VALUES(
 			#{artStatus},
 			#{showName},
+			#{artTitle},
 			#{artist},
 			#{startDate},
 			#{endDate},
-			#{mainArt}
+			#{mainArt},
+			#{artImage},
+			#{artContent}
 		)
 	</insert>
 	
@@ -46,10 +135,181 @@
 				END_DATE DESC
 	</select>
 	
-	<delete id="deleteFile" parameterType="String">
+	<delete id="deleteInfo" parameterType="int">
 		DELETE FROM
 				GALLERY_ADMIN
 		WHERE
-				MAIN_ART = #{mainArt}
+				ART_ARTNUM = #{artArtnum}
 	</delete>
+	
+	<insert id="artadd" parameterType="AdminDto">
+		INSERT INTO GALLERY_ADMIN(
+			ART_TITLE,
+			ARTIST_ART,
+			ART_CONTENT
+		)
+		VALUES(
+			#{artTitle},
+			#{artistArt},
+			#{artContent}
+		)
+	</insert>
+	
+	<select id="listArt" resultType="AdminDto">
+		SELECT
+				*
+		FROM
+				GALLERY_ADMIN
+	</select>
+	
+	<select id="artArtnumselect" parameterType="String" resultType="AdminDto">
+		SELECT
+				*
+		FROM
+				GALLERY_ADMIN
+		WHERE
+				ART_ARTNUM = #{artArtnum}
+	</select>
+	
+	<select id="showNameselect" parameterType="String" resultType="AdminDto">
+		SELECT
+				*
+		FROM
+				GALLERY_ADMIN
+		WHERE
+				ART_IMAGE = #{artImage}
+	</select>
+	
+		<!-- 게시글의 내용을 반환하는 쿼리 -->
+	<select id="getSearchBoard" parameterType="hashmap" resultType="AdminDto">
+		<choose>
+			<when test="searchKeyword.equals('total')">	<!-- 전체 검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')">	<!-- 전체 검색중 검색 문자가 없을 경우 -->
+						SELECT
+								*
+						FROM
+								GALLERY_ADMIN
+						LIMIT
+								#{startBoardIdx} , #{onePageViewCount}
+					</when>
+					<otherwise>	<!-- 전체 검색중 검색 문자가 있을 경우 -->
+						SELECT 
+								*
+						FROM
+								GALLERY_ADMIN
+						WHERE
+								ART_STATUS LIKE CONCAT('%' , #{searchWord} , '%') OR
+								SHOW_NAME LIKE CONCAT('%' , #{searchWord} , '%') OR
+								MAIN_ART LIKE CONCAT('%' , #{searchWord} , '%') OR
+								ARTIST LIKE CONCAT('%' , #{searchWord} , '%') 
+						LIMIT
+								#{startBoardIdx},#{onePageViewCount}
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- 서치 키워드를 이용하여 검색하는 경우 -->
+				SELECT
+						*
+				FROM
+						GALLERY_ADMIN
+				WHERE
+					
+					<if test="searchKeyword.equals('showName')">
+						SHOW_NAME LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('artist')">
+						ARTIST LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('artStatus')">
+						ART_STATUS LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+				LIMIT
+						#{startBoardIdx} , #{onePageViewCount}
+			</otherwise>
+		</choose>
+	</select>
+	
+		<!-- 게시글의 개수를 반환하는 쿼리 -->
+	<select id="getAllBoardCount" parameterType="hashmap" resultType="int">
+		<choose>
+			<when test="searchKeyword.equals('total')"> <!-- searchKeyword가 전체검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')"> <!--  특정 키워드가 없을경우 (보통의 경우)  -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								GALLERY_ADMIN
+					</when>
+					<otherwise>	<!-- 특정 키워드가 있을 경우 -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								GALLERY_ADMIN
+						WHERE
+								ART_STATUS LIKE CONCAT('%' , #{searchWord} , '%') OR
+								SHOW_NAME LIKE CONCAT('%' , #{searchWord} , '%') OR
+								MAIN_ART LIKE CONCAT('%' , #{searchWord} , '%') OR
+								ARTIST LIKE CONCAT('%' , #{searchWord} , '%') 
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- searchKeyword가 전체 검색이 아닐 경우 -->
+				SELECT 
+						COUNT(*) 
+				FROM
+						GALLERY_ADMIN
+				WHERE
+					<if test="searchKeyword.equals('showName')">
+						SHOW_NAME LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('artist')">
+						ARTIST LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('artStatus')">
+						ART_STATUS LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+			</otherwise>
+		</choose>	
+	</select>
+	
+	<select id="AlluserList" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				GALLERY_MEMBER
+	</select>
+	
+	<update id="updateInfo" parameterType="hashmap" >
+	   UPDATE 
+	   			GALLERY_ADMIN
+	   <set> 
+	      <if test='artStatus != null and artStatus != ""'>
+	        ART_STATUS = #{artStatus},
+	      </if>
+	      <if test='showName != null and showName != ""'>
+	        SHOW_NAME = #{showName},
+	      </if>
+	      <if test='artTitle != null and artTitle != ""'>
+	        ART_TITLE = #{artTitle},
+	      </if>
+	      <if test='artist != null and artist != ""'>
+	        ARTIST = #{artist},
+	      </if>
+	      <if test='startDate != null and startDate != ""'>
+	        START_DATE = #{startDate},
+	      </if>
+	      <if test='endDate != null and endDate != ""'>
+	        END_DATE = #{endDate},
+	      </if>
+	      <if test='artContent != null and artContent != ""'>
+	        ART_CONTENT = #{artContent},
+	      </if>
+	      <if test='artImage != null and artImage != ""'>
+	        ART_IMAGE = #{artImage},
+      	  </if>
+	    </set>
+		WHERE 
+				ART_ARTNUM = #{artArtnum}
+	</update>	
 </mapper>

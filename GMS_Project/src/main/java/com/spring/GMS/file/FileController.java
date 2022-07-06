@@ -22,7 +22,7 @@ public class FileController {
 	//String seperatorPath = "/";		// linux
 	
 	@RequestMapping("/thumbnails")
-	public void thumbnails(@RequestParam("mainArt") String goodsFileName , HttpServletResponse response) throws Exception {
+	public void thumbnails(@RequestParam("artImage") String goodsFileName , HttpServletResponse response) throws Exception {
 	
 		OutputStream out = response.getOutputStream();
 		String filePath = CURR_IMAGE_REPO_PATH + seperatorPath + goodsFileName;

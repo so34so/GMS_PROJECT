@@ -3,7 +3,9 @@ package com.spring.GMS.admin.controller;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -59,34 +61,246 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/adminuser" , method=RequestMethod.GET)
-	public ModelAndView adminuser() throws Exception  {
+	public ModelAndView adminuser(@RequestParam(name = "onePageViewCount"  , defaultValue = "10")    int onePageViewCount,
+									  @RequestParam(name = "currentPageNumber" , defaultValue = "1")     int currentPageNumber,
+									  @RequestParam(name = "searchKeyword"     , defaultValue = "total") String searchKeyword,
+									  @RequestParam(name = "searchWord"        , defaultValue = "")      String searchWord) throws Exception {
+		
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/adminuser");
-		mv.addObject("userList" , adminService.allUserList());
+		
+		
+		// 페이지의 시작 게시글 인덱스
+		int startBoardIdx =  (currentPageNumber -1) * onePageViewCount + 1;
+		if (currentPageNumber == 1) startBoardIdx = 0;
+		
+		
+		// 관련 정보 Map 생성 ( 한페이지에 보여줄 게시글 숫자 , 시작페이지의 인덱스 , 검색 키워드 , 검색어 ) 
+		Map<String, Object> searchInfo = new HashMap<String, Object>();
+		searchInfo.put("onePageViewCount" , onePageViewCount);
+		searchInfo.put("startBoardIdx"    , startBoardIdx);
+		searchInfo.put("searchKeyword"    , searchKeyword);
+		searchInfo.put("searchWord"       , searchWord);
+		List<MemberDto> userList = adminService.allUserList(searchInfo);
+		
+		// 게시글의 전체 개수를 반환하는 관련정보 Map 생성 ( 검색 키워드 , 검색어 ) 
+		Map<String, String> searchCountInfo = new HashMap<String, String>();
+		searchCountInfo.put("searchKeyword", searchKeyword);
+		searchCountInfo.put("searchWord", searchWord);
+		
+		// 전체페이지 개수 = 전체게시글 수 / 한페이지에서 보여지는 글수
+		int totalBoardCount = adminService.getAlluserCount(searchCountInfo);
+		int addPage = totalBoardCount % onePageViewCount == 0 ? 0 : 1; 		// 나머지가 0이면 추가 x , 나머지가 0이 아니면 +1 페이지 처리
+		int totalPageCount = totalBoardCount / onePageViewCount + addPage;
+		
+		
+		// 시작페이지
+		int startPage = 1;
+		
+		if (currentPageNumber % 10 == 0) startPage = (currentPageNumber / 10 - 1) * 10 + 1;
+		else 							 startPage = (currentPageNumber / 10) * 10 + 1;							
+		
+		/*
+		 
+			[ 예시 ]  
+			
+			currentPage가 10페이면 시작페이지는 1  		<>		currentPage가 2페이지면  시작페이지는 1  
+			currentPage가 20페이면 시작페이지는 11  	<>		currentPage가 12페이지면 시작페이지는 11  
+			currentPage가 30페이면 시작페이지는 21 		<>		currentPage가 22페이지면 시작페이지는 21  
+			
+		*/
+		
+	
+		
+		// 끝페이지
+		int endPage = startPage + 9;
+			
+		// 끝페이지가 전체 페이지 개수보다 크다면 
+		if (endPage > totalPageCount) {
+			endPage = totalPageCount;
+		}
+		
+		// 게시물이 한페이지에 보여지는 것보다 작다면
+		if (onePageViewCount > totalBoardCount) {
+			startPage = 1;
+			endPage = 0;
+		}
+		
+				
+		mv.addObject("startPage"         , startPage);
+		mv.addObject("endPage"           , endPage);
+		mv.addObject("totalBoardCount"   , totalBoardCount);
+		mv.addObject("onePageViewCount"  , onePageViewCount);
+		mv.addObject("currentPageNumber" , currentPageNumber);
+		mv.addObject("searchKeyword"     , searchKeyword);
+		mv.addObject("searchWord"        , searchWord);
+		mv.addObject("userList"      , userList);		
+		
+		
+		/*
+		System.out.println("====================================");
+		System.out.println("startPage : "         + startPage);
+		System.out.println("endPage : "           + endPage);
+		System.out.println("totalBoardCount : "   + totalBoardCount);
+		System.out.println("onePageViewCount : "  + onePageViewCount);
+		System.out.println("currentPageNumber : " + currentPageNumber);
+		System.out.println("searchKeyword : "     + searchKeyword);
+		System.out.println("searchWord : "        + searchWord);
+		System.out.println("====================================\n");
+		*/
+		
 		
 		return mv;
+		
 	}
 	
 	@RequestMapping(value="/admincategory" , method=RequestMethod.GET)
-	public ModelAndView admincategory() throws Exception  {
+	public ModelAndView admincategory(@RequestParam(name = "onePageViewCount"  , defaultValue = "10")    int onePageViewCount,
+									  @RequestParam(name = "currentPageNumber" , defaultValue = "1")     int currentPageNumber,
+									  @RequestParam(name = "searchKeyword"     , defaultValue = "total") String searchKeyword,
+									  @RequestParam(name = "searchWord"        , defaultValue = "")      String searchWord) throws Exception {
+		
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/admincategory");
 		
-		mv.addObject("categoryList" , adminService.listCategory());
+		
+		// 페이지의 시작 게시글 인덱스
+		int startBoardIdx =  (currentPageNumber -1) * onePageViewCount + 1;
+		if (currentPageNumber == 1) startBoardIdx = 0;
+		
+		
+		// 관련 정보 Map 생성 ( 한페이지에 보여줄 게시글 숫자 , 시작페이지의 인덱스 , 검색 키워드 , 검색어 ) 
+		Map<String, Object> searchInfo = new HashMap<String, Object>();
+		searchInfo.put("onePageViewCount" , onePageViewCount);
+		searchInfo.put("startBoardIdx"    , startBoardIdx);
+		searchInfo.put("searchKeyword"    , searchKeyword);
+		searchInfo.put("searchWord"       , searchWord);
+		List<AdminDto> categoryList = adminService.getSearchBoard(searchInfo);
+		
+		// 게시글의 전체 개수를 반환하는 관련정보 Map 생성 ( 검색 키워드 , 검색어 ) 
+		Map<String, String> searchCountInfo = new HashMap<String, String>();
+		searchCountInfo.put("searchKeyword", searchKeyword);
+		searchCountInfo.put("searchWord", searchWord);
+		
+		// 전체페이지 개수 = 전체게시글 수 / 한페이지에서 보여지는 글수
+		int totalBoardCount = adminService.getAllBoardCount(searchCountInfo);
+		int addPage = totalBoardCount % onePageViewCount == 0 ? 0 : 1; 		// 나머지가 0이면 추가 x , 나머지가 0이 아니면 +1 페이지 처리
+		int totalPageCount = totalBoardCount / onePageViewCount + addPage;
+		
+		
+		// 시작페이지
+		int startPage = 1;
+		
+		if (currentPageNumber % 10 == 0) startPage = (currentPageNumber / 10 - 1) * 10 + 1;
+		else 							 startPage = (currentPageNumber / 10) * 10 + 1;							
+		
+		/*
+		 
+			[ 예시 ]  
+			
+			currentPage가 10페이면 시작페이지는 1  		<>		currentPage가 2페이지면  시작페이지는 1  
+			currentPage가 20페이면 시작페이지는 11  	<>		currentPage가 12페이지면 시작페이지는 11  
+			currentPage가 30페이면 시작페이지는 21 		<>		currentPage가 22페이지면 시작페이지는 21  
+			
+		*/
+		
+	
+		
+		// 끝페이지
+		int endPage = startPage + 9;
+			
+		// 끝페이지가 전체 페이지 개수보다 크다면 
+		if (endPage > totalPageCount) {
+			endPage = totalPageCount;
+		}
+		
+		// 게시물이 한페이지에 보여지는 것보다 작다면
+		if (onePageViewCount > totalBoardCount) {
+			startPage = 1;
+			endPage = 0;
+		}
+		
+				
+		mv.addObject("startPage"         , startPage);
+		mv.addObject("endPage"           , endPage);
+		mv.addObject("totalBoardCount"   , totalBoardCount);
+		mv.addObject("onePageViewCount"  , onePageViewCount);
+		mv.addObject("currentPageNumber" , currentPageNumber);
+		mv.addObject("searchKeyword"     , searchKeyword);
+		mv.addObject("searchWord"        , searchWord);
+		mv.addObject("categoryList"      , categoryList);		
+		
+		
+		System.out.println("====================================");
+		System.out.println("startPage : "         + startPage);
+		System.out.println("endPage : "           + endPage);
+		System.out.println("totalBoardCount : "   + totalBoardCount);
+		System.out.println("onePageViewCount : "  + onePageViewCount);
+		System.out.println("currentPageNumber : " + currentPageNumber);
+		System.out.println("searchKeyword : "     + searchKeyword);
+		System.out.println("searchWord : "        + searchWord);
+		System.out.println("====================================\n");
+		
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping(value="/adminproduct" , method=RequestMethod.GET)
+	public ModelAndView adminproduct(@RequestParam("artArtnum") String artArtnum) throws Exception  {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("admin/adminproduct");
+		
+		mv.addObject("adminDto" ,adminService.selectartArtnum(artArtnum));
 		
 		return mv;
 	}
 	
-	@RequestMapping(value="/adminproduct" , method=RequestMethod.GET)
-	public ModelAndView adminproduct() throws Exception  {
-		return new ModelAndView("admin/adminproduct");
+	@RequestMapping(value="/modifyInfo" , method=RequestMethod.POST)
+	public ResponseEntity<String> modifyGoodsInfo(@RequestParam("artArtnum") int artArtnum,
+			                     		     @RequestParam("attribute") String attribute,
+			                     		     @RequestParam("value") String value) throws Exception {
+		
+		Map<String,Object> goodsMap = new HashMap<String,Object>();
+		goodsMap.put("artArtnum" , artArtnum);
+		goodsMap.put(attribute , value);
+		adminService.modifyInfo(goodsMap);
+		
+		return new ResponseEntity<String>(HttpStatus.OK);
+
 	}
 	
 	@RequestMapping(value="/categoryadd" , method=RequestMethod.GET)
 	public ModelAndView categoryadd() throws Exception  {
 		return new ModelAndView("admin/categoryadd");
+	}
+	
+	@RequestMapping(value="/modifyImageInfo" , method=RequestMethod.POST)
+	public ResponseEntity<String> modifyGoodsImageInfo(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
+		
+		multipartRequest.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		String originalFileName = "";
+		Iterator<String> file = multipartRequest.getFileNames();
+		if (file.hasNext()) {
+			
+			MultipartFile uploadFile = multipartRequest.getFile(file.next()); 	
+			File f = new File(CURR_IMAGE_REPO_PATH + seperatorPath + uploadFile.getOriginalFilename());	
+			uploadFile.transferTo(f); 
+
+			originalFileName = uploadFile.getOriginalFilename();
+		}
+		Map<String,Object> goodsMap = new HashMap<String,Object>();
+		int artArtnum = Integer.parseInt(multipartRequest.getParameter("artArtnum"));
+		goodsMap.put("artArtnum" , artArtnum);
+		goodsMap.put("artImage" , originalFileName);
+		adminService.modifyInfo(goodsMap);
+		
+		return new ResponseEntity<String>(HttpStatus.OK);
+		
 	}
 	
 	@RequestMapping(value="/categoryadd" , method=RequestMethod.POST)
@@ -100,10 +314,12 @@ public class AdminController {
 		AdminDto adminDto = new AdminDto();
 		adminDto.setArtStatus(multipartRequest.getParameter("artStatus"));
 		adminDto.setShowName(multipartRequest.getParameter("showName"));
+		adminDto.setArtTitle(multipartRequest.getParameter("artTitle"));
 		adminDto.setArtist(multipartRequest.getParameter("artist"));
 		adminDto.setStartDate(fm.parse(multipartRequest.getParameter("startDate")));
 		adminDto.setEndDate(fm.parse(multipartRequest.getParameter("endDate")));
-		
+		adminDto.setArtContent(multipartRequest.getParameter("artContent"));
+		adminDto.setMainArt(multipartRequest.getParameter("mainArt"));
 		
 		Iterator<String> file = multipartRequest.getFileNames();
 		if (file.hasNext()) {
@@ -115,7 +331,7 @@ public class AdminController {
 				String fileName = UUID.randomUUID() + "_" + uploadFile.getOriginalFilename();
 				File f = new File(CURR_IMAGE_REPO_PATH + seperatorPath + fileName);	
 				uploadFile.transferTo(f); 
-				adminDto.setMainArt(fileName);
+				adminDto.setartImage(fileName);
 			}
 		
 		}
@@ -133,36 +349,19 @@ public class AdminController {
 		
 	}
 	
-	@RequestMapping(value="/categorydelete" , method = RequestMethod.GET)
-	public ResponseEntity<Object> categorydelete(@RequestParam("mainArt") String fileName , HttpServletRequest request) throws Exception {
+	@RequestMapping(value="/deleteInfo" , method = RequestMethod.POST)
+	public ResponseEntity<Object> categorydelete(@RequestParam("artArtnum") int artArtnum , HttpServletRequest request) throws Exception {
         
-		System.out.println(fileName);
 		
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type" , "text/html; charset=UTF-8");
 		
-		File file = new File(CURR_IMAGE_REPO_PATH + seperatorPath + fileName);		// 파일 정보를 읽어온다.
-        
-		String result = "";
+    	adminService.deleteInfo(artArtnum);
 		
-    	if (file.exists()) {											// 읽어온 파일이 존재하면
-    		file.delete();												// 파일을 삭제한다.
-    		adminService.deleteFile("mainArt");
-    		result= "<script>";
-    		result += "alert('파일삭제 완료');";
-    		result += "location.href='"+request.getContextPath()+"/admin/admincategory';";
-    		result +="</script>";
-    	} 
-    	else {
-    		result= "<script>";
-    		result += "alert('삭제 실패');";
-    		result += "history.go(-1);";
-    		result +="</script>";
-    	}
-    	
-    	return new ResponseEntity<Object> (result, responseHeaders , HttpStatus.OK);
+    	return new ResponseEntity<Object> (responseHeaders , HttpStatus.OK);
                 
     }
+	
 	@RequestMapping(value="/adminorder" , method=RequestMethod.GET)
 	public ModelAndView adminorder() {
 		return new ModelAndView("admin/adminorder");
@@ -224,7 +423,7 @@ public class AdminController {
 	    cell.setCellStyle(headStyle);
 	    cell.setCellValue("가입일");
 	    
-		for (MemberDto memberDto :  adminService.allUserList()) {
+		for (MemberDto memberDto :  adminService.userList()) {
 			row = sheet.createRow(rowNo++);
 	        cell = row.createCell(0);
 	        cell.setCellStyle(bodyStyle);
