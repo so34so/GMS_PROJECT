@@ -69,10 +69,20 @@ public class AdminDaoImpl implements AdminDao {
 	public List<AdminDto> getSearchBoard(Map<String, Object> searchInfo) throws Exception {
 		return sqlSession.selectList("adminMapper.getSearchBoard" , searchInfo);
 	}
+	
+	@Override
+	public List<AdminDto> getSearchart(Map<String, Object> searchInfo) throws Exception {
+		return sqlSession.selectList("adminMapper.getSearchArt" , searchInfo);
+	}
 
 	@Override
 	public int getAllBoardCount(Map<String, String> searchCountInfo) throws Exception {
 		return sqlSession.selectOne("adminMapper.getAllBoardCount" , searchCountInfo);
+	}
+	
+	@Override
+	public int getAllArtCount(Map<String, String> searchCountInfo) throws Exception {
+		return sqlSession.selectOne("adminMapper.getAllArtCount" , searchCountInfo);
 	}
 
 	@Override

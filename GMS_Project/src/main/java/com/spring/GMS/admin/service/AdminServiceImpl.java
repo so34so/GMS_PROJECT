@@ -70,10 +70,20 @@ public class AdminServiceImpl implements AdminService {
 	public List<AdminDto> getSearchBoard(Map<String, Object> searchInfo) throws Exception {
 		return adminDao.getSearchBoard(searchInfo);
 	}
+	
+	@Override
+	public List<AdminDto> getSearchart(Map<String, Object> searchInfo) throws Exception {
+		return adminDao.getSearchart(searchInfo);
+	}
 
 	@Override
 	public int getAllBoardCount(Map<String, String> searchCountInfo) throws Exception {
 		return adminDao.getAllBoardCount(searchCountInfo);
+	}
+	
+	@Override
+	public int getAllArtCount(Map<String, String> searchCountInfo) throws Exception {
+		return adminDao.getAllArtCount(searchCountInfo);
 	}
 
 	@Override

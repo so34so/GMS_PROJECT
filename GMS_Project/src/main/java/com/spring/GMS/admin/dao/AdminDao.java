@@ -19,7 +19,9 @@ public interface AdminDao {
 	public AdminDto artArtnumselect(String artArtnum);
 	public AdminDto showNameselect(String artImage);
 	public List<AdminDto> getSearchBoard(Map<String, Object> searchInfo) throws Exception;
+	public List<AdminDto> getSearchart(Map<String, Object> searchInfo) throws Exception;
 	public int getAllBoardCount(Map<String, String> searchCountInfo) throws Exception;
+	public int getAllArtCount(Map<String, String> searchCountInfo) throws Exception;
 	public List<MemberDto> userList();
 	public void updateInfo(Map<String,Object> goodsMap) throws Exception;
 }

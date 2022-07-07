@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="shopdefault" template="/WEB-INF/views/shop/shoplayout.jsp">
+		<put-attribute name="content" value="/WEB-INF/views/shop/item.jsp"/>
+	</definition>
+	
+	<definition name="shop/item" extends="shopdefault">
+		<put-attribute name="footer" value="/WEB-INF/views/shop/shopreview.jsp"/>
+	</definition>
+	<definition name="shop/shoporder" extends="shopdefault">
+		<put-attribute name="footer" value="/WEB-INF/views/shop/shoporder.jsp"/>
+	</definition>
+	
+</tiles-definitions>

@@ -19,7 +19,9 @@ public interface AdminService {
 	public List<AdminDto> listStatus(String artStatus) throws Exception;
 	public void deleteInfo(int artArtnum);
 	public List<AdminDto> getSearchBoard(Map<String, Object> searchInfo) throws Exception;
+	public List<AdminDto> getSearchart(Map<String, Object> searchInfo) throws Exception;
 	public int getAllBoardCount(Map<String, String> searchCountInfo) throws Exception;
+	public int getAllArtCount(Map<String, String> searchCountInfo) throws Exception;
 	public List<MemberDto> userList();
 	public void modifyInfo(Map<String,Object> goodsMap) throws Exception;
 }
