@@ -120,7 +120,7 @@
 <body>
 	<div class="container-fluid">
              <div class="container px-4 px-lg-5 my-5">
-                 <h1>1.상품정보</h1>
+                 <h1>1.금액정보</h1>
 		<form  name="form_order">	
 			<input type="hidden" id="memberId" value="${orderer.memberId}">
 			<input type="hidden" id="ordererName" value="${orderer.memberName}">
@@ -133,35 +133,14 @@
 			<table class="list_view">
 				<tbody align="center">
 					<tr style="background: blue; color:#fff;">
-						<td colspan=2 class="fixed">주문상품명</td>
-						<td>수량</td>
-						<td>주문금액</td>
-						<td>배송비</td>
-						<td>예상적립금</td>
+						<td>주문금액 + 배송비</td>
 						<td>주문금액합계</td>
 					</tr>
 					<tr>
-						<td class="goods_image">
-						  <a href="${contextPath}/goods/goodsDetail?goodsId=${goodsInfo.goodsId }">
-						    <img width="75" alt="thumbnails" src="${contextPath}/thumbnails?goodsFileName=${goodsInfo.goodsFileName}">
-						  </a>
-						</td>
+						<td><h5>${artInfo.artPrice} + ${artInfo.deliveryPrice}원 = </h5></td>
 						<td>
-						  <h2>
-						     <a href="${contextPath}/goods/goodsDetail?goodsId=${goodsInfo.goodsId }">${goodsInfo.goodsTitle }</A>
-						      <input type="hidden" id="goodsTitle" name="goodsTitle" value="${goodsInfo.goodsTitle }" />
-						  </h2>
-						</td>
-						<td>
-						  <h2>${orderGoodsQty }개</h2>
-						    <input type="hidden" id="orderGoodsQty" name="orderGoodsQty" value="${orderGoodsQty}" />
-						</td>
-						<td><h2>${goodsInfo.goodsSalesPrice}원 (10% 할인)</h2></td>
-						<td><h2>${goodsInfo.goodsDeliveryPrice}원 </h2></td>
-						<td><h2>${1500 * orderGoodsQty}원</h2></td>
-						<td>
-						  <h2>${goodsInfo.goodsSalesPrice * orderGoodsQty + goodsInfo.goodsDeliveryPrice}원</h2>
-						  <input type="hidden" id="totalOrderGoodsPrice" value="${goodsInfo.goodsSalesPrice * orderGoodsQty + goodsInfo.goodsDeliveryPrice}">
+						  <h5> ${artInfo.artPrice + artInfo.deliveryPrice}원</h5>
+						  <input type="hidden" id="totalOrderGoodsPrice" value="${artInfo.artPrice + artInfo.deliveryPrice}">
 						</td>
 					</tr>
 				</tbody>

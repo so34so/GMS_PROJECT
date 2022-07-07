@@ -120,7 +120,7 @@
 							                                    <div class="d-flex justify-content-center small text-warning mb-2">
 							                                    </div>
 							                                    <!-- Product price-->
-							                                    $18.00
+							                                    <span> ${artList.artPrice }원</span>
 							                                </div>
 							                            </div>
 							                            <!-- Product actions-->

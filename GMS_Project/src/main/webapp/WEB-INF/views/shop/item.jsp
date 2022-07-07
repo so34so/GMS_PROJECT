@@ -39,7 +39,7 @@
                         <div class="small mb-1">SKU: BST-498</div>
                         <h1 class="display-5 fw-bolder">${artInfo.artTitle }</h1>
                         <div class="fs-5 mb-5">
-                            <span>$40.00</span>
+                            <span>${artInfo.artPrice }원</span>
                         </div>
                         <p class="lead">${artInfo.artContent }</p>
                         <div class="d-flex">

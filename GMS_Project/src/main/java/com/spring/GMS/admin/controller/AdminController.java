@@ -320,6 +320,10 @@ public class AdminController {
 		adminDto.setEndDate(fm.parse(multipartRequest.getParameter("endDate")));
 		adminDto.setArtContent(multipartRequest.getParameter("artContent"));
 		adminDto.setMainArt(multipartRequest.getParameter("mainArt"));
+		int artPrice = Integer.parseInt(multipartRequest.getParameter("artPrice"));
+		adminDto.setArtPrice(artPrice);
+		int deliveryPrice = Integer.parseInt(multipartRequest.getParameter("deliveryPrice"));
+		adminDto.setDeliveryPrice(deliveryPrice);
 		
 		Iterator<String> file = multipartRequest.getFileNames();
 		if (file.hasNext()) {
@@ -331,7 +335,7 @@ public class AdminController {
 				String fileName = UUID.randomUUID() + "_" + uploadFile.getOriginalFilename();
 				File f = new File(CURR_IMAGE_REPO_PATH + seperatorPath + fileName);	
 				uploadFile.transferTo(f); 
-				adminDto.setartImage(fileName);
+				adminDto.setArtImage(fileName);
 			}
 		
 		}

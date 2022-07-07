@@ -63,6 +63,20 @@
 			return false;
 		}
 		
+		var artPrice = document.getElementById("artPrice");
+		if (artPrice.value == ""){
+			alert("작품가격은 반드시 입력해야 합니다.");
+			artPrice.focus();
+			return false;
+		}
+		
+		var deliveryPrice = document.getElementById("deliveryPrice");
+		if (deliveryPrice.value == ""){
+			alert("배송비는 반드시 입력해야 합니다.");
+			deliveryPrice.focus();
+			return false;
+		}
+		
 	}
 </script>
 <style>
@@ -74,7 +88,7 @@
 </head>
 <body>
 	<form action="${contextPath }/admin/categoryadd" method="post" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
-		<h3>카테고리 등록창</h3>
+		<h3>작품 등록창</h3>
 			<div class="tab_container">
 				<div class="tab_content">
 					<table class="table table-bordered table-hover">			
@@ -124,9 +138,17 @@
 						<tr>
 							<td>작품설명</td>
 							<td>
-							<textarea rows="10" cols="10" name="artContent"></textarea>
+							<textarea rows="10" cols="10" name="artContent" ></textarea>
 		        			<script>CKEDITOR.replace('artContent');</script>
 							</td>
+						</tr>
+						<tr>
+							<td>작품 가격</td>
+							<td><input name="artPrice" id="artPrice" type="text" class="form-control"/></td>
+						</tr>
+						<tr>
+							<td>배송비</td>
+							<td><input name="deliveryPrice" id="deliveryPrice" type="text" class="form-control"/></td>
 						</tr>
 					</table>	
 				</div>

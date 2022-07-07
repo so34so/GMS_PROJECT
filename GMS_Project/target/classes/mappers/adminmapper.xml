@@ -102,7 +102,9 @@
 			END_DATE,
 			MAIN_ART,
 			ART_IMAGE,
-			ART_CONTENT
+			ART_CONTENT,
+			ART_PRICE,
+			DELIVERY_PRICE
 		)
 		VALUES(
 			#{artStatus},
@@ -113,7 +115,9 @@
 			#{endDate},
 			#{mainArt},
 			#{artImage},
-			#{artContent}
+			#{artContent},
+			#{artPrice},
+			#{deliveryPrice}
 		)
 	</insert>
 	
@@ -396,6 +400,12 @@
 	      </if>
 	      <if test='artImage != null and artImage != ""'>
 	        ART_IMAGE = #{artImage},
+      	  </if>
+	      <if test='artPrice != null and artPrice != ""'>
+	        ART_PRICE = #{artPrice},
+      	  </if>
+	      <if test='deliveryPrice != null and deliveryPrice != ""'>
+	        DELIVERY_PRICE = #{deliveryPrice},
       	  </if>
 	    </set>
 		WHERE 

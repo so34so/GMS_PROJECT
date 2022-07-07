@@ -43,6 +43,8 @@
 			value = temp2[0] + temp2[1] + temp2[2];
 		}
 		else if (attribute == 'artContent')		 	 	 value = mod_gallery.artContent.value;
+		else if (attribute == 'artPrice')		 	 	 value = mod_gallery.artPrice.value;
+		else if (attribute == 'deliveryPrice')		 	 value = mod_gallery.deliveryPrice.value;
 		
 		$.ajax({
 			type : "post",
@@ -158,6 +160,16 @@
 							</td>
 							<td><input type="button" class="btn btn-outline-primary btn-sm" value="수정" onClick="modify_gallery('${adminDto.artArtnum }','artContent')" /></td>
 						</tr>
+						<tr>
+							<td>작품 가격</td>
+							<td><input name="artPrice" id="artPrice" type="text" class="form-control" value="${adminDto.artPrice }"/></td>
+							<td><input type="button" class="btn btn-outline-primary btn-sm" value="수정" onClick="modify_gallery('${adminDto.artArtnum }','artPrice')" /></td>
+						 </tr>
+						 <tr>
+							<td>배송비</td>
+							<td><input name="deliveryPrice" id="deliveryPrice" type="text" class="form-control" value="${adminDto.deliveryPrice }"/></td>
+							<td><input type="button" class="btn btn-outline-primary btn-sm" value="수정" onClick="modify_gallery('${adminDto.artArtnum }','deliveryPrice')" /></td>
+						 </tr>
 					</table>	
 				</div>
 			<p align="right">

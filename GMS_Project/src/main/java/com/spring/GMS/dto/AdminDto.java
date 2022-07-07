@@ -20,6 +20,8 @@ public class AdminDto {
 	private Date endDate;
 	private String mainArt;
 	private String artImage;
+	private int artPrice;
+	private int deliveryPrice;
 	public String getArtTitle() {
 		return artTitle;
 	}
@@ -92,11 +94,23 @@ public class AdminDto {
 	public void setMainArt(String mainArt) {
 		this.mainArt = mainArt;
 	}
-	public String getartImage() {
+	public String getArtImage() {
 		return artImage;
 	}
-	public void setartImage(String artImage) {
+	public void setArtImage(String artImage) {
 		this.artImage = artImage;
+	}
+	public int getArtPrice() {
+		return artPrice;
+	}
+	public void setArtPrice(int artPrice) {
+		this.artPrice = artPrice;
+	}
+	public int getDeliveryPrice() {
+		return deliveryPrice;
+	}
+	public void setDeliveryPrice(int deliveryPrice) {
+		this.deliveryPrice = deliveryPrice;
 	}
 	
 	
