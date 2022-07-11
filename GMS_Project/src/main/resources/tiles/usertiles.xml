@@ -7,6 +7,26 @@
 		<put-attribute name="menu" value="/WEB-INF/views/user/MyPage.jsp"/>
 	</definition>
 	
+	<definition name="user/reviewDetail" extends="default">
+		<put-attribute name="content" value="/WEB-INF/views/user/reviewDetail.jsp"/>
+		<put-attribute name="title" value="리뷰자세히보기"/>
+	</definition>
+	
+	<definition name="user/userorderdetail" extends="default">
+		<put-attribute name="content" value="/WEB-INF/views/user/userorderdetail.jsp"/>
+		<put-attribute name="title" value="주문내용자세히보기"/>
+	</definition>
+	
+	<definition name="user/reviewwrite" extends="default">
+		<put-attribute name="content" value="/WEB-INF/views/user/reviewwrite.jsp"/>
+		<put-attribute name="title" value="리뷰쓰기"/>
+	</definition>
+	
+	<definition name="user/userorderList" extends="default">
+		<put-attribute name="content" value="/WEB-INF/views/user/userorderList.jsp"/>
+		<put-attribute name="title" value="주문내역조회"/>
+	</definition>
+	
 	<definition name="user/update" extends="default">
 		<put-attribute name="content" value="/WEB-INF/views/user/update.jsp"/>
 		<put-attribute name="title" value="개인정보 변경"/>

@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.GMS.admin.service.AdminService;
 import com.spring.GMS.dto.AdminDto;
+import com.spring.GMS.dto.ShopDto;
 import com.spring.GMS.shop.service.ShopService;
 
 @Controller
@@ -122,25 +125,35 @@ public class ShopController {
 	}
 	
 	@RequestMapping(value="/itemsale" , method=RequestMethod.GET)
-	public ModelAndView itemsale(@RequestParam("artImage") String artImage) {
+	public ModelAndView itemsale(@RequestParam("artTitle") String artTitle) throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("shop/item");
 		  
-		mv.addObject("artInfo" , adminService.selectshowName(artImage));
+		mv.addObject("artInfo" , adminService.selectartTitle(artTitle));
+		mv.addObject("reviewList" , shopService.selectreview(artTitle));
 		 
 		return mv;
 	}
 	
 	@RequestMapping(value="/shoporder" , method=RequestMethod.GET)
-	public ModelAndView shoporder(@RequestParam("artImage") String artImage) {
+	public ModelAndView shoporder(@RequestParam("artTitle") String artTitle, HttpServletRequest request) {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("shop/shoporder");
-		  
-		mv.addObject("artInfo" , adminService.selectshowName(artImage));
+		
+		HttpSession session = request.getSession();
+		
+		mv.addObject("orderInfo" , shopService.getOrderInfo((String)session.getAttribute("loginUser")));  
+		mv.addObject("artInfo" , adminService.selectartTitle(artTitle));
 		 
 		return mv;
+	}
+	
+	@RequestMapping(value="/payOrder" , method=RequestMethod.POST)
+	public ResponseEntity<Object> payOrder(ShopDto shopDto , HttpServletRequest request) throws Exception{
+	    shopService.addNewOrder(shopDto);
+		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
 	
 }

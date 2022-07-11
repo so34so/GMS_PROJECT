@@ -8,7 +8,7 @@
 <title>AdminPage</title>
         
         <link href="${contextPath }/resources/css/styles.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="assets/img/user.png" />
+        <link rel="icon" type="image/x-icon" href="${contextPath }/resources/img/user.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -29,6 +29,7 @@
                 <ul class="navbar-nav">
                     <h4>관리 페이지</h4>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminuser">회원 관리</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminartist">작가 관리</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/admincategory">상품 관리</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminorder">주문 관리</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/index">메인 페이지</a></li>

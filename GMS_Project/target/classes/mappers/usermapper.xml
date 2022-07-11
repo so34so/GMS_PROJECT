@@ -32,4 +32,41 @@
 		WHERE
 				GALLERY_ID = #{galleryId}
 	</delete>
+	
+	<insert id="reviewadd" parameterType="ReviewDto">
+		INSERT INTO GALLERY_REVIEW(
+			ART_TITLE,
+			GALLERY_ID,
+			GALLERY_NICKNAME,
+			REVIEW_DATE,
+			REVIEW_TITLE,
+			REVIEW_CONTENT,
+			REVIEW_RATE
+		)
+		VALUES(
+			#{artTitle},
+			#{galleryId},
+			#{galleryNickname},
+			NOW(),
+			#{reviewTitle},
+			#{reviewContent},
+			#{reviewRate}
+		)
+	</insert>
+	
+	<select id="getSearchReview" parameterType="hashmap" resultType="ReviewDto">
+		SELECT
+				*
+		FROM
+				GALLERY_REVIEW
+		WHERE
+				GALLERY_ID = #{galleryId} AND ART_TITLE = #{artTitle}
+	</select>
+	
+	<delete id="deleteReview" parameterType="hashmap">
+		DELETE FROM
+				GALLERY_REVIEW
+		WHERE
+				GALLERY_ID = #{galleryId} AND ART_TITLE = #{artTitle}
+	</delete>
 </mapper>

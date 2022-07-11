@@ -50,6 +50,50 @@
 		</choose>
 	</select>
 	
+	<select id="artistList" parameterType="hashmap" resultType="ArtistDto">
+		<choose>
+			<when test="searchKeyword.equals('total')">	<!-- 전체 검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')">	<!-- 전체 검색중 검색 문자가 없을 경우 -->
+						SELECT
+								*
+						FROM
+								GALLERY_ARTIST
+						LIMIT
+								#{startBoardIdx} , #{onePageViewCount}
+					</when>
+					<otherwise>	<!-- 전체 검색중 검색 문자가 있을 경우 -->
+						SELECT 
+								*
+						FROM
+								GALLERY_ARTIST
+						WHERE
+								ARTIST LIKE CONCAT('%' , #{searchWord} , '%') OR
+								MAIN_ARTIST LIKE CONCAT('%' , #{searchWord} , '%')
+						LIMIT
+								#{startBoardIdx},#{onePageViewCount}
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- 서치 키워드를 이용하여 검색하는 경우 -->
+				SELECT
+						*
+				FROM
+						GALLERY_ARTIST
+				WHERE
+					
+					<if test="searchKeyword.equals('artist')">
+						ARTIST LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('mainArtist')">
+						MAIN_ARTIST LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+				LIMIT
+						#{startBoardIdx} , #{onePageViewCount}
+			</otherwise>
+		</choose>
+	</select>
+	
 	<!-- 게시글의 개수를 반환하는 쿼리 -->
 	<select id="getAlluserCount" parameterType="hashmap" resultType="int">
 		<choose>
@@ -92,6 +136,43 @@
 		</choose>	
 	</select>
 	
+	<select id="getAllartistCount" parameterType="hashmap" resultType="int">
+		<choose>
+			<when test="searchKeyword.equals('total')"> <!-- searchKeyword가 전체검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')"> <!--  특정 키워드가 없을경우 (보통의 경우)  -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								GALLERY_ARTIST
+					</when>
+					<otherwise>	<!-- 특정 키워드가 있을 경우 -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								GALLERY_ARTIST
+						WHERE
+								ARTIST LIKE CONCAT('%' , #{searchWord} , '%') OR
+								MAIN_ARTIST LIKE CONCAT('%' , #{searchWord} , '%') 
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- searchKeyword가 전체 검색이 아닐 경우 -->
+				SELECT 
+						COUNT(*) 
+				FROM
+						GALLERY_ARTIST
+				WHERE
+					<if test="searchKeyword.equals('artist')">
+						ARTIST LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('mainArtist')">
+						MAIN_ARTIST LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+			</otherwise>
+		</choose>	
+	</select>
+	
 	<insert id="categoryadd" parameterType="AdminDto">
 		INSERT INTO GALLERY_ADMIN(
 			ART_STATUS,
@@ -121,11 +202,33 @@
 		)
 	</insert>
 	
+	<insert id="artistadd" parameterType="ArtistDto">
+		INSERT INTO GALLERY_ARTIST(
+			ARTIST,
+			ARTIST_IMAGE,
+			ARTIST_COMENT,
+			MAIN_ARTIST
+		)
+		VALUES(
+			#{artist},
+			#{artistImage},
+			#{artistComent},
+			#{mainArtist}
+		)
+	</insert>
+	
 	<select id="listCategory" resultType="AdminDto">
 		SELECT
 				*
 		FROM
 				GALLERY_ADMIN
+	</select>
+	
+	<select id="listArtist" resultType="ArtistDto">
+		SELECT
+				*
+		FROM
+				GALLERY_ARTIST
 	</select>
 	
 	<select id="selectStatusList" parameterType="String" resultType="AdminDto">
@@ -175,13 +278,13 @@
 				ART_ARTNUM = #{artArtnum}
 	</select>
 	
-	<select id="showNameselect" parameterType="String" resultType="AdminDto">
+	<select id="selectartTitle" parameterType="String" resultType="AdminDto">
 		SELECT
 				*
 		FROM
 				GALLERY_ADMIN
 		WHERE
-				ART_IMAGE = #{artImage}
+				ART_TITLE = #{artTitle}
 	</select>
 	
 		<!-- 게시글의 내용을 반환하는 쿼리 -->
@@ -227,6 +330,50 @@
 					</if>
 					<if test="searchKeyword.equals('artStatus')">
 						ART_STATUS LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+				LIMIT
+						#{startBoardIdx} , #{onePageViewCount}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="getSearchOrder" parameterType="hashmap" resultType="ShopDto">
+		<choose>
+			<when test="searchKeyword.equals('total')">	<!-- 전체 검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')">	<!-- 전체 검색중 검색 문자가 없을 경우 -->
+						SELECT
+								*
+						FROM
+								GALLERY_SHOP
+						LIMIT
+								#{startBoardIdx} , #{onePageViewCount}
+					</when>
+					<otherwise>	<!-- 전체 검색중 검색 문자가 있을 경우 -->
+						SELECT 
+								*
+						FROM
+								GALLERY_SHOP
+						WHERE
+								ART_TITLE LIKE CONCAT('%' , #{searchWord} , '%') OR
+								RECEIVER_NAME LIKE CONCAT('%' , #{searchWord} , '%') 
+						LIMIT
+								#{startBoardIdx},#{onePageViewCount}
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- 서치 키워드를 이용하여 검색하는 경우 -->
+				SELECT
+						*
+				FROM
+						GALLERY_SHOP
+				WHERE
+					
+					<if test="searchKeyword.equals('artTitle')">
+						ART_TITLE LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('receiverName')">
+						RECEIVER_NAME LIKE CONCAT('%' , #{searchWord} , '%')
 					</if>
 				LIMIT
 						#{startBoardIdx} , #{onePageViewCount}
@@ -325,6 +472,43 @@
 		</choose>	
 	</select>
 	
+	<select id="getAllOrderCount" parameterType="hashmap" resultType="int">
+		<choose>
+			<when test="searchKeyword.equals('total')"> <!-- searchKeyword가 전체검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')"> <!--  특정 키워드가 없을경우 (보통의 경우)  -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								GALLERY_SHOP
+					</when>
+					<otherwise>	<!-- 특정 키워드가 있을 경우 -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								GALLERY_SHOP
+						WHERE
+								ART_TITLE LIKE CONCAT('%' , #{searchWord} , '%') OR
+								RECEIVER_NAME LIKE CONCAT('%' , #{searchWord} , '%') 
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- searchKeyword가 전체 검색이 아닐 경우 -->
+				SELECT 
+						COUNT(*) 
+				FROM
+						GALLERY_SHOP
+				WHERE
+					<if test="searchKeyword.equals('artTitle')">
+						ART_TITLE LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('receiverName')">
+						RECEIVER_NAME LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+			</otherwise>
+		</choose>	
+	</select>
+	
 	<select id="getAllArtCount" parameterType="hashmap" resultType="int">
 		<choose>
 			<when test="searchKeyword.equals('total')"> <!-- searchKeyword가 전체검색일 경우 -->
@@ -411,4 +595,67 @@
 		WHERE 
 				ART_ARTNUM = #{artArtnum}
 	</update>	
+	
+	<update id="updateDeliveryState" parameterType="hashmap" >
+	   UPDATE 
+	   			GALLERY_SHOP
+      <set> 
+      		<if test='deliveryState != null and deliveryState != ""'>
+        		DELIVERY_STATE = #{deliveryState}
+      		</if>
+      </set>
+      WHERE 
+    	 		ORDER_ID = #{orderId}
+	</update>
+	
+	<resultMap type="hashMap" id="orderDetail">
+		<result column="ART_ARTNUM" 		  property="artArtnum"/>
+		<result column="ART_TITLE" 		 	  property="artTitle"/>
+		<result column="DELIVERY_PRICE" 	  property="deliveryPrice"/>
+		<result column="ART_IMAGE" 			  property="artImage"/>
+		<result column="ART_PRICE" 	 		  property="artPrice"/>
+		<result column="ORDER_ID"   		  property="orderId"/>
+		<result column="DELIVERY_METHOD" 	  property="deliveryMethod"/>
+		<result column="RECEIVER_NAME" 		  property="receiverName"/>
+		<result column="DELIVERY_ADDRESS" 	  property="deliveryAddress"/>
+		<result column="DELIVERY_MESSAGE" 	  property="deliveryMessage"/>
+		<result column="PAY_METHOD" 		  property="payMethod"/>
+		<result column="CARD_COM_NAME" 		  property="cardComName"/>
+		<result column="CARD_PAY_MONTH" 	  property="cardPayMonth"/>
+		<result column="DELIVERY_STATE" 	  property="deliveryState"/>
+		<result column="GALLERY_ID" 		  property="galleryId"/>
+		<result column="GALLERY_NAME" 		  property="galleryName"/>
+		<result column="GALLERY_NICKNAME" 	  property="galleryNickname"/>
+		<result column="GALLERY_EMAIL" 		  property="galleryEmail"/>
+	</resultMap>
+	
+    <select id="selectOrderDetail" resultMap="orderDetail" parameterType="int"  >
+	     SELECT 
+	    		G.ART_ARTNUM				AS ART_ARTNUM,
+	    		G.ART_TITLE					AS ART_TITLE,
+	    		G.DELIVERY_PRICE			AS DELIVERY_PRICE,
+	    		G.ART_IMAGE					AS ART_IMAGE,
+	    		O.ART_PRICE					AS ART_PRICE,
+	    		O.ORDER_ID					AS ORDER_ID,
+	    		O.DELIVERY_METHOD			AS DELIVERY_METHOD,
+	    		O.RECEIVER_NAME				AS RECEIVER_NAME,
+	    		O.DELIVERY_ADDRESS			AS DELIVERY_ADDRESS,
+	    		O.DELIVERY_MESSAGE			AS DELIVERY_MESSAGE,
+	    		O.PAY_METHOD				AS PAY_METHOD,
+	    		O.CARD_COM_NAME				AS CARD_COM_NAME,
+	    		O.CARD_PAY_MONTH			AS CARD_PAY_MONTH,
+	    		O.DELIVERY_STATE			AS DELIVERY_STATE,
+	    		M.GALLERY_ID				AS GALLERY_ID,
+	    		M.GALLERY_NAME				AS GALLERY_NAME,
+	    		M.GALLERY_NICKNAME			AS GALLERY_NICKNAME,
+	    		M.GALLERY_EMAIL				AS GALLERY_EMAIL
+	    FROM 
+	    		GALLERY_SHOP O
+	                  INNER JOIN GALLERY_ADMIN G
+	                          ON O.ART_ARTNUM = G.ART_ARTNUM
+	                  INNER JOIN GALLERY_MEMBER M
+	                		  ON O.GALLERY_ID = M.GALLERY_ID
+        WHERE 
+           		O.ORDER_ID = #{orderId}
+	</select>
 </mapper>

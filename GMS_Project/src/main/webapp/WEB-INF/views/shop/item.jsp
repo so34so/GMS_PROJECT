@@ -36,7 +36,7 @@
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="${contextPath}/thumbnails?artImage=${artInfo.artImage}" alt="..." /></div>
                     <div class="col-md-6">
-                        <div class="small mb-1">SKU: BST-498</div>
+                        <div class="small mb-1">작가 : ${artInfo.artist }</div>
                         <h1 class="display-5 fw-bolder">${artInfo.artTitle }</h1>
                         <div class="fs-5 mb-5">
                             <span>${artInfo.artPrice }원</span>
@@ -44,7 +44,7 @@
                         <p class="lead">${artInfo.artContent }</p>
                         <div class="d-flex">
                         	<input type="hidden" value="1">
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button" onclick="location.href='${contextPath}/shop/shoporder?artImage=${artInfo.artImage }'">
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button" onclick="location.href='${contextPath}/shop/shoporder?artTitle=${artInfo.artTitle }'">
                                 <i class="bi-cart-fill me-1"></i>
                                 사러가기
                             </button>

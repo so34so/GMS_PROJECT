@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<link rel="icon" type="image/x-icon" href="assets/img/user.png" />
+		<link rel="icon" type="image/x-icon" href="${contextPath}/resources/img/user.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->

@@ -27,6 +27,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <h4>${sessionScope.loginUser }님의 페이지</h4>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/userorderList">주문 내역보기</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/update">정보 수정하기</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/pwupdate">비밀번호 변경하기</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/delete">탈퇴하기</a></li>

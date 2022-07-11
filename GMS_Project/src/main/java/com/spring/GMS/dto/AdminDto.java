@@ -15,6 +15,7 @@ public class AdminDto {
 	private String artist;
 	private String artistArt;
 	private String artistComent;
+	private String mainArtist;
 	private String showName;
 	private Date startDate;
 	private Date endDate;
@@ -69,6 +70,12 @@ public class AdminDto {
 	}
 	public void setArtistComent(String artistComent) {
 		this.artistComent = artistComent;
+	}
+	public String getMainArtist() {
+		return mainArtist;
+	}
+	public void setMainArtist(String mainArtist) {
+		this.mainArtist = mainArtist;
 	}
 	public String getShowName() {
 		return showName;

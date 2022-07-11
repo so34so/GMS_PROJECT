@@ -22,10 +22,26 @@ public class FileController {
 	//String seperatorPath = "/";		// linux
 	
 	@RequestMapping("/thumbnails")
-	public void thumbnails(@RequestParam("artImage") String goodsFileName , HttpServletResponse response) throws Exception {
+	public void thumbnails(@RequestParam("artImage") String artImage , HttpServletResponse response) throws Exception {
 	
 		OutputStream out = response.getOutputStream();
-		String filePath = CURR_IMAGE_REPO_PATH + seperatorPath + goodsFileName;
+		String filePath = CURR_IMAGE_REPO_PATH + seperatorPath + artImage;
+		
+		File image = new File(filePath);
+		if (image.exists()) { 
+			Thumbnails.of(image).size(500,500).outputFormat("png").toOutputStream(out);
+		}
+		byte[] buffer = new byte[1024 * 8];
+		out.write(buffer);
+		out.close();
+		
+	}
+	
+	@RequestMapping("/image")
+	public void image(@RequestParam("artistImage") String artistImage , HttpServletResponse response) throws Exception {
+		
+		OutputStream out = response.getOutputStream();
+		String filePath = CURR_IMAGE_REPO_PATH + seperatorPath + artistImage;
 		
 		File image = new File(filePath);
 		if (image.exists()) { 

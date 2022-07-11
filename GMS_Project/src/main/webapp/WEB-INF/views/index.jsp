@@ -17,7 +17,37 @@
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
+        <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />\
+<script>
+        
+		$().ready(function(){
+					
+			   $("img[id^='move']").on("click",function() {
+				    var artTitle = document.getElementById("[id^='artTitle']").value;
+				    
+				    if(loginUser == null){
+				    	alert("로그인 후 이용 가능합니다.");
+				    	location.href="${contextPath}/member/index";
+				    }
+				    locatino.href = "${contextPath}/gallery/In?artTitle=" + artTitle;
+	            });
+			   
+			   $("button[id^='move']").on("click",function() {
+				  	console.log(this.id);
+	                var vId = this.id;
+	                
+				    var artTitle = document.getElementById("[id^='artTitle']").value;
+				    
+				    if(loginUser == null){
+				    	alert("로그인 후 이용 가능합니다.");
+				    	location.href="${contextPath}/member/index";
+				    }
+				    locatino.href = "${contextPath}/gallery/In?artTitle=" + artTitle;
+				    
+	            });
+		}
+        
+</script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -83,11 +113,16 @@
 	                    		<c:if test="${item1.mainArt eq 'Y' }">
 			                        <div class="col-lg-6">
 			                            <div class="team-member">
-			                                <a href="${contextPath }/gallery/In?artImage=${item1.artImage}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath}/thumbnails?artImage=${item1.artImage}" alt="카테고리 사진"style="width:250px;height:250px;" /></a>
+			                                <!-- <a href="${contextPath }/gallery/In?artTitle=${item1.artTitle}"> -->
+			                                	<img class="img-fluid img-profile rounded-3 mx-auto mb-2" id="move${status.index }" src="${contextPath}/thumbnails?artImage=${item1.artImage}" alt="카테고리 사진"style="width:250px;height:250px;" />
+			                                	<input type="hidden" value="${item1.artTitle }" id="artTitle${status.index }"/>
+			                                <!-- </a> -->
 			                                <h4>${item1.showName } 전시회</h4>
 			                                <p class="text-muted">${item1.artist }</p>
 			                                <p><strong>전시기한 : <fmt:formatDate value="${item1.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item1.endDate}" pattern="yyyy-MM-dd"/></strong></p>
-			                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery/In?artImage=${item1.artImage}" role="button">보러가기</a></div>
+			                                <div class="d-grid gap-2">
+			                                <button class="btn btn-lg btn-danger" id="move${status.index }" />보러가기
+			                                </div>
 			                            </div>
 			                        </div>
 		                        </c:if>
@@ -105,11 +140,11 @@
 	                    	<c:if test="${item2.mainArt eq 'Y' }">
 		                        <div class="col-lg-6">
 		                            <div class="team-member">
-		                                <a href="${contextPath }/gallery/In?artImage=${item2.artImage}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath}/thumbnails?artImage=${item2.artImage}" alt="..."style="width:250px;height:250px;" /></a>
+		                                <a href="${contextPath }/gallery/In?artTitle=${item2.artTitle}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath}/thumbnails?artImage=${item2.artImage}" alt="..."style="width:250px;height:250px;" /></a>
 		                                <h4>${item2.showName } 전시회</h4>
 			                                <p class="text-muted">${item2.artist }</p>
 			                                <p><strong>전시기한 : <fmt:formatDate value="${item2.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item2.endDate}" pattern="yyyy-MM-dd"/></strong></p>
-		                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery/In?sartImage=${item2.artImage}" role="button">보러가기</a></div>
+		                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery/In?artTitle=${item2.artTitle}" role="button">보러가기</a></div>
 		                            </div>
 		                        </div>
 		                    </c:if>
@@ -123,36 +158,17 @@
                 <div class="resume-section-content">
                     <h2 class="mb-5">전시인물 소개</h2>
                     <div class="row">
+                    <c:forEach var="item3" items="${artistList }" varStatus="status"> 
                         <div class="col-lg-4">
                             <div class="team-member">
-                                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${contextPath }/resources/img/20200830_142314.jpg" alt="..."style="width:250px;height:250px;" />
-                                <h4>김민석</h4>
-                                <p class="text-muted">대학생(졸업예정자)</p>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile" data-bs-toggle="modal" data-bs-target="#Infomation"><i class="fa-solid fa-book"></i></a>
+                                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${contextPath}/image?artistImage=${item3.artistImage}" alt="..."style="width:250px;height:250px;" />
+                                <h4>${item3.artist }</h4><br>
+                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile" data-bs-toggle="modal" data-bs-target="#Infomation${status.count }"><i class="fa-solid fa-book"></i></a>
                                 <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
-                        <div class="col-lg-4">
-                            <div class="team-member">
-                                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${contextPath }/resources/img/blank-profile-picture-g35fe79848_640.png" alt="..."style="width:250px;height:250px;" />
-                                <h4>누구든 환영</h4>
-                                <p class="text-muted">당신은 최고!</p>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Twitter Profile"><i class="fa-solid fa-book"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Diana Petersen LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="team-member">
-                                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${contextPath }/resources/img/blank-profile-picture-g35fe79848_640.png" alt="..."style="width:250px;height:250px;" />
-                                <h4>누구든 환영</h4>
-                                <p class="text-muted">당신은 최고!</p>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Twitter Profile"><i class="fa-solid fa-book"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Larry Parker LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
+                    </c:forEach>
                     </div>
                 </div>
             </section>
@@ -211,7 +227,8 @@
         
         
                 <!-- Portfolio Modal 1-->
-        <div class="portfolio-modal modal fade" id="Infomation" tabindex="-1" aria-labelledby="Infomation" aria-hidden="true">
+     <c:forEach var="item3" items="${artistList }" varStatus="status"> 
+        <div class="portfolio-modal modal fade" id="Infomation${status.count }" tabindex="-1" aria-labelledby="Infomation" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
@@ -222,14 +239,13 @@
                                     <!-- Portfolio Modal - Title-->
 						            <div class="container px-4 px-lg-5 my-5">
 						                <div class="row gx-4 gx-lg-5 align-items-center">
-						                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="${contextPath}/resources/img/20200830_142314.jpg" alt="..." /></div>
+						                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="${contextPath}/image?artistImage=${item3.artistImage}" alt="..." /></div>
 						                    <div class="col-md-6">
-						                        <h2 class="display-5 fw-bolder">작가 : 김민석</h2>
+						                        <h2 class="display-5 fw-bolder">작가 : ${item3.artist }</h2>
 						                        <div class="fs-5 mb-5">
-						                            <span>대학생(졸업예정자)</span>
+						                            <span>대표작 : ${item3.mainArtist}</span>
 						                        </div>
-						                        <p class="lead">나이 : 25세</p>
-						                        <p class="lead">대표작품 : 없음</p>
+						                        <p class="lead">작가 설명 : ${item3.artistComent}</p>
 						                    </div>
 						                </div>
 						            </div>
@@ -244,7 +260,7 @@
                 </div>
             </div>
         </div>
-        
+     </c:forEach>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

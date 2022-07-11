@@ -16,6 +16,12 @@
         <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
 <script>
 		
+		function deleteReview(){
+			
+				
+		}
+		
+		
 		$().ready(function(){
 			
 			$("#onePageViewCount").change(function(){
@@ -24,7 +30,7 @@
 				var searchKeyword    = $("#searchKeyword").val();
 				var searchWord       = $("#searchWord").val();
 				
-				var url = "${contextPath}/admin/adminorder?";
+				var url = "${contextPath}/admin/adminartist?";
 					url	+= "onePageViewCount=" + onePageViewCount;
 					url	+= "&searchKeyword=" + searchKeyword;
 					url	+= "&searchWord=" + searchWord;
@@ -40,7 +46,7 @@
 				var searchKeyword    = $("#searchKeyword").val();
 				var searchWord       = $("#searchWord").val();
 				
-				var url = "${contextPath}/admin/adminorder?";
+				var url = "${contextPath}/admin/adminartist?";
 					url += "onePageViewCount=" + onePageViewCount;
 					url += "&searchKeyword=" + searchKeyword;
 					url += "&searchWord=" + searchWord;
@@ -52,28 +58,11 @@
 			
 		});
 		
-		
-		function fn_modify_order_state(orderId , selectId) {
-			
-			$.ajax({
-				type : "get",
-				url : "${contextPath}/admin/modifyDeliveryState",
-				data : {
-					"orderId" : orderId,
-					"deliveryState" : document.getElementById(selectId).value
-				},
-				success : function() {
-					alert("주문 정보를 수정했습니다.");
-					location.href = "${contextPath}/admin/adminorder";
-				}
-						
-			}); 		
-		}
 </script>
 </head>
 <body>
 	<div class="container-fluid">
-             <h1 class="mt-4">주문 조회</h1>
+             <h1 class="mt-4">작가 조회</h1>
              <div class="card mb-4">
                  <div class="card-header">
                      <i class="fas fa-table mr-1"></i>
@@ -94,81 +83,51 @@
                           				</label>
                           			</div>		                               
                        			</div>
+                       			<div class="col-sm-12 col-md-6">
+                       				<input type="button" class="btn btn-primary" style="float: right; color:white;" value="Write" onclick="location.href='${contextPath }/admin/artistadd'">
+                       			</div>
                        		</div>
                           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                               <colgroup>
 								<col width="10%">
-								<col width="10%">
-								<col width="30%">
-								<col width="10%">
+								<col width="20%">
+								<col width="60%">
 								<col width="10%">
 							  </colgroup>
 				              <thead>                                     
                                   <tr>
-                                      <th>주문번호</th>
-                                      <th>주문시간</th>
-                                      <th>주문내역</th>
-                                      <th>배송상태</th>
-                                      <th>배송수정</th>
+                                      <th>작가이름</th>
+                                      <th>작가사진</th>
+                                      <th>작가설명란</th>
+                                      <th>삭제</th>
                                   </tr>
                               </thead>
                               <tbody>
-								<c:choose>
-	    							<c:when test="${empty orderList }">			
+                              <c:choose>
+	    							<c:when test="${empty artistList }">			
 										<tr>
-									       <td colspan="8" class="fixed"><strong>조회된 상품이 없습니다.</strong></td>
+									       <td colspan="3" class="fixed"><strong>조회된 작가가 없습니다.</strong></td>
 									    </tr>
 								 	</c:when>
-								 	<c:otherwise>
-					     				<c:forEach var="order" items="${orderList}" varStatus="status">
-											<tr>       
-												<td><strong>${order.orderId}</strong></td>
-												<td><strong><fmt:formatDate value="${order.payOrderTime}" pattern="yyyy-MM-dd HH:mm"/></strong></td>
-												<td>
-													<a href="${contextPath }/admin/orderdetail?orderId=${order.orderId}">
-														<strong>주문작품 : ${order.artTitle} </strong> <br>
-														<strong>주문자 : ${order.galleryName} </strong> <br>
-														<strong>주문자 이메일: ${order.galleryEmail} </strong> <br><br>
-														<strong>수령자 : ${order.receiverName} </strong> <br>
-													</a>
-												</td>
-												<td width=10%>
-													<c:if test="${order.deliveryState == 'deliveryPrepared'}"> 
-														<div class="badge badge-pill" style="color:#fff; background-color:#00cfd5;">배송준비중</div>
-													</c:if>
-													<c:if test="${order.deliveryState == 'delivering'}"> 
-														<div class="badge badge-secondary badge-pill"style="color:#212832; background-color:#e4ddf7;">배송중</div>
-													</c:if>
-													<c:if test="${order.deliveryState == 'finishedDelivering'}"> 
-														<div class="badge badge-primary badge-pill"style="color:#fff; background-color:#0061f2;">배송완료</div>
-													</c:if>
-													<c:if test="${order.deliveryState == 'cancelOrder'}"> 
-														<div class="badge badge-danger badge-pill"style="color:#fff; background-color: #e81500;">주문취소</div>
-													</c:if>
-													<c:if test="${order.deliveryState == 'returningGoods'}"> 
-														<div class="badge badge-yellow badge-pill"style="color:#fff; background-color: #f4a100;">반품</div>
-													</c:if>
-												</td>
-												<td width=10%>
-													<select id="deliveryState${status.index }">
-														<option value="deliveryPrepared" <c:if test="${order.deliveryState=='deliveryPrepared' }"> selected </c:if>>배송준비중</option>
-														<option value="delivering" <c:if test="${order.deliveryState=='delivering' }"> selected </c:if>>배송중</option>
-														<option value="finishedDelivering" <c:if test="${order.deliveryState=='finishedDelivering' }"> selected </c:if>>배송완료</option>
-														<option value="cancelOrder" <c:if test="${order.deliveryState=='cancelOrder' }"> selected </c:if>>주문취소</option>
-														<option value="returningGoods" <c:if test="${order.deliveryState=='returningGoods' }"> selected </c:if>>반품</option>
-													</select>
-													<input type="button" value="배송수정" class="btn btn-outline-blue btn-xs" onclick="fn_modify_order_state('${order.orderId}' ,'deliveryState${status.index}')" />
-												</td>
-											</tr>
-										</c:forEach>
-									</c:otherwise>
-					  			</c:choose>	
+									 	<c:otherwise>
+						     				<c:forEach var="artist" items="${artistList}" varStatus="status">
+													<tr>       
+														<td><strong>${artist.artist}</strong></td>
+														<td>
+														  		<img width="75" alt="작가사진" src="${contextPath}/image?artistImage=${artist.artistImage}">
+														</td>
+														<td><strong>${artist.artistComent} </strong> </td>
+														<td><button id="delete${stauts.count }" onclick="deleteReview()">삭제</button> </td>
+													</tr>
+											</c:forEach>
+										</c:otherwise>
+					  			</c:choose>
 								<tr>
 									<td colspan="8" align="center">	
 										<select id="searchKeyword" class="form-control" style="width: 150px; display: inline;">
 											<option <c:if test="${searchKeyword eq 'total'}"> selected</c:if> value="total">전체검색</option>
-											<option <c:if test="${searchKeyword eq 'receiverName'}"> selected</c:if> value="receiverName">이름검색</option>
-											<option <c:if test="${searchKeyword eq 'artTitle'}"> selected</c:if> value="artTitle">작품검색</option>
+											<option <c:if test="${searchKeyword eq 'artist'}"> selected</c:if> value="artist">작가검색</option>
+											<option <c:if test="${searchKeyword eq 'artistArt'}"> selected</c:if> value="artistArt">대표작검색</option>
 										</select>
 				                             		<input type="text" style="width: 300px; display: inline;" class="form-control" id="searchWord" name="searchWord" value="${searchWord}" >
 										<input type="button" class="btn btn-outline-info btn-sm" value="Search" id="getSearchBoard">

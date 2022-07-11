@@ -1,10 +1,13 @@
 package com.spring.GMS.user.service;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.GMS.dto.MemberDto;
+import com.spring.GMS.dto.ReviewDto;
 import com.spring.GMS.member.dao.MemberDao;
 import com.spring.GMS.user.dao.UserDao;
 
@@ -53,5 +56,31 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		return isDelete;
+	}
+
+	@Override
+	public void reviewadd(ReviewDto reviewDto) throws Exception {
+		userDao.reviewadd(reviewDto);
+	}
+	
+	@Override
+	public boolean getSearchReview(Map<String, Object> haveReview) throws Exception {
+		
+		boolean searchReview = false;
+		
+		if(userDao.getSearchReview(haveReview) != null) {
+			searchReview = true;
+		}
+		
+		return searchReview;
+	}
+	@Override
+	public ReviewDto getOneReview(Map<String, Object> haveReview) throws Exception {
+		return userDao.getSearchReview(haveReview);
+	}
+
+	@Override
+	public void deleteReview(Map<String, Object> haveReview) throws Exception {
+		userDao.deleteReview(haveReview);
 	}
 }

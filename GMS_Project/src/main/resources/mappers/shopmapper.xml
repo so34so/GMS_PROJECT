@@ -2,5 +2,140 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="shopMapper">
-
+	<select id="getOrderInfo" parameterType="String" resultType="MemberDto">
+		SELECT
+				*
+		FROM
+				GALLERY_MEMBER
+		WHERE
+				GALLERY_ID = #{galleryId}
+	</select>
+	
+	<insert id="insertOrder" parameterType="ShopDto">
+		INSERT INTO
+				GALLERY_SHOP(
+				ORDER_ID,
+				GALLERY_ID,
+				ART_ARTNUM,
+				ART_TITLE,
+				ART_PRICE,
+				GALLERY_EMAIL,
+				GALLERY_NAME,
+				RECEIVER_NAME,
+				DELIVERY_ADDRESS,
+				DELIVERY_MESSAGE,
+				DELIVERY_METHOD,
+				PAY_ORDER_TIME,
+				CARD_COM_NAME,
+				CARD_PAY_MONTH,
+				DELIVERY_STATE
+				)
+		VALUES(
+			#{orderId},
+			#{galleryId},
+			#{artArtnum},
+			#{artTitle},
+			#{artPrice},
+			#{galleryEmail},
+			#{galleryName},
+			#{receiverName},
+			#{deliveryAddress},
+			#{deliveryMessage},
+			#{deliveryMethod},
+			NOW(),
+			#{cardComName},
+			#{cardPayMonth},
+			'deliveryPrepared'
+		)		
+	</insert>
+	
+	<select id="reviewList" parameterType="String" resultType="ReviewDto">
+		SELECT
+				*
+		FROM
+				GALLERY_REVIEW
+		WHERE
+				ART_TITLE = #{artTitle}
+	</select>
+	
+	<select id="getreviewChart" parameterType="hashmap" resultType="ReviewDto">
+		<choose>
+			<when test="searchKeyword.equals('total')">	<!-- 전체 검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')">	<!-- 전체 검색중 검색 문자가 없을 경우 -->
+						SELECT
+								*
+						FROM
+								GALLERY_REVIEW
+						LIMIT
+								#{startBoardIdx} , #{onePageViewCount}
+					</when>
+					<otherwise>	<!-- 전체 검색중 검색 문자가 있을 경우 -->
+						SELECT 
+								*
+						FROM
+								GALLERY_REVIEW
+						WHERE
+								GALLERY_NICKNAME LIKE CONCAT('%' , #{searchWord} , '%') OR
+								REVIEW_RATE LIKE CONCAT('%' , #{searchWord} , '%') 
+						LIMIT
+								#{startBoardIdx},#{onePageViewCount}
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- 서치 키워드를 이용하여 검색하는 경우 -->
+				SELECT
+						*
+				FROM
+						GALLERY_REVIEW
+				WHERE
+					
+					<if test="searchKeyword.equals('galleryNickname')">
+						GALLERY_NICKNAME LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('reviewRate')">
+						REVIEW_RATE LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+				LIMIT
+						#{startBoardIdx} , #{onePageViewCount}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="getAllReviewCount" parameterType="hashmap" resultType="int">
+		<choose>
+			<when test="searchKeyword.equals('total')"> <!-- searchKeyword가 전체검색일 경우 -->
+				<choose>
+					<when test="searchWord.equals('')"> <!--  특정 키워드가 없을경우 (보통의 경우)  -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								GALLERY_REVIEW
+					</when>
+					<otherwise>	<!-- 특정 키워드가 있을 경우 -->
+						SELECT 
+								COUNT(*) 
+						FROM 
+								GALLERY_REVIEW
+						WHERE
+								GALLERY_NICKNAME LIKE CONCAT('%' , #{searchWord} , '%') OR
+								REVIEW_RATE LIKE CONCAT('%' , #{searchWord} , '%')  
+					</otherwise>
+				</choose>
+			</when>
+			<otherwise>	<!-- searchKeyword가 전체 검색이 아닐 경우 -->
+				SELECT 
+						COUNT(*) 
+				FROM
+						GALLERY_REVIEW
+				WHERE
+					<if test="searchKeyword.equals('galleryNickname')">
+						GALLERY_NICKNAME LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+					<if test="searchKeyword.equals('reviewRate')">
+						REVIEW_RATE LIKE CONCAT('%' , #{searchWord} , '%')
+					</if>
+			</otherwise>
+		</choose>	
+	</select>
 </mapper>
