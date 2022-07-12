@@ -30,14 +30,14 @@
                 <!-- Portfolio Grid Items-->
                 <div class="row justify-content-center">
                     <!-- Portfolio Item 1-->
-                    <c:forEach var="art" items="${artList }" varStatus="status1">
-                    	<c:if test="${art.showName eq category.showName }">
+                    <c:forEach var="art1" items="${artList }" varStatus="status1">
+                    	<c:if test="${art1.showName eq category.showName }">
 		                    <div class="col-md-6 col-lg-3 mb-5">
 		                        <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal${status1.count }">
 		                            <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
 		                                <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
 		                            </div>
-		                            <img class="img-fluid" src="${contextPath}/thumbnails?artImage=${art.artImage}" alt="${art.artImage }" />
+		                            <img class="img-fluid" src="${contextPath}/thumbnails?artImage=${art1.artImage}" alt="${art1.artImage }" />
 		                        </div>
 		                    </div>
 		                </c:if>
@@ -51,9 +51,9 @@
         
                 <!-- Portfolio Modals-->
         <!-- Portfolio Modal 1-->
-        <c:forEach var="art" items="${artList }" varStatus="status2">
-        <c:set var="num" value="#portfolioModal${status2.count }"></c:set>
-       		<c:if test="${art.showName eq category.showName }">
+        <c:forEach var="art2" items="${artList }" varStatus="status2">
+        <c:set var="num" value="${status2.count }"></c:set>
+       		<c:if test="${art2.showName eq category.showName }">
 		        <div class="portfolio-modal modal fade" id="portfolioModal${status2.count }" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
 		            <div class="modal-dialog modal-xl">
 		                <div class="modal-content">
@@ -63,7 +63,7 @@
 		                            <div class="row justify-content-center">
 		                                <div class="col-lg-8">
 		                                    <!-- Portfolio Modal - Title-->
-		                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">${art.artTitle }</h2>
+		                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">${art2.artTitle }</h2>
 		                                    <!-- Icon Divider-->
 		                                    <div class="divider-custom">
 		                                        <div class="divider-custom-line"></div>
@@ -71,12 +71,12 @@
 		                                        <div class="divider-custom-line"></div>
 		                                    </div>
 		                                    <!-- Portfolio Modal - Image-->
-		                                    <img class="img-fluid rounded mb-5" src="${contextPath}/thumbnails?artImage=${art.artImage}" alt="..." />
+		                                    <img class="img-fluid rounded mb-5" src="${contextPath}/thumbnails?artImage=${art2.artImage}" alt="..." />
 		                                    
 		                                    <!-- Portfolio Modal - Text-->
-		                                    <p class="mb-4">${art.artContent }</p>
+		                                    <p class="mb-4">${art2.artContent }</p>
 		                                    
-		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal4">
+		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal${num-status2.index }">
 		                                    <i class="fa-solid fa-angle-left"></i>
 		                                    </button>
 		                                    
@@ -85,7 +85,7 @@
 		                                        닫기
 		                                    </button>
 		                                    
-		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal3">
+		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal${num+1 }">
 		                                    <i class="fa-solid fa-angle-right"></i>
 		                                    </button>
 		                                    
