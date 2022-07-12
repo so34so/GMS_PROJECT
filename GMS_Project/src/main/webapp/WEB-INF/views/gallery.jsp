@@ -72,18 +72,23 @@
 		                                    </div>
 		                                    <!-- Portfolio Modal - Image-->
 		                                    <img class="img-fluid rounded mb-5" src="${contextPath}/thumbnails?artImage=${art.artImage}" alt="..." />
+		                                    
 		                                    <!-- Portfolio Modal - Text-->
 		                                    <p class="mb-4">${art.artContent }</p>
-		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal8">
+		                                    
+		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal4">
 		                                    <i class="fa-solid fa-angle-left"></i>
 		                                    </button>
+		                                    
 		                                    <button class="btn btn-primary" data-bs-dismiss="modal">
 		                                        <i class="fas fa-xmark fa-fw"></i>
 		                                        닫기
 		                                    </button>
-		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal2">
+		                                    
+		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal3">
 		                                    <i class="fa-solid fa-angle-right"></i>
 		                                    </button>
+		                                    
 		                                </div>
 		                            </div>
 		                        </div>

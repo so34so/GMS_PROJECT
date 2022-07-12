@@ -485,7 +485,6 @@ public class AdminController {
 		}
 		
 		adminService.categoryadd(adminDto);
-		System.out.println(adminDto.getEndDate());
 		
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
