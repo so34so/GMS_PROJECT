@@ -7,54 +7,118 @@ import org.springframework.stereotype.Component;
 @Component
 public class ShopDto {
 	
-	private Date comentDate;
-	private String comentTitle;
-	private String comentContent;
-	private String comentBest;
-	private int comentBestNum;
-	private String comentWorst;
-	private int comentWorstNum;
-	public Date getComentDate() {
-		return comentDate;
+	private int orderId;
+	private String galleryId;
+	private int artArtnum;
+	private String artTitle;
+	private int artPrice;
+	private String galleryEmail;
+	private String galleryName;
+	private String receiverName;
+	private String deliveryAddress;
+	private String deliveryMethod;
+	private String deliveryMessage;
+	private String payMethod;
+	private Date payOrderTime;
+	private String cardComName;
+	private String cardPayMonth;
+	private String deliveryState;
+	public int getOrderId() {
+		return orderId;
 	}
-	public void setComentDate(Date comentDate) {
-		this.comentDate = comentDate;
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
-	public String getComentTitle() {
-		return comentTitle;
+	public String getGalleryId() {
+		return galleryId;
 	}
-	public void setComentTitle(String comentTitle) {
-		this.comentTitle = comentTitle;
+	public void setGalleryId(String galleryId) {
+		this.galleryId = galleryId;
 	}
-	public String getComentContent() {
-		return comentContent;
+	public int getArtArtnum() {
+		return artArtnum;
 	}
-	public void setComentContent(String comentContent) {
-		this.comentContent = comentContent;
+	public void setArtArtnum(int artArtnum) {
+		this.artArtnum = artArtnum;
 	}
-	public String getComentBest() {
-		return comentBest;
+	public String getArtTitle() {
+		return artTitle;
 	}
-	public void setComentBest(String comentBest) {
-		this.comentBest = comentBest;
+	public void setArtTitle(String artTitle) {
+		this.artTitle = artTitle;
 	}
-	public int getComentBestNum() {
-		return comentBestNum;
+	public int getArtPrice() {
+		return artPrice;
 	}
-	public void setComentBestNum(int comentBestNum) {
-		this.comentBestNum = comentBestNum;
+	public void setArtPrice(int artPrice) {
+		this.artPrice = artPrice;
 	}
-	public String getComentWorst() {
-		return comentWorst;
+	public String getGalleryName() {
+		return galleryName;
 	}
-	public void setComentWorst(String comentWorst) {
-		this.comentWorst = comentWorst;
+	public void setGalleryName(String galleryName) {
+		this.galleryName = galleryName;
 	}
-	public int getComentWorstNum() {
-		return comentWorstNum;
+	public String getGalleryEmail() {
+		return galleryEmail;
 	}
-	public void setComentWorstNum(int comentWorstNum) {
-		this.comentWorstNum = comentWorstNum;
+	public void setGalleryEmail(String galleryEmail) {
+		this.galleryEmail = galleryEmail;
 	}
+	public String getReceiverName() {
+		return receiverName;
+	}
+	public void setReceiverName(String receiverName) {
+		this.receiverName = receiverName;
+	}
+	public String getDeliveryAddress() {
+		return deliveryAddress;
+	}
+	public void setDeliveryAddress(String deliveryAddress) {
+		this.deliveryAddress = deliveryAddress;
+	}
+	public String getDeliveryMethod() {
+		return deliveryMethod;
+	}
+	public void setDeliveryMethod(String deliveryMethod) {
+		this.deliveryMethod = deliveryMethod;
+	}
+	public String getDeliveryMessage() {
+		return deliveryMessage;
+	}
+	public void setDeliveryMessage(String deliveryMessage) {
+		this.deliveryMessage = deliveryMessage;
+	}
+	public String getPayMethod() {
+		return payMethod;
+	}
+	public void setPayMethod(String payMethod) {
+		this.payMethod = payMethod;
+	}
+	public Date getPayOrderTime() {
+		return payOrderTime;
+	}
+	public void setPayOrderTime(Date payOrderTime) {
+		this.payOrderTime = payOrderTime;
+	}
+	public String getCardComName() {
+		return cardComName;
+	}
+	public void setCardComName(String cardComName) {
+		this.cardComName = cardComName;
+	}
+	public String getCardPayMonth() {
+		return cardPayMonth;
+	}
+	public void setCardPayMonth(String cardPayMonth) {
+		this.cardPayMonth = cardPayMonth;
+	}
+	public String getDeliveryState() {
+		return deliveryState;
+	}
+	public void setDeliveryState(String deliveryState) {
+		this.deliveryState = deliveryState;
+	}
+	
 	
 }

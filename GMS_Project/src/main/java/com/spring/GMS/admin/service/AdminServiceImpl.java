@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.spring.GMS.admin.dao.AdminDao;
 import com.spring.GMS.dto.AdminDto;
+import com.spring.GMS.dto.ArtistDto;
 import com.spring.GMS.dto.MemberDto;
+import com.spring.GMS.dto.ShopDto;
 
 @Service
 public class AdminServiceImpl implements AdminService {
@@ -20,6 +22,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<MemberDto> allUserList(Map<String, Object> searchInfo) throws Exception {
 		return adminDao.userList(searchInfo);
 	}
+	
+	@Override
+	public List<ArtistDto> allartistList(Map<String, Object> searchInfo) throws Exception {
+		return adminDao.allartistList(searchInfo);
+	}
 
 	@Override
 	public int getAlluserCount(Map<String, String> searchCountInfo) throws Exception {
@@ -27,13 +34,27 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
+	public int getAllartistCount(Map<String, String> searchCountInfo) throws Exception {
+		return adminDao.getAllartistCount(searchCountInfo);
+	}
+	
+	@Override
 	public void categoryadd(AdminDto adminDto) {
 		adminDao.addcategory(adminDto);
+	}
+	
+	@Override
+	public void artistadd(ArtistDto artistDto) {
+		adminDao.artistadd(artistDto);
 	}
 
 	@Override
 	public List<AdminDto> listCategory() {
 		return adminDao.seleteAllCategory();
+	}
+	@Override
+	public List<ArtistDto> listArtist() {
+		return adminDao.seleteAllArtist();
 	}
 
 	@Override
@@ -62,13 +83,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public AdminDto selectshowName(String artImage) {
-		return adminDao.showNameselect(artImage);
+	public AdminDto selectartTitle(String artTitle) {
+		return adminDao.selectartTitle(artTitle);
 	}
 
 	@Override
 	public List<AdminDto> getSearchBoard(Map<String, Object> searchInfo) throws Exception {
 		return adminDao.getSearchBoard(searchInfo);
+	}
+	
+	@Override
+	public List<ShopDto> getSearchOrder(Map<String, Object> searchInfo) throws Exception {
+		return adminDao.getSearchOrder(searchInfo);
 	}
 	
 	@Override
@@ -79,6 +105,11 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int getAllBoardCount(Map<String, String> searchCountInfo) throws Exception {
 		return adminDao.getAllBoardCount(searchCountInfo);
+	}
+	
+	@Override
+	public int getAllOrderCount(Map<String, String> searchCountInfo) throws Exception {
+		return adminDao.getAllOrderCount(searchCountInfo);
 	}
 	
 	@Override
@@ -96,4 +127,13 @@ public class AdminServiceImpl implements AdminService {
 		adminDao.updateInfo(goodsMap);
 	}
 	
+	@Override
+	public void modifyDeliveryState(Map<String, String> deliveryMap) throws Exception{
+		adminDao.updateDeliveryState(deliveryMap);
+	}
+	
+	@Override
+	public Map<String,Object> orderDetail(int orderId) throws Exception{
+		return adminDao.selectOrderDetail(orderId);
+	}
 }

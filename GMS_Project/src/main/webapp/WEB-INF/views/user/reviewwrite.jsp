@@ -10,40 +10,14 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 		<link rel="icon" type="image/x-icon" href="${contextPath}/resources/img/user.png" />
+		<link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
-		<script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>  
-<script>
-
-	function formValidationCheck(){
-		
-		var artTitle = document.getElementById("artTitle");
-		if (artTitle.value == ""){
-			alert("작품 이름은 반드시 입력해야 합니다.");
-			artTitle.focus();
-			return false;
-		}
-		
-		var artistArt = document.getElementById("artistArt");
-		if (artistArt.value == ""){
-			alert("작품파일은 추가해야 합니다.");
-			artistArt.focus();
-			return false;
-		}
-		
-		var artContent = document.getElementById("artContent");
-		if (artContent.value == ""){
-			alert("작품설명은 반드시 입력해야 합니다.");
-			artContent.focus();
-			return false;
-		}
-		
-	}
-</script>
+        <script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>  
 <style>
 	td:first-child {
 		text-align: center;
@@ -51,35 +25,49 @@
 	}
 </style>
 </head>
-<body>
-	<form action="${contextPath }/admin/artadd" method="post" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
-		<h3>작품 등록창</h3>
+<body><div class="container-fluid">
+             <h1 class="mt-4">리뷰 작성</h1>
+             <div class="card mb-4">
+                 <div class="card-body">
+                    <form action="${contextPath }/user/reviewwrite" method="post" enctype="multipart/form-data">
 			<div class="tab_container">
 				<div class="tab_content">
 					<table class="table table-bordered table-hover">			
 						<tr>
-							<td>작품이름</td>
-							<td><input name="artTitle" id="artTitle" type="text" class="form-control"/></td>
-						 </tr>
-						<tr>
-							<td>전시회이름</td>
-							<td><input name="showName" id="showName" type="text" value="${adminDto.showName }" class="form-control" readonly/></td>
-						<tr>
-						<tr>
-							<td>작가</td>
-							<td><input name="artist" id="artist" type="text" value="${adminDto.artist }" class="form-control" readonly/></td>
-						<tr>
-							<td>작품파일</td>
-							<td><input name="artistArt" id="artistArt" type="file" class="form-control"/></td>
-						</tr>
-						<tr>
-							<td >작품설명</td>
-							<td>
-							<textarea rows="10" cols="10" name="artContent"></textarea>
-		        			<script>CKEDITOR.replace('artContent');</script>
+							<td width=100>리뷰작품</td>
+							<td width=200>
+								${artInfo.artTitle }
+								<input type="hidden" name="artTitle" value="${artInfo.artTitle }"/>
 							</td>
 						</tr>
-						
+						<tr>
+							<td width=100>리뷰작성자</td>
+							<td width=200>
+								${memberInfo.galleryNickname }
+								<input type="hidden" name="galleryNickname" value="${memberInfo.galleryNickname }"/>
+								<input type="hidden" name="galleryId" value="${memberInfo.galleryId }"/>
+							</td>
+						</tr>
+						<tr>
+							<td>리뷰제목</td>
+							<td><input name="reviewTitle" id="reviewTitle" type="text" class="form-control"/></td>
+						</tr>
+						<tr>
+							<td>리뷰내용</td>
+							<td>
+							<textarea rows="10" cols="10" name="reviewContent" ></textarea>
+		        			<script>CKEDITOR.replace('reviewContent');</script>
+							</td>
+						</tr>
+						<tr>
+							<td>작품 총 평</td>
+							<td>
+								<select name="reviewRate" id="reviewRate" class="form-control" style="padding-bottom:0; padding-top:0; height:35px;">
+									<option value="작품 추천" selected>작품 추천
+									<option value="작품 비추천">작품 비추천
+								</select>
+							</td>
+						 </tr>
 					</table>	
 				</div>
 			<p align="right">
@@ -87,5 +75,9 @@
 			</p>
 		</div>
 	</form>	
+             </div>
+         </div>
+     </div>
+	
 </body>
  

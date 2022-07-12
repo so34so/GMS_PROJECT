@@ -17,6 +17,28 @@
         <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
 <script>
 		
+		function deleteReview(){
+			
+			$("button[id^='delete']").on("click",function(artistId) {
+							    
+				$.ajax({
+					type : "get",
+					url : "${contextPath}/admin/deleteartist",
+					data : {
+						"artistId" : artistId
+						/* adminorder한번 읽어보기 */
+						/* deletecontroller 마저 만들기 */
+					},
+					success : function() {
+						alert("작가 정보를 삭제하였습니다.");
+						location.href = "${contextPath}/admin/adminartist";
+					}
+							
+				}); 
+				
+		}
+		
+		
 		$().ready(function(){
 			
 			$("#onePageViewCount").change(function(){
@@ -25,7 +47,7 @@
 				var searchKeyword    = $("#searchKeyword").val();
 				var searchWord       = $("#searchWord").val();
 				
-				var url = "${contextPath}/admin/admincategory?";
+				var url = "${contextPath}/admin/adminartist?";
 					url	+= "onePageViewCount=" + onePageViewCount;
 					url	+= "&searchKeyword=" + searchKeyword;
 					url	+= "&searchWord=" + searchWord;
@@ -41,7 +63,7 @@
 				var searchKeyword    = $("#searchKeyword").val();
 				var searchWord       = $("#searchWord").val();
 				
-				var url = "${contextPath}/admin/admincategory?";
+				var url = "${contextPath}/admin/adminartist?";
 					url += "onePageViewCount=" + onePageViewCount;
 					url += "&searchKeyword=" + searchKeyword;
 					url += "&searchWord=" + searchWord;
@@ -57,7 +79,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-             <h1 class="mt-4">상품 조회</h1>
+             <h1 class="mt-4">작가 조회</h1>
              <div class="card mb-4">
                  <div class="card-header">
                      <i class="fas fa-table mr-1"></i>
@@ -79,61 +101,50 @@
                           			</div>		                               
                        			</div>
                        			<div class="col-sm-12 col-md-6">
-                       				<input type="button" class="btn btn-Light btn-sm" style="float: right; background-color:#bd5d38; color:white;" value="Write" onclick="location.href='${contextPath }/admin/categoryadd'">
+                       				<input type="button" class="btn btn-Light btn-sm" style="float: right; background-color:#bd5d38; color:white;" value="Write" onclick="location.href='${contextPath }/admin/artistadd'">
                        			</div>
                        		</div>
                           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                               <colgroup>
 								<col width="10%">
-								<col width="10%">
 								<col width="20%">
-								<col width="10%">
-								<col width="10%">
+								<col width="60%">
 								<col width="10%">
 							  </colgroup>
 				              <thead>                                     
                                   <tr>
-                                      <th>상품 번호</th>
-                                      <th>전시회 종류</th>
-                                      <th>전시회 이름</th>
-                                      <th>작품 이름</th>
-                                      <th>작가</th>
-                                      <th>전시시작일</th>
-                                      <th>전시종료일</th>
-                                      <th>메인페이지 사진</th>
+                                      <th>작가이름</th>
+                                      <th>작가사진</th>
+                                      <th>작가설명란</th>
+                                      <th>삭제</th>
                                   </tr>
                               </thead>
                               <tbody>
-								<c:choose>
-	    							<c:when test="${empty categoryList }">			
+                              <c:choose>
+	    							<c:when test="${empty artistList }">			
 										<tr>
-									       <td colspan="8" class="fixed"><strong>조회된 상품이 없습니다.</strong></td>
+									       <td colspan="3" class="fixed"><strong>조회된 작가가 없습니다.</strong></td>
 									    </tr>
 								 	</c:when>
-								 	<c:otherwise>
-					     				<c:forEach var="category" items="${categoryList}">
-											<tr>       
-												<td><strong>${category.artArtnum}</strong></td>
-												<td><strong>${category.artStatus}</strong></td>
-												<td><strong>${category.showName} </strong> </td>
-												<td>
-													<a href="${contextPath}/admin/adminproduct?artArtnum=${category.artArtnum}"><strong>${category.artTitle} </strong></a>
-												</td>
-												<td><strong>${category.artist}</strong></td>
-												<td><strong><fmt:formatDate value="${category.startDate}" pattern="yyyy-MM-dd"/></strong></td>
-												<td><strong><fmt:formatDate value="${category.endDate}" pattern="yyyy-MM-dd"/> </strong></td>
-												<td><strong>${category.mainArt} </strong> </td>
-											</tr>
-										</c:forEach>
-									</c:otherwise>
-					  			</c:choose>	
+									 	<c:otherwise>
+						     				<c:forEach var="artist" items="${artistList}" varStatus="status">
+													<tr>       
+														<td><strong>${artist.artist}</strong></td>
+														<td>
+														  		<img width="75" alt="작가사진" src="${contextPath}/image?artistImage=${artist.artistImage}">
+														</td>
+														<td><strong>${artist.artistComent} </strong> </td>
+														<td><button id="delete${stauts.count }" onclick="deleteReview('${artist.artistId}')">삭제</button> </td>
+													</tr>
+											</c:forEach>
+										</c:otherwise>
+					  			</c:choose>
 								<tr>
 									<td colspan="8" align="center">	
 										<select id="searchKeyword" class="form-control" style="width: 150px; display: inline;">
 											<option <c:if test="${searchKeyword eq 'total'}"> selected</c:if> value="total">전체검색</option>
 											<option <c:if test="${searchKeyword eq 'artist'}"> selected</c:if> value="artist">작가검색</option>
-											<option <c:if test="${searchKeyword eq 'showName'}"> selected</c:if> value="showName">전시회검색</option>
-											<option <c:if test="${searchKeyword eq 'artStatus'}"> selected</c:if> value="artStatus">전시회종류검색</option>
+											<option <c:if test="${searchKeyword eq 'artistArt'}"> selected</c:if> value="artistArt">대표작검색</option>
 										</select>
 				                             		<input type="text" style="width: 300px; display: inline;" class="form-control" id="searchWord" name="searchWord" value="${searchWord}" >
 										<input type="button" class="btn btn-outline-info btn-sm" value="Search" id="getSearchBoard">

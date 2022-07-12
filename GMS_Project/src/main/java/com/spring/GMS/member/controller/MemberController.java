@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.GMS.admin.service.AdminService;
 import com.spring.GMS.dto.AdminDto;
+import com.spring.GMS.dto.ArtistDto;
 import com.spring.GMS.dto.MemberDto;
 import com.spring.GMS.member.service.MemberService;
 
@@ -33,11 +34,6 @@ public class MemberController {
 	@Autowired
 	private AdminService adminService;
 	
-	@RequestMapping(value="/" , method=RequestMethod.GET)
-	public ModelAndView home() throws Exception{
-		return new ModelAndView("redirect:/member/index");
-	}
-	
 	@RequestMapping(value="/index" , method=RequestMethod.GET)
 	public ModelAndView index() throws Exception {
 		
@@ -46,9 +42,11 @@ public class MemberController {
 		
 		List<AdminDto> photoList = adminService.listStatus("사진");
 		List<AdminDto> paintList = adminService.listStatus("그림");
+		List<ArtistDto> artistList = adminService.listArtist();
 		
 		mv.addObject("photoList" , photoList);
 		mv.addObject("paintList" , paintList);
+		mv.addObject("artistList" , artistList);
 		
 		return mv;
 	}

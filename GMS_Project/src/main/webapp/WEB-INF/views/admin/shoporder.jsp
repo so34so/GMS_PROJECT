@@ -9,7 +9,7 @@
         <meta name="author" content="" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
-        
+        <link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
         

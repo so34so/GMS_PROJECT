@@ -20,12 +20,12 @@ public class GalleryController {
 	private AdminService adminService;
 	
 	@RequestMapping(value="In" , method=RequestMethod.GET)
-	public ModelAndView In(@RequestParam("artImage") String artImage) {
+	public ModelAndView In(@RequestParam("artTitle") String artTitle) {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("gallery");
 		
 		List<AdminDto> artList = adminService.listCategory();
-		AdminDto category = adminService.selectshowName(artImage);
+		AdminDto category = adminService.selectartTitle(artTitle);
 		
 		mv.addObject("artList" , artList);
 		mv.addObject("category" , category);

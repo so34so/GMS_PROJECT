@@ -11,5 +11,7 @@
 		<typeAlias type="com.spring.GMS.dto.MemberDto" alias="MemberDto"/>
 		<typeAlias type="com.spring.GMS.dto.AdminDto" alias="AdminDto"/>
 		<typeAlias type="com.spring.GMS.dto.ShopDto" alias="ShopDto"/>
+		<typeAlias type="com.spring.GMS.dto.ArtistDto" alias="ArtistDto"/>
+		<typeAlias type="com.spring.GMS.dto.ReviewDto" alias="ReviewDto"/>
 	</typeAliases>
 </configuration>

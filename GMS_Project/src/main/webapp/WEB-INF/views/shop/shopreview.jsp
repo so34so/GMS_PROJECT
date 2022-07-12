@@ -16,34 +16,41 @@
         <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
 <script>
 		
-		$().ready(function(){
-			
-			$("#onePageViewCount").change(function(){
-				
-				var onePageViewCount = $("#onePageViewCount").val();
-				
-				var url = "${contextPath}/admin/admincategory?";
-					url	+= "onePageViewCount=" + onePageViewCount;
-				
-				location.href = url;
-				
-			}) ;
-			
-			
-			$("#getSearchBoard").click(function(){
-				
-				var onePageViewCount = $("#onePageViewCount").val();
-				
-				var url = "${contextPath}/admin/admincategory?";
-					url += "onePageViewCount=" + onePageViewCount;
-				
-					location.href=url;
-					
-			});
-				
-			
-		});
+	$().ready(function(){
 		
+		$("#onePageViewCount").change(function(){
+			
+			var onePageViewCount = $("#onePageViewCount").val();
+			var searchKeyword    = $("#searchKeyword").val();
+			var searchWord       = $("#searchWord").val();
+			
+			var url = "${contextPath}/shop/itemsale?";
+				url	+= "onePageViewCount=" + onePageViewCount;
+				url	+= "&searchKeyword=" + searchKeyword;
+				url	+= "&searchWord=" + searchWord;
+			
+			location.href = url;
+			
+		}) ;
+		
+		
+		$("#getSearchBoard").click(function(){
+			
+			var onePageViewCount = $("#onePageViewCount").val();
+			var searchKeyword    = $("#searchKeyword").val();
+			var searchWord       = $("#searchWord").val();
+			
+			var url = "${contextPath}/shop/itemsale?";
+				url += "onePageViewCount=" + onePageViewCount;
+				url += "&searchKeyword=" + searchKeyword;
+				url += "&searchWord=" + searchWord;
+			
+				location.href=url;
+				
+		});
+			
+		
+	});
 </script>
 </head>
 <body>
@@ -55,15 +62,6 @@
                      	<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
                          	<div class="row">
                          		<div class="col-sm-12 col-md-6">
-                         			<div class="dataTables_length" id="dataTable_length">
-                         				<label>Show 
-                          				<select id="onePageViewCount" name="dataTable_length" aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
-                          					<option <c:if test="${onePageViewCount eq 5}"> selected</c:if> value="5">5</option>
-											<option <c:if test="${onePageViewCount eq 7}"> selected</c:if> value="7">7</option>
-											<option <c:if test="${onePageViewCount eq 10}"> selected</c:if> value="10">10</option>
-                          				</select> 
-                          				</label>
-                          			</div>		                               
                        			</div>
                        		</div>
                           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
@@ -71,65 +69,39 @@
 								<col width="10%">
 								<col width="10%">
 								<col width="10%">
+								<col width="60%">
 								<col width="10%">
 							  </colgroup>
 				              <thead>                                     
                                   <tr>
-                                      <th>구매 작품</th>
-                                      <th>작가</th>
                                       <th>구매자 닉네임</th>
                                       <th>구매한 날짜</th>
+                                      <th>리뷰 제목</th>
+                                      <th>리뷰 내용</th>
+                                      <th>작품 평가</th>
                                   </tr>
                               </thead>
                               <tbody>
 								<c:choose>
-	    							<c:when test="${empty categoryList }">			
+	    							<c:when test="${empty reviewList }">			
 										<tr>
-									       <td colspan="8" class="fixed"><strong>조회된 후기가 없습니다.</strong></td>
+									       <td colspan="5" class="fixed"><strong>조회된 후기가 없습니다.</strong></td>
 									    </tr>
 								 	</c:when>
 								 	<c:otherwise>
-					     				<c:forEach var="category" items="${categoryList}">
+					     				<c:forEach var="review" items="${reviewList}">
 											<tr>       
-												<td><strong>${category.artArtnum}</strong></td>
-												<td><strong>${category.artStatus}</strong></td>
-												<td><strong>${category.showName} </strong> </td>
-												<td>
-													<a href="${contextPath}/admin/adminproduct?artArtnum=${category.artArtnum}"><strong>${category.artTitle} </strong></a>
-												</td>
-												<td><strong>${category.artist}</strong></td>
-												<td><strong><fmt:formatDate value="${category.startDate}" pattern="yyyy-MM-dd"/></strong></td>
-												<td><strong><fmt:formatDate value="${category.endDate}" pattern="yyyy-MM-dd"/> </strong></td>
-												<td><strong>${category.mainArt} </strong> </td>
+												<td><strong>${review.galleryNickname}</strong></td>
+												<td><fmt:formatDate value="${review.reviewDate}" pattern="yyyy-MM-dd"/></td>
+												<td>${review.reviewTitle}</td>
+												<td>${review.reviewContent}</td>
+												<td><strong>${review.reviewRate} </strong> </td>
 											</tr>
 										</c:forEach>
 									</c:otherwise>
 					  			</c:choose>	
                               </tbody>										
                           </table>
-                         	<div style="display: table; margin-left: auto; margin-right: auto">
-                          	<div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                          		<c:if test="${totalBoardCount gt 0 }">
-                           		<ul class="pagination">
-                           			<c:if test="${startPage gt 10 }">
-                             			<li class="paginate_button page-item previous" id="dataTable_previous">
-                             				<a href="${contextPath }/admin/admincategory?currentPageNumber=${startPage - 10}&onePageViewCount=${onePageViewCount}&searchKeyword=${searchKeyword}&searchWord=${searchWord}" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a>
-                             			</li>
-                           			</c:if>
-                           			<c:forEach var="i" begin="${startPage}" end="${endPage }" >
-                             			<li class="paginate_button page-item">
-                             				<a href="${contextPath }/admin/admincategory?currentPageNumber=${i}&onePageViewCount=${onePageViewCount}&searchKeyword=${searchKeyword}&searchWord=${searchWord}" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">${i}</a>
-                             			</li>
-                             		</c:forEach>
-                           			<c:if test="${endPage le totalBoardCount && endPage ge 10}"> 
-                             			<li class="paginate_button page-item next" id="dataTable_next">
-                             				<a href="${contextPath }/admin/admincategory?currentPageNumber=${startPage + 10}&onePageViewCount=${onePageViewCount}&searchKeyword=${searchKeyword}&searchWord=${searchWord}" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a>
-                             			</li>
-                           			</c:if>
-                           		</ul>
-                           	</c:if>
-                          	</div>
-                          </div>
                      </div>
                  </div>
              </div>
