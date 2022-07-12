@@ -12,6 +12,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 		<link rel="icon" type="image/x-icon" href="${contextPath}/resources/img/user.png" />
+		<link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -19,6 +20,7 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
         <script src="${contextPath}/resources/ckeditor/ckeditor.js"></script>  
+        
         
 <script>
 
@@ -38,9 +40,16 @@
 		 }
 </script>
 </head>
-<body>
-	<form method="post" name="mod_gallery">
-		<h3>내용 수정 및 삭제</h3>
+<body><main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9">
+                                <!-- Basic login form-->
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">내용 수정 및 삭제</h3></div>
+                                    <div class="card-body">
+                                        <!-- Login form-->
+                                        <form method="post" name="mod_gallery">
 			<div class="tab_container">
 				<div class="tab_content">
 					<table class="table table-bordered table-hover">	
@@ -83,5 +92,12 @@
 			</p>
 		</div>
 	</form>	
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+	
 </body>
 </html>

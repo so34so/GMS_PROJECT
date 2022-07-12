@@ -2,10 +2,17 @@ package com.spring.GMS.dto;
 
 public class ArtistDto {
 	
+	private int artistId;
 	private String artist;
 	private String artistImage;
 	private String artistComent;
 	private String mainArtist;
+	public int getArtistId() {
+		return artistId;
+	}
+	public void setArtistId(int artistId) {
+		this.artistId = artistId;
+	}
 	public String getArtist() {
 		return artist;
 	}

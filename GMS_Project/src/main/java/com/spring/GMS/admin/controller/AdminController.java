@@ -619,6 +619,12 @@ public class AdminController {
 		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
 	
+		@RequestMapping(value="/deleteartist" , method=RequestMethod.GET)
+		public ResponseEntity<Object> deleteartist( @RequestParam("artistId") int artistId) throws Exception {
+			/* adminService.deleteArtist(artistId); */
+			return new ResponseEntity<Object>(HttpStatus.OK);
+		}
+	
 	@RequestMapping(value="/memberExcelExport" , method=RequestMethod.GET)
 	public void memberExcelExport(HttpServletResponse response , @RequestParam Map<String, String> dateMap) throws Exception {
 		  

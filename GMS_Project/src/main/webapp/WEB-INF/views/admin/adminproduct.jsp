@@ -12,6 +12,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 		<link rel="icon" type="image/x-icon" href="${contextPath}/resources/img/user.png" />
+		<link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -99,8 +100,13 @@
 </script>
 </head>
 <body>
-	<form method="post" name="mod_gallery">
-		<h3>내용 수정 및 삭제</h3>
+	
+	
+	<div class="container-fluid">
+             <h1 class="mt-4">내용 수정 및 삭제</h1>
+             <div class="card mb-4">
+                 <div class="card-body">
+                     <form method="post" name="mod_gallery">
 			<div class="tab_container">
 				<div class="tab_content">
 					<table class="table table-bordered table-hover">	
@@ -153,7 +159,7 @@
 							<td><input type="button" class="btn btn-outline-primary btn-sm" value="수정" onClick="modify_gallery_image('${adminDto.artArtnum }')" /></td>
 						</tr>
 						<tr>
-							<td>작품설명</td>
+							<td>작품 설명</td>
 							<td>
 								<textarea rows="50" cols="50" name="artContent" id="artContent">${adminDto.artContent }</textarea>
 			        			<script>CKEDITOR.replace('artContent');</script>
@@ -177,5 +183,8 @@
 			</p>
 		</div>
 	</form>	
+             </div>
+         </div>
+     </div>
 </body>
 </html>

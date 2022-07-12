@@ -9,24 +9,29 @@
         <meta name="author" content="" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
-        
+        <link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
         
 
 </head>
 <body>
-	<div class="container-fluid">
-             <div class="container px-4 px-lg-5 my-5">
+<div class="container-fluid">
+             <h1 class="mt-4">주문 내역</h1>
+             <div class="card mb-4">
+                 <div class="card-body">
+                     <div class="container px-4 px-lg-5 my-5">
                  <h1>1.주문 상세정보</h1>
+                                      <div class="table-responsive">
+                     	<div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
 		<form  name="form_order">	
-			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+			<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
                           <colgroup>
+							<col width="15%">
 							<col width="10%">
 							<col width="20%">
-							<col width="10%">
-							<col width="10%">
-							<col width="10%">
+							<col width="15%">
+							<col width="15%">
 						  </colgroup>
 					            <thead>                                     
 	                              <tr>
@@ -109,6 +114,10 @@
 		   <div class="clear"></div>
 			</form>
          </div>
+             </div>
+         </div>
+     </div>
+     </div>
      </div>
 </body>
 </html>

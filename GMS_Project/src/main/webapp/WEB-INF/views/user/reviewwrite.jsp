@@ -10,6 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 		<link rel="icon" type="image/x-icon" href="${contextPath}/resources/img/user.png" />
+		<link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -24,9 +25,11 @@
 	}
 </style>
 </head>
-<body>
-	<form action="${contextPath }/user/reviewwrite" method="post" enctype="multipart/form-data">
-		<h3>리뷰쓰기</h3>
+<body><div class="container-fluid">
+             <h1 class="mt-4">리뷰 작성</h1>
+             <div class="card mb-4">
+                 <div class="card-body">
+                    <form action="${contextPath }/user/reviewwrite" method="post" enctype="multipart/form-data">
 			<div class="tab_container">
 				<div class="tab_content">
 					<table class="table table-bordered table-hover">			
@@ -72,5 +75,9 @@
 			</p>
 		</div>
 	</form>	
+             </div>
+         </div>
+     </div>
+	
 </body>
  

@@ -10,6 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 		<link rel="icon" type="image/x-icon" href="${contextPath}/resources/img/user.png" />
+		<link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -87,8 +88,11 @@
 </style>
 </head>
 <body>
-	<form action="${contextPath }/admin/categoryadd" method="post" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
-		<h3>작품 등록창</h3>
+<div class="container-fluid">
+             <h1 class="mt-4">작품 등록</h1>
+             <div class="card mb-4">
+                 <div class="card-body">
+                     <form action="${contextPath }/admin/categoryadd" method="post" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
 			<div class="tab_container">
 				<div class="tab_content">
 					<table class="table table-bordered table-hover">			
@@ -131,9 +135,12 @@
 						<tr>
 							<td>메인페이지 설정</td>
 							<td>
-							<input name="mainArt" id="mainArt" type="radio" style="width:10px;"class="form-control" value="Y"/>
-							<label for="mainArt" >메인페이지에 이 사진이 나오게 됩니다.</label>
+							<div class="form-check">
+							    <input class="form-check-input" id="mainArt" name="mainArt" type="checkbox" value="Y"/>
+							    <label class="form-check-label" for="mainArt">메인페이지에 이 사진이 나오게 됩니다.</label>
+							</div>
 							</td>
+							
 						</tr>
 						<tr>
 							<td>작품설명</td>
@@ -157,5 +164,9 @@
 			</p>
 		</div>
 	</form>	
+             </div>
+         </div>
+     </div>
+	
 </body>
  

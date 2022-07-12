@@ -10,20 +10,55 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Account Settings - Profile - SB Admin Pro</title>
-        <link href="${contextPath }/resources/css/mypage.css" rel="stylesheet" />
-        <link href="${contextPath }/resources/css/styles5.css" rel="stylesheet" />
+        <link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <link href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" rel="stylesheet" crossorigin="anonymous" />
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+        <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
+<script>
+	$().ready(function() {
+		
+		    	var validateGalleryNickname = false;
+    	
+	    		$("#nameCheck").click(function(){
+	    			
+	    			var galleryNickname = $("#galleryNickname").val();
+	    		    if (galleryNickname == ''){
+	    		   		alert("닉네임을 입력하세요");
+	    		   		return;
+	    		    }
+	    		    
+	    		    $.ajax({
+	    		       type : "post",
+	    		       url : "${contextPath}/member/nameCheck",
+	    		       data : {"galleryNickname" : galleryNickname},
+	    		       success : function(isOverLapped){
+	    		          if (isOverLapped == "false"){
+	    		          	alert("사용할 수 있는 닉네임입니다.");
+	    		          	validateGalleryNickname = true;
+	    		          }
+	    		          else {
+	    		          	alert("사용할 수 없는 닉네임입니다.");
+	    		          	validateGalleryNickname = false;
+	    		          }
+	    		       }
+	    		    });
+	    		});	
+	    		
+	    	});
+</script>
 </head>
 <body>
-<div class="col-xl-8">
-								<h1>개인정보 변경</h1>
-                                <!-- Account details card-->
-                                <div class="card mb-4">
-                                    <div class="card-header">정보 변경하기</div>
+                    <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9">
+                                <!-- Basic login form-->
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">개인정보 변경</h3></div>
                                     <div class="card-body">
+                                        <!-- Login form-->
                                         <form action="update" method="post">
                                             <!-- Form Row-->
                                             <div class="form-row">
@@ -36,6 +71,7 @@
 	                                            <div class="form-group col-md-6">
 	                                                <label class="small mb-1" for="galleryNickname">닉네임</label>
 	                                                <input class="form-control" id="galleryNickname" name="galleryNickname" type="text" placeholder="닉네임을 입력하세요." />
+	                                           		<input type="button" id="nameCheck" class = "btn btn-primary" value="중복확인" style="padding: 0.5em;"/>
 	                                            </div>
                                             </div>
                                             <!-- Form Group (email address)-->
@@ -59,6 +95,7 @@
                             </div>
                         </div>
                     </div>
+                </main>
                             <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel="icon" type="image/x-icon" href="${contextPath}/resources/img/user.png" />
+		<link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -78,7 +79,7 @@
                           			</div>		                               
                        			</div>
                        			<div class="col-sm-12 col-md-6">
-                       				<input type="button" class="btn btn-primary" style="float: right; color:white;" value="Write" onclick="location.href='${contextPath }/admin/categoryadd'">
+                       				<input type="button" class="btn btn-Light btn-sm" style="float: right; background-color:#bd5d38; color:white;" value="Write" onclick="location.href='${contextPath }/admin/categoryadd'">
                        			</div>
                        		</div>
                           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

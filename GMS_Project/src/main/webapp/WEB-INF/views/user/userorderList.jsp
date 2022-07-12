@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel="icon" type="image/x-icon" href="${contextPath}/resources/img/user.png" />
+		<link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -80,11 +81,11 @@
                           			</div>		                               
                        			</div>
                        		</div>
-                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                          <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
                               <colgroup>
-								<col width="10%">
-								<col width="10%">
-								<col width="30%">
+								<col width="25%">
+								<col width="25%">
+								<col width="40%">
 								<col width="10%">
 							  </colgroup>
 				              <thead>                                     
@@ -108,7 +109,7 @@
 												<tr>       
 													<td><strong>${order.orderId}</strong></td>
 													<td><strong><fmt:formatDate value="${order.payOrderTime}" pattern="yyyy-MM-dd HH:mm"/></strong></td>
-													<td>
+													<td style="text-align:left;">
 														<a href="${contextPath }/user/userorderdetail?orderId=${order.orderId}&galleryId=${order.galleryId}&artTitle=${order.artTitle}">
 															<strong>주문작품 : ${order.artTitle} </strong> <br>
 															<strong>주문자 : ${order.galleryName} </strong> <br>

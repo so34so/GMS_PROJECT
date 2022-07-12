@@ -10,6 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
 		<link rel="icon" type="image/x-icon" href="${contextPath}/resources/img/user.png" />
+		<link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -52,37 +53,46 @@
 </style>
 </head>
 <body>
-	<form action="${contextPath }/admin/artistadd" method="post" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
-		<h3>작가 등록창</h3>
-			<div class="tab_container">
-				<div class="tab_content">
-					<table class="table table-bordered table-hover">			
-						<tr>
-							<td>작가 이름</td>
-							<td><input name="artist" id="artist" type="text" class="form-control"/></td>
-						 </tr>
-						<tr>
-						<tr>
-							<td>작가 사진</td>
-							<td><input name="artistImage" id="artImage" type="file" class="form-control"/></td>
-						 </tr>
-						<tr>
-							<td>작가 대표작</td>
-							<td><input name="mainArtist" id="mainArtist" type="text" class="form-control"/></td>
-						 </tr>
-						<tr>
-							<td>작가설명</td>
-							<td>
-							<textarea rows="10" cols="10" name="artistComent"  ></textarea>
-		        			<script>CKEDITOR.replace('artistComent');</script>
-							</td>
-						</tr>
-					</table>	
-				</div>
-			<p align="right">
-				<input type="submit" value="등록하기" class="btn btn-outline-primary btn-sm"/>
-			</p>
-		</div>
-	</form>	
+<div class="container-fluid">
+             <h1 class="mt-4">작가 등록</h1>
+             <div class="card mb-4">
+                 <div class="card-body">
+                     <form action="${contextPath }/admin/artistadd" method="post" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
+								<div class="tab_container">
+									<div class="tab_content">
+										<table class="table table-bordered table-hover">			
+											<tr>
+												<td>작가 이름</td>
+												<td><input name="artist" id="artist" type="text" class="form-control"/></td>
+											 </tr>
+											<tr>
+											<tr>
+												<td>작가 사진</td>
+												<td><input name="artistImage" id="artImage" type="file" class="form-control"/></td>
+											 </tr>
+											<tr>
+												<td>작가 대표작</td>
+												<td><input name="mainArtist" id="mainArtist" type="text" class="form-control"/></td>
+											 </tr>
+											<tr>
+												<td>작가설명</td>
+												<td>
+												<textarea rows="10" cols="10" name="artistComent"  ></textarea>
+								       			<script>CKEDITOR.replace('artistComent');</script>
+														</td>
+													</tr>
+												</table>	
+											</div>
+										<p align="right">
+											<input type="submit" value="등록하기" class="btn btn-outline-primary btn-sm"/>
+										</p>
+									</div>
+								</form>
+             </div>
+         </div>
+     </div>
+
+               
+	
 </body>
  

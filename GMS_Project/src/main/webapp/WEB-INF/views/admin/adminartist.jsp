@@ -8,6 +8,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<link rel="icon" type="image/x-icon" href="${contextPath}/resources/img/user.png" />
+		<link href="${contextPath }/resources/css/styles1.css?a" rel="stylesheet" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -18,6 +19,22 @@
 		
 		function deleteReview(){
 			
+			$("button[id^='delete']").on("click",function(artistId) {
+							    
+				$.ajax({
+					type : "get",
+					url : "${contextPath}/admin/deleteartist",
+					data : {
+						"artistId" : artistId
+						/* adminorder한번 읽어보기 */
+						/* deletecontroller 마저 만들기 */
+					},
+					success : function() {
+						alert("작가 정보를 삭제하였습니다.");
+						location.href = "${contextPath}/admin/adminartist";
+					}
+							
+				}); 
 				
 		}
 		
@@ -84,7 +101,7 @@
                           			</div>		                               
                        			</div>
                        			<div class="col-sm-12 col-md-6">
-                       				<input type="button" class="btn btn-primary" style="float: right; color:white;" value="Write" onclick="location.href='${contextPath }/admin/artistadd'">
+                       				<input type="button" class="btn btn-Light btn-sm" style="float: right; background-color:#bd5d38; color:white;" value="Write" onclick="location.href='${contextPath }/admin/artistadd'">
                        			</div>
                        		</div>
                           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -117,7 +134,7 @@
 														  		<img width="75" alt="작가사진" src="${contextPath}/image?artistImage=${artist.artistImage}">
 														</td>
 														<td><strong>${artist.artistComent} </strong> </td>
-														<td><button id="delete${stauts.count }" onclick="deleteReview()">삭제</button> </td>
+														<td><button id="delete${stauts.count }" onclick="deleteReview('${artist.artistId}')">삭제</button> </td>
 													</tr>
 											</c:forEach>
 										</c:otherwise>
