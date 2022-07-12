@@ -33,6 +33,9 @@
 		else if (attribute == 'showName')				 value = mod_gallery.showName.value;
 		else if (attribute == 'artTitle')			 	 value = mod_gallery.artTitle.value;   
 		else if (attribute == 'artist')		 			 value = mod_gallery.artist.value;
+		else if (attribute == 'artContent')		 	 	 value = CKEDITOR.instances.artContent.getData();
+		else if (attribute == 'artPrice')		 	 	 value = mod_gallery.artPrice.value;
+		else if (attribute == 'deliveryPrice')		 	 value = mod_gallery.deliveryPrice.value;
 		else if (attribute == 'startDate')	{
 			var temp1 = mod_gallery.startDate.value;
 			var temp2 = temp1.split("-");
@@ -43,9 +46,7 @@
 			var temp2 = temp1.split("-");
 			value = temp2[0] + temp2[1] + temp2[2];
 		}
-		else if (attribute == 'artContent')		 	 	 value = mod_gallery.artContent.value;
-		else if (attribute == 'artPrice')		 	 	 value = mod_gallery.artPrice.value;
-		else if (attribute == 'deliveryPrice')		 	 value = mod_gallery.deliveryPrice.value;
+		
 		
 		$.ajax({
 			type : "post",

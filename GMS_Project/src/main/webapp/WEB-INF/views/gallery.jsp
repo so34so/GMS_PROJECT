@@ -52,6 +52,7 @@
                 <!-- Portfolio Modals-->
         <!-- Portfolio Modal 1-->
         <c:forEach var="art" items="${artList }" varStatus="status2">
+        <c:set var="num" value="#portfolioModal${status2.count }"></c:set>
        		<c:if test="${art.showName eq category.showName }">
 		        <div class="portfolio-modal modal fade" id="portfolioModal${status2.count }" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
 		            <div class="modal-dialog modal-xl">
@@ -70,8 +71,6 @@
 		                                        <div class="divider-custom-line"></div>
 		                                    </div>
 		                                    <!-- Portfolio Modal - Image-->
-		                                    <c:set var="kkk" value="#어쩌구${status2.count } }"/>
-		                                    
 		                                    <img class="img-fluid rounded mb-5" src="${contextPath}/thumbnails?artImage=${art.artImage}" alt="..." />
 		                                    <!-- Portfolio Modal - Text-->
 		                                    <p class="mb-4">${art.artContent }</p>

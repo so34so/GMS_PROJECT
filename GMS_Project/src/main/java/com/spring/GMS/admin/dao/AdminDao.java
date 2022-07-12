@@ -22,6 +22,7 @@ public interface AdminDao {
 	public List<AdminDto> seleteAllArt();
 	public List<AdminDto> selectStatusList(String artStatus);
 	public void Infodelete(int artArtnum);
+	public void deleteArtist(int artistId);
 	public AdminDto artArtnumselect(String artArtnum);
 	public AdminDto selectartTitle(String artTitle);
 	public List<AdminDto> getSearchBoard(Map<String, Object> searchInfo) throws Exception;

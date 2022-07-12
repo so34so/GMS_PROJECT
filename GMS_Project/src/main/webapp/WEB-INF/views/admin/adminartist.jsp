@@ -17,26 +17,22 @@
         <script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
 <script>
 		
-		function deleteReview(){
+		function deleteReview(artistId){
 			
-			$("button[id^='delete']").on("click",function(artistId) {
-							    
-				$.ajax({
-					type : "get",
-					url : "${contextPath}/admin/deleteartist",
-					data : {
-						"artistId" : artistId
-						/* adminorder한번 읽어보기 */
-						/* deletecontroller 마저 만들기 */
-					},
-					success : function() {
-						alert("작가 정보를 삭제하였습니다.");
-						location.href = "${contextPath}/admin/adminartist";
-					}
-							
-				}); 
-				
-		}
+			$.ajax({
+				type : "get",
+				url : "${contextPath}/admin/deleteartist",
+				data : {
+					"artistId" : artistId
+				},
+				success : function() {
+					alert("작가 정보를 삭제하였습니다.");
+					location.href = "${contextPath}/admin/adminartist";
+				}
+			}); 
+			
+		}		
+		
 		
 		
 		$().ready(function(){
@@ -134,7 +130,7 @@
 														  		<img width="75" alt="작가사진" src="${contextPath}/image?artistImage=${artist.artistImage}">
 														</td>
 														<td><strong>${artist.artistComent} </strong> </td>
-														<td><button id="delete${stauts.count }" onclick="deleteReview('${artist.artistId}')">삭제</button> </td>
+														<td><button onclick="deleteReview('${artist.artistId}')">삭제</button> </td>
 													</tr>
 											</c:forEach>
 										</c:otherwise>

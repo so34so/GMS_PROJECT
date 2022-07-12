@@ -136,4 +136,9 @@ public class AdminServiceImpl implements AdminService {
 	public Map<String,Object> orderDetail(int orderId) throws Exception{
 		return adminDao.selectOrderDetail(orderId);
 	}
+
+	@Override
+	public void deleteArtist(int artistId) {
+		adminDao.deleteArtist(artistId);
+	}
 }

@@ -24,6 +24,7 @@ public interface AdminService {
 	public List<ArtistDto> listArtist();
 	public List<AdminDto> listStatus(String artStatus) throws Exception;
 	public void deleteInfo(int artArtnum);
+	public void deleteArtist(int artistId);
 	public List<AdminDto> getSearchBoard(Map<String, Object> searchInfo) throws Exception;
 	public List<ShopDto> getSearchOrder(Map<String, Object> searchInfo) throws Exception;
 	public List<AdminDto> getSearchart(Map<String, Object> searchInfo) throws Exception;
@@ -34,4 +35,5 @@ public interface AdminService {
 	public void modifyInfo(Map<String,Object> goodsMap) throws Exception;
 	public void  modifyDeliveryState(Map<String, String> deliveryMap) throws Exception;
 	public Map<String,Object> orderDetail(int orderId) throws Exception;
+	
 }
