@@ -19,37 +19,26 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
 <script>
-        
-		$().ready(function(){
-					
-			   $("img[id^='move']").on("click",function() {
-				    var artTitle = document.getElementById("[id^='artTitle']").value;
-				    
-				    if(loginUser == null){
-				    	alert("로그인 후 이용 가능합니다.");
-				    	location.href="${contextPath}/member/index";
-				    }
-				    locatino.href = "${contextPath}/gallery/In?artTitle=" + artTitle;
-	            });
-			   
-			   $("button[id^='move']").on("click",function() {
-				  	console.log(this.id);
-	                var vId = this.id;
-	                
-				    var artTitle = document.getElementById("[id^='artTitle']").value;
-				    
-				    if(loginUser == null){
-				    	alert("로그인 후 이용 가능합니다.");
-				    	location.href="${contextPath}/member/index";
-				    }
-				    locatino.href = "${contextPath}/gallery/In?artTitle=" + artTitle;
-				    
-	            });
-		}
-        
+
+		function movegallery(artTitle){
+			
+			var loginUser = document.getElementById("loginUser").value;
+			
+			if(loginUser == null || loginUser == ""){
+				alert("로그인 후 이용가능합니다.");
+				location.href = "${contextPath}/member/login";
+				return;
+			}
+			else{
+				location.href = "${contextPath}/gallery/In?artTitle="+artTitle;
+			}
+				
+		}	
+
 </script>
     </head>
     <body id="page-top">
+    <input type="hidden" name="loginUser" id="loginUser" value="${loginUser}"/>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -113,15 +102,12 @@
 	                    		<c:if test="${item1.mainArt eq 'Y' }">
 			                        <div class="col-lg-6">
 			                            <div class="team-member">
-			                                <!-- <a href="${contextPath }/gallery/In?artTitle=${item1.artTitle}"> -->
-			                                	<img class="img-fluid img-profile rounded-3 mx-auto mb-2" id="move${status.index }" src="${contextPath}/thumbnails?artImage=${item1.artImage}" alt="카테고리 사진"style="width:250px;height:250px;" />
-			                                	<input type="hidden" value="${item1.artTitle }" id="artTitle${status.index }"/>
-			                                <!-- </a> -->
+			                                <img class="img-fluid img-profile rounded-3 mx-auto mb-2" onclick="movegallery('${item1.artTitle}')" src="${contextPath}/thumbnails?artImage=${item1.artImage}" alt="카테고리 사진"style="width:250px;height:250px;" />
 			                                <h4>${item1.showName } 전시회</h4>
 			                                <p class="text-muted">${item1.artist }</p>
 			                                <p><strong>전시기한 : <fmt:formatDate value="${item1.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item1.endDate}" pattern="yyyy-MM-dd"/></strong></p>
 			                                <div class="d-grid gap-2">
-			                                <button class="btn btn-lg btn-danger" id="move${status.index }" />보러가기
+			                                <button class="btn btn-lg btn-danger" onclick="movegallery('${item1.artTitle}')" >보러가기</button>
 			                                </div>
 			                            </div>
 			                        </div>
@@ -140,11 +126,13 @@
 	                    	<c:if test="${item2.mainArt eq 'Y' }">
 		                        <div class="col-lg-6">
 		                            <div class="team-member">
-		                                <a href="${contextPath }/gallery/In?artTitle=${item2.artTitle}"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath}/thumbnails?artImage=${item2.artImage}" alt="..."style="width:250px;height:250px;" /></a>
+		                                <img class="img-fluid img-profile rounded-3 mx-auto mb-2" onclick="movegallery('${item2.artTitle}')"src="${contextPath}/thumbnails?artImage=${item2.artImage}" alt="..."style="width:250px;height:250px;" />
 		                                <h4>${item2.showName } 전시회</h4>
 			                                <p class="text-muted">${item2.artist }</p>
 			                                <p><strong>전시기한 : <fmt:formatDate value="${item2.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item2.endDate}" pattern="yyyy-MM-dd"/></strong></p>
-		                                <div class="d-grid gap-2"><a class="btn btn-lg btn-danger" href="${contextPath }/gallery/In?artTitle=${item2.artTitle}" role="button">보러가기</a></div>
+		                                <div class="d-grid gap-2">
+		                                	<button class="btn btn-lg btn-danger" onclick="movegallery('${item2.artTitle}')">보러가기</button>
+			                            </div>
 		                            </div>
 		                        </div>
 		                    </c:if>

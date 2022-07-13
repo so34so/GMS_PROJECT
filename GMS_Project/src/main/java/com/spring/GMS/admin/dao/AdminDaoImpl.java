@@ -134,4 +134,9 @@ public class AdminDaoImpl implements AdminDao {
 	public Map<String,Object> selectOrderDetail(int orderId) throws Exception{
 		return sqlSession.selectOne("adminMapper.selectOrderDetail" , orderId);
 	}
+
+	@Override
+	public void deleteArtist(int artistId) {
+		sqlSession.delete("adminMapper.deleteArtist" , artistId);
+	}
 }

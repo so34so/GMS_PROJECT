@@ -35,7 +35,7 @@ public class MemberController {
 	private AdminService adminService;
 	
 	@RequestMapping(value="/index" , method=RequestMethod.GET)
-	public ModelAndView index() throws Exception {
+	public ModelAndView index(HttpServletRequest request) throws Exception {
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("index");

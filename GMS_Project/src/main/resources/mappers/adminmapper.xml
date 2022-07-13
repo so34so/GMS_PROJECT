@@ -249,6 +249,13 @@
 				ART_ARTNUM = #{artArtnum}
 	</delete>
 	
+	<delete id="deleteArtist" parameterType="int">
+		DELETE FROM
+				GALLERY_ARTIST
+		WHERE
+				ARTIST_ID = #{artistId}
+	</delete>
+	
 	<insert id="artadd" parameterType="AdminDto">
 		INSERT INTO GALLERY_ADMIN(
 			ART_TITLE,

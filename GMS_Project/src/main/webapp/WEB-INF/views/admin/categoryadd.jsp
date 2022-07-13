@@ -145,7 +145,7 @@
 						<tr>
 							<td>작품설명</td>
 							<td>
-							<textarea rows="10" cols="10" name="artContent" ></textarea>
+							<textarea rows="10" cols="10" name="artContent"></textarea>
 		        			<script>CKEDITOR.replace('artContent');</script>
 							</td>
 						</tr>
