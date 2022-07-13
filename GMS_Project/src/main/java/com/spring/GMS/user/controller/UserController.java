@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,6 +46,9 @@ public class UserController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@RequestMapping(value="/update" , method=RequestMethod.GET)
 	public ModelAndView update(HttpServletRequest request) throws Exception {
@@ -134,6 +138,7 @@ public class UserController {
 		return mv;
 	}
 	
+	
 	@RequestMapping(value="/userorderdetail" , method=RequestMethod.GET)
 	public ModelAndView userorderdetail(@RequestParam("orderId") int orderId,
 										@RequestParam("galleryId") String galleryId,
@@ -154,6 +159,7 @@ public class UserController {
 		return mv;
 		
 	}
+	
 	
 	@RequestMapping(value="/userorderList" , method=RequestMethod.GET)
 	public ModelAndView userorderList(@RequestParam(name = "onePageViewCount"  , defaultValue = "10")    int onePageViewCount,

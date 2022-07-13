@@ -15,6 +15,46 @@
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+        
+<script>
+	function pwUpdate(){
+		
+		var galleryPassword = $("#galleryPassword").val();
+		var changePassword    = $("#changePassword").val();
+		
+		
+		$.ajax({
+			type : "post",
+			url : "${contextPath}/user/pwUpdate",
+			data : {
+				"galleryPassword" : galleryPassword,
+				"changePassword" : changePassword
+			},
+			success : function() {
+				alert("작가 정보를 삭제하였습니다.");
+				location.href = "${contextPath}/admin/adminartist";
+			}
+		}); 
+		
+	}	
+	
+	$().ready(function(){
+		
+		$("#onePageViewCount").change(function(){
+			
+			var onePageViewCount = $("#onePageViewCount").val();
+			var searchKeyword    = $("#searchKeyword").val();
+			var searchWord       = $("#searchWord").val();
+			
+			var url = "${contextPath}/admin/adminartist?";
+				url	+= "onePageViewCount=" + onePageViewCount;
+				url	+= "&searchKeyword=" + searchKeyword;
+				url	+= "&searchWord=" + searchWord;
+			
+			location.href = url;
+			
+		});
+</script>
 </head>
 <body>
                  <main>
@@ -26,7 +66,7 @@
                                     <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">비밀번호 변경</h3></div>
                                     <div class="card-body">
                                         <!-- Login form-->
-                                        <form action="pwupdate" method="post">
+                                        <form action="pwupdate" method="post" onclick="return pwUpdate()">
                                             <!-- Form Group (username)-->
                                             <div class="form-group">
                                                 <label class="small mb-1" for="galleryPassword">현재비밀번호</label>
@@ -34,8 +74,8 @@
                                             </div>
                                             <!-- Form Row-->
                                              <div class="form-group">
-                                                <label class="small mb-1" for="galleryPassword">바꿀비밀번호</label>
-                                                <input class="form-control" id="galleryPassword" type="password"  placeholder="바꿀 비밀번호를 입력하세요."/>
+                                                <label class="small mb-1" for="changePassword">바꿀비밀번호</label>
+                                                <input class="form-control" id="changePassword" name="changePassword" type="password"  placeholder="바꿀 비밀번호를 입력하세요."/>
                                             </div>
                                             <!-- Save changes button-->
                                             <input type="hidden" name="galleryId" value="${memberDto.galleryId}" /> 

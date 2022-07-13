@@ -14,6 +14,28 @@
         <link rel="icon" type="image/x-icon" href="assets/img/user.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+<script>
+
+function formValidationCheck(){
+	
+	var galleryId = document.getElementById("galleryId");
+	if (galleryId.value == ""){
+		alert("아이디를 입력하세요.");
+		galleryId.focus();
+		return false;
+	}
+	
+	var galleryPassword = document.getElementById("galleryPassword");
+	if (galleryPassword.value == ""){
+		alert("비밀번호를 입력하세요.");
+		galleryPassword.focus();
+		return false;
+	}
+	
+	
+}
+	
+</script>
     </head>
     <body class="bg-primary">
         <div id="layoutAuthentication">
@@ -27,7 +49,7 @@
                                     <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">로그인</h3></div>
                                     <div class="card-body">
                                         <!-- Login form-->
-                                        <form action="login" method="post">
+                                        <form action="login" method="post" onsubmit="return formValidationCheck()">
                                             <!-- Form Group (id)-->
                                             <div class="form-group">
                                                 <label class="small mb-1" for="galleryId">아이디</label>
@@ -40,15 +62,16 @@
                                             </div>
                                             <!-- Form Group (remember password checkbox)-->
                                             <div class="form-group">
-                                                <div class="custom-control custom-checkbox">
+                                                <!-- <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" />
                                                     <label class="custom-control-label" for="rememberPasswordCheck">비밀번호 저장</label>
-                                                </div>
+                                                </div> -->
                                             </div>
                                             <!-- Form Group (login box)-->
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="${contextPath}/member/password">비밀번호 재설정</a>
-                                                <input type="submit" value="로그인" class="btn btn-primary">
+                                                <%-- <a class="small" href="${contextPath}/member/password">비밀번호 재설정</a> --%>
+                                                &ensp;
+                                                <input type="submit" value="로그인" class="btn btn-primary" >
                                             </div>
                                         </form>
                                     </div>

@@ -116,12 +116,21 @@
     			return false;
     		}
     		
+    		var pwCheck = document.getElementById("PasswordCheck");
     		var pw = document.getElementById("galleryPassword");
     		if (pw.value.length == 0) {
     			alert("비밀번호를 입력하세요.");
     			pw.focus();
     			return false;
     		}
+    		
+    		if(pwCheck.value != pw.value){
+    			alert("비밀번호가 일치하지 않습니다.");
+    			pwCheck.focus();
+    			return false;
+    		}
+    	
+    		
     		
     		return true;
     		
@@ -213,8 +222,8 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                    <div class="form-group">
-                                                        <label class="small mb-1">비밀번호 확인</label>
-                                                        <input class="form-control" type="password"  />
+                                                        <label class="small mb-1" for="PasswordCheck">비밀번호 확인</label>
+                                                        <input class="form-control" id="PasswordCheck" name="PasswordCheck" type="password"  />
                                                     </div>
                                                 </div>
 														

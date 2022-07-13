@@ -13,7 +13,7 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="${contextPath }/resources/css/styles4.css" rel="stylesheet" />
+        <link href="${contextPath }/resources/css/styles4.css?a" rel="stylesheet" />
 </head>
 <body>
 <!-- Portfolio Section-->
@@ -52,9 +52,9 @@
                 <!-- Portfolio Modals-->
         <!-- Portfolio Modal 1-->
         <c:forEach var="art2" items="${artList }" varStatus="status2">
-        <c:set var="num" value="${status2.count }"></c:set>
+        	<c:set var="num" value="${status2.count }"></c:set>
        		<c:if test="${art2.showName eq category.showName }">
-		        <div class="portfolio-modal modal fade" id="portfolioModal${status2.count }" tabindex="-1" aria-labelledby="portfolioModal1" aria-hidden="true">
+		        <div class="portfolio-modal modal fade" id="portfolioModal${num }" tabindex="-1" aria-labelledby="portfolioModal" aria-hidden="true">
 		            <div class="modal-dialog modal-xl">
 		                <div class="modal-content">
 		                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
@@ -71,12 +71,58 @@
 		                                        <div class="divider-custom-line"></div>
 		                                    </div>
 		                                    <!-- Portfolio Modal - Image-->
-		                                    <img class="img-fluid rounded mb-5" src="${contextPath}/thumbnails?artImage=${art2.artImage}" alt="..." />
+		                                    <img class="img-fluid rounded mb-5" src="${contextPath}/thumbnails?artImage=${art2.artImage}" alt="..." style="width: 100%; height: auto;"/>
 		                                    
 		                                    <!-- Portfolio Modal - Text-->
 		                                    <p class="mb-4">${art2.artContent }</p>
 		                                    
-		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal${num-status2.index }">
+		                                    <%-- <button data-bs-toggle="modal" data-bs-target="#portfolioModal${num-status2.index }">
+		                                    <i class="fa-solid fa-angle-left"></i>
+		                                    </button> --%>
+		                                    
+		                                    <button class="btn btn-primary" data-bs-dismiss="modal">
+		                                        <i class="fas fa-xmark fa-fw"></i>
+		                                        닫기
+		                                    </button>
+		                                    
+		                                    <%-- <button data-bs-toggle="modal" data-bs-target="#portfolioModal${num+1 }">
+		                                    <i class="fa-solid fa-angle-right"></i>
+		                                    </button> --%>
+		                                    
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		        </div>
+		    </c:if>
+	    </c:forEach>
+	    
+	    <%-- <c:forEach var="art2" items="${artList }" varStatus="status2"> 
+	    <c:if test="${art2.showName eq category.showName }">
+        <div class="portfolio-modal modal fade" id="portfolioModal${status2.count }" tabindex="-1" aria-labelledby="portfolioModal" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                    <div class="modal-body text-center pb-5">
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8">
+                                    <!-- Portfolio Modal - Title-->
+						            <div class="container px-4 px-lg-5 my-5">
+						                <div class="row gx-4 gx-lg-5 align-items-center">
+						                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="${contextPath}/thumbnails?artImage=${art2.artImage}" alt="..." /></div>
+						                    <div class="col-md-6">
+						                        <h2 class="display-5 fw-bolder">${art2.artTitle }</h2>
+						                        <div class="fs-5 mb-5">
+						                            <span>작가 : ${art2.artist }</span>
+						                        </div>
+						                        <p class="lead">작품 설명 : ${art2.artContent }</p>
+						                    </div>
+						                </div>
+						            </div>
+                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal${num-status2.index }">
 		                                    <i class="fa-solid fa-angle-left"></i>
 		                                    </button>
 		                                    
@@ -88,16 +134,15 @@
 		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal${num+1 }">
 		                                    <i class="fa-solid fa-angle-right"></i>
 		                                    </button>
-		                                    
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </c:if>
-	    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </c:if>
+     </c:forEach> --%>
   
                 <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
