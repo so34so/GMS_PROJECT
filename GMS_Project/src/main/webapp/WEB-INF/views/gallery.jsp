@@ -15,7 +15,8 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="${contextPath }/resources/css/styles4.css?a" rel="stylesheet" />
 </head>
-<body>
+<body style="background-color: #F0FFF0;">
+
 <!-- Portfolio Section-->
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
