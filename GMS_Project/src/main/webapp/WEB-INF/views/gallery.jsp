@@ -76,18 +76,18 @@
 		                                    <!-- Portfolio Modal - Text-->
 		                                    <p class="mb-4">${art2.artContent }</p>
 		                                    
-		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal${num-status2.index }">
+		                                    <%-- <button data-bs-toggle="modal" data-bs-target="#portfolioModal${num-status2.index }">
 		                                    <i class="fa-solid fa-angle-left"></i>
-		                                    </button>
+		                                    </button> --%>
 		                                    
 		                                    <button class="btn btn-primary" data-bs-dismiss="modal">
 		                                        <i class="fas fa-xmark fa-fw"></i>
 		                                        닫기
 		                                    </button>
 		                                    
-		                                    <button data-bs-toggle="modal" data-bs-target="#portfolioModal${num+1 }">
+		                                    <%-- <button data-bs-toggle="modal" data-bs-target="#portfolioModal${num+1 }">
 		                                    <i class="fa-solid fa-angle-right"></i>
-		                                    </button>
+		                                    </button> --%>
 		                                    
 		                                </div>
 		                            </div>

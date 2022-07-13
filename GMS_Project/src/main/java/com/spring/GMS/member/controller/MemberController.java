@@ -133,6 +133,7 @@ public class MemberController {
 		mv.setViewName("user/MyPage");
 		
 		HttpSession session = request.getSession();
+		session.getAttribute("loginUser");
 		mv.addObject("memberDto" , memberService.showOneMember((String)session.getAttribute("loginUser")));
 		
 		return mv;

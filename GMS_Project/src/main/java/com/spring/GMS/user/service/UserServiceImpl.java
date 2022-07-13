@@ -83,4 +83,5 @@ public class UserServiceImpl implements UserService {
 	public void deleteReview(Map<String, Object> haveReview) throws Exception {
 		userDao.deleteReview(haveReview);
 	}
+
 }

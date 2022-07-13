@@ -47,7 +47,7 @@
                                             </div>
                                             <!-- Form Group (login box)-->
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <a class="small" href="${contextPath}/member/password">비밀번호 재설정</a>
+                                                <%-- <a class="small" href="${contextPath}/member/password">비밀번호 재설정</a> --%>
                                                 <input type="submit" value="로그인" class="btn btn-primary">
                                             </div>
                                         </form>
