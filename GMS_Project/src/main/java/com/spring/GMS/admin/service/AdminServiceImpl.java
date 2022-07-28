@@ -68,16 +68,6 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void artadd(AdminDto adminDto) {
-		adminDao.addart(adminDto);
-	}
-
-	@Override
-	public List<AdminDto> listArt() {
-		return adminDao.seleteAllArt();
-	}
-
-	@Override
 	public AdminDto selectartArtnum(String artArtnum) {
 		return adminDao.artArtnumselect(artArtnum);
 	}

@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -34,6 +34,21 @@
 			}
 				
 		}	
+		
+		function moveshop(){
+			
+			var loginUser = document.getElementById("loginUser").value;
+			
+			if(loginUser == null || loginUser == ""){
+				alert("로그인 후 이용가능합니다.");
+				location.href = "${contextPath}/member/login";
+				return;
+			}
+			else{
+				location.href = "${contextPath }/shop/Homepage";
+			}
+				
+		}	
 
 </script>
     </head>
@@ -53,14 +68,14 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">그림 전시</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">전시인물 소개</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/shop/Homepage">작품판매쳐</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:moveshop();">작품판매쳐</a></li>
                     <c:choose>
                         <c:when test="${isLogOn == true and loginUser == 'admin'}">
         	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminpage">관리페이지</a></li>
 		                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/logout">로그아웃</a></li>
         	            </c:when>
                     	<c:when test="${isLogOn == true and not empty loginUser}">
-        	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/myPage">마이페이지</a></li>
+        	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/myPage">마이페이지</a></li>
 		                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/logout">로그아웃</a></li>
         	            </c:when>
         	            <c:otherwise>
@@ -126,7 +141,7 @@
 	                    	<c:if test="${item2.mainArt eq 'Y' }">
 		                        <div class="col-lg-6">
 		                            <div class="team-member">
-		                                <img class="img-fluid img-profile rounded-3 mx-auto mb-2" onclick="movegallery('${item2.artTitle}')"src="${contextPath}/thumbnails?artImage=${item2.artImage}" alt="..."style="width:250px;height:250px;" />
+		                                <img class="img-fluid img-profile rounded-3 mx-auto mb-2" onclick="movegallery('${item2.artTitle}')" src="${contextPath}/thumbnails?artImage=${item2.artImage}" alt="..."style="width:250px;height:250px;" />
 		                                <h4>${item2.showName } 전시회</h4>
 			                                <p class="text-muted">${item2.artist }</p>
 			                                <p><strong>전시기한 : <fmt:formatDate value="${item2.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item2.endDate}" pattern="yyyy-MM-dd"/></strong></p>

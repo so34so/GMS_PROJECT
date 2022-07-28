@@ -34,11 +34,6 @@ public class ShopServiceImpl implements ShopService {
 	}
 	
 	@Override
-	public List<ReviewDto> getreviewChart(Map<String, Object> searchInfo) throws Exception {
-		return shopDao.getreviewChart(searchInfo);
-	}
-
-	@Override
 	public int getAllReviewCount(Map<String, String> searchCountInfo) throws Exception {
 		return shopDao.getAllReviewCount(searchCountInfo);
 	}

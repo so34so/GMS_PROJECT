@@ -16,10 +16,8 @@ public interface AdminDao {
 	public int getAllartistCount(Map<String, String> searchCountInfo) throws Exception;
 	public void addcategory(AdminDto adminDto);
 	public void artistadd(ArtistDto artistDto);
-	public void addart(AdminDto adminDto);
 	public List<AdminDto> seleteAllCategory();
 	public List<ArtistDto> seleteAllArtist();
-	public List<AdminDto> seleteAllArt();
 	public List<AdminDto> selectStatusList(String artStatus);
 	public void Infodelete(int artArtnum);
 	public void deleteArtist(int artistId);

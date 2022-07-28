@@ -16,11 +16,9 @@ public interface AdminService {
 	public int getAllartistCount(Map<String, String> searchCountInfo) throws Exception;
 	public void categoryadd(AdminDto adminDto);
 	public void artistadd(ArtistDto artistDto);
-	public void artadd(AdminDto adminDto);
 	public AdminDto selectartArtnum(String artArtnum);
 	public AdminDto selectartTitle(String artTitle);
 	public List<AdminDto> listCategory();
-	public List<AdminDto> listArt();
 	public List<ArtistDto> listArtist();
 	public List<AdminDto> listStatus(String artStatus) throws Exception;
 	public void deleteInfo(int artArtnum);

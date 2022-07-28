@@ -30,7 +30,7 @@
                     <h6>관리 페이지</h6>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminuser">회원 관리</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminartist">작가 관리</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/admincategory">상품 관리</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/admincategory">작품 관리</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminorder">주문 관리</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/index">메인 페이지</a></li>
                 </ul>

@@ -120,28 +120,4 @@ public class MemberController {
 		return new ResponseEntity<Object>(memberService.nameCheck(galleryNickname) , HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/password" , method=RequestMethod.GET)
-	public ModelAndView password() throws Exception {
-		return new ModelAndView("member/password");
-	}
-	
-	@RequestMapping(value="/myPage" , method=RequestMethod.GET)
-	public ModelAndView myPage(HttpServletRequest request , Model model) throws Exception {
-		
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("user/MyPage");
-		
-		HttpSession session = request.getSession();
-		session.getAttribute("loginUser");
-		mv.addObject("memberDto" , memberService.showOneMember((String)session.getAttribute("loginUser")));
-		
-		return mv;
-		
-	}	
-	
-
-	
-	
-	
 }

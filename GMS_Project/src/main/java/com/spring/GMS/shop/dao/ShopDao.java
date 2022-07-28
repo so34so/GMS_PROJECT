@@ -13,6 +13,5 @@ public interface ShopDao {
 	public MemberDto selectOrderinfo(String galleryId);
 	public void insertOrder(ShopDto shopDto);
 	public List<ReviewDto> selectreview(String artTitle);
-	public List<ReviewDto> getreviewChart(Map<String, Object> searchInfo) throws Exception;
 	public int getAllReviewCount(Map<String, String> searchCountInfo) throws Exception;
 }

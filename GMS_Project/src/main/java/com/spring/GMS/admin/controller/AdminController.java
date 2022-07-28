@@ -420,7 +420,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/modifyImageInfo" , method=RequestMethod.POST)
-	public ResponseEntity<String> modifyGoodsImageInfo(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
+	public ResponseEntity<String> modifyImageInfo(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)  throws Exception {
 		
 		multipartRequest.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
@@ -489,7 +489,7 @@ public class AdminController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
 		String message= "<script>";
-			   message += " alert('카테고리 등록 성공');";
+			   message += " alert('작품 등록 성공');";
 			   message +=" location.href='" + multipartRequest.getContextPath() + "/admin/admincategory';";
 			   message +="</script>";
 		
@@ -498,7 +498,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/deleteInfo" , method = RequestMethod.POST)
-	public ResponseEntity<Object> categorydelete(@RequestParam("artArtnum") int artArtnum , HttpServletRequest request) throws Exception {
+	public ResponseEntity<Object> deleteInfo(@RequestParam("artArtnum") int artArtnum , HttpServletRequest request) throws Exception {
         
 		
 		HttpHeaders responseHeaders = new HttpHeaders();

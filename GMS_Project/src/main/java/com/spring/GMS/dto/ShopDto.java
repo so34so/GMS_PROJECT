@@ -18,7 +18,6 @@ public class ShopDto {
 	private String deliveryAddress;
 	private String deliveryMethod;
 	private String deliveryMessage;
-	private String payMethod;
 	private Date payOrderTime;
 	private String cardComName;
 	private String cardPayMonth;
@@ -88,12 +87,6 @@ public class ShopDto {
 	}
 	public void setDeliveryMessage(String deliveryMessage) {
 		this.deliveryMessage = deliveryMessage;
-	}
-	public String getPayMethod() {
-		return payMethod;
-	}
-	public void setPayMethod(String payMethod) {
-		this.payMethod = payMethod;
 	}
 	public Date getPayOrderTime() {
 		return payOrderTime;

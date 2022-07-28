@@ -134,6 +134,7 @@ public class ShopController {
 		mv.addObject("reviewList" , shopService.selectreview(artTitle));
 		 
 		return mv;
+		
 	}
 	
 	@RequestMapping(value="/shoporder" , method=RequestMethod.GET)

@@ -239,7 +239,7 @@
 		WHERE
 				ART_STATUS = #{artStatus}
 		ORDER BY
-				END_DATE DESC
+				SHOW_NAME ASC
 	</select>
 	
 	<delete id="deleteInfo" parameterType="int">
@@ -255,26 +255,6 @@
 		WHERE
 				ARTIST_ID = #{artistId}
 	</delete>
-	
-	<insert id="artadd" parameterType="AdminDto">
-		INSERT INTO GALLERY_ADMIN(
-			ART_TITLE,
-			ARTIST_ART,
-			ART_CONTENT
-		)
-		VALUES(
-			#{artTitle},
-			#{artistArt},
-			#{artContent}
-		)
-	</insert>
-	
-	<select id="listArt" resultType="AdminDto">
-		SELECT
-				*
-		FROM
-				GALLERY_ADMIN
-	</select>
 	
 	<select id="artArtnumselect" parameterType="String" resultType="AdminDto">
 		SELECT
@@ -315,7 +295,6 @@
 						WHERE
 								ART_STATUS LIKE CONCAT('%' , #{searchWord} , '%') OR
 								SHOW_NAME LIKE CONCAT('%' , #{searchWord} , '%') OR
-								MAIN_ART LIKE CONCAT('%' , #{searchWord} , '%') OR
 								ARTIST LIKE CONCAT('%' , #{searchWord} , '%') 
 						LIMIT
 								#{startBoardIdx},#{onePageViewCount}
@@ -626,7 +605,6 @@
 		<result column="RECEIVER_NAME" 		  property="receiverName"/>
 		<result column="DELIVERY_ADDRESS" 	  property="deliveryAddress"/>
 		<result column="DELIVERY_MESSAGE" 	  property="deliveryMessage"/>
-		<result column="PAY_METHOD" 		  property="payMethod"/>
 		<result column="CARD_COM_NAME" 		  property="cardComName"/>
 		<result column="CARD_PAY_MONTH" 	  property="cardPayMonth"/>
 		<result column="DELIVERY_STATE" 	  property="deliveryState"/>
@@ -648,7 +626,6 @@
 	    		O.RECEIVER_NAME				AS RECEIVER_NAME,
 	    		O.DELIVERY_ADDRESS			AS DELIVERY_ADDRESS,
 	    		O.DELIVERY_MESSAGE			AS DELIVERY_MESSAGE,
-	    		O.PAY_METHOD				AS PAY_METHOD,
 	    		O.CARD_COM_NAME				AS CARD_COM_NAME,
 	    		O.CARD_PAY_MONTH			AS CARD_PAY_MONTH,
 	    		O.DELIVERY_STATE			AS DELIVERY_STATE,

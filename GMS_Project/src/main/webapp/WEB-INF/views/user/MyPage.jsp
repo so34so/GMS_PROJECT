@@ -25,7 +25,7 @@
 	        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
-                    <h6>${sessionScope.loginUser }님의 페이지</h6>
+                    <a href="${contextPath }/user/myPage" style="text-decoration-line: none;"><h6>${sessionScope.loginUser }님의 정보</h6></a>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/userorderList">주문 내역보기</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/update">정보 수정하기</a></li>
                     <%-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/pwupdate">비밀번호 변경하기</a></li> --%>
@@ -35,6 +35,7 @@
             </div>
         </nav>
 </div>
+
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

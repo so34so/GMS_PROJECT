@@ -83,9 +83,9 @@
                        		</div>
                           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
                               <colgroup>
-								<col width="25%">
-								<col width="25%">
-								<col width="40%">
+								<col width="15%">
+								<col width="15%">
+								<col width="60%">
 								<col width="10%">
 							  </colgroup>
 				              <thead>                                     

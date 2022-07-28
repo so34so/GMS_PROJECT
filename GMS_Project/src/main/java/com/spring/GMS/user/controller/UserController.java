@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,7 +59,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("user/update");
 		
-		mv.addObject("memberDto" ,   userService.showOneMember((String)session.getAttribute("loginUser")));
+		mv.addObject("memberDto" ,   memberService.showOneMember((String)session.getAttribute("loginUser")));
 		
 		return mv;
 	}
@@ -95,7 +96,7 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("user/delete");
 		
-		mv.addObject("memberDto" , userService.showOneMember((String)session.getAttribute("loginUser")));
+		mv.addObject("memberDto" , memberService.showOneMember((String)session.getAttribute("loginUser")));
 		
 		return mv;
 	}
@@ -125,19 +126,6 @@ public class UserController {
 		return new ResponseEntity<Object> (htmlBody, responseHeaders , HttpStatus.OK);
 		
 	}
-	
-	@RequestMapping(value="/pwupdate" , method=RequestMethod.GET)
-	public ModelAndView pwupdate(HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("user/pwupdate");
-		
-		mv.addObject("memberDto" , userService.showOneMember((String)session.getAttribute("loginUser")));
-		
-		return mv;
-	}
-	
 	
 	@RequestMapping(value="/userorderdetail" , method=RequestMethod.GET)
 	public ModelAndView userorderdetail(@RequestParam("orderId") int orderId,
@@ -338,4 +326,20 @@ public class UserController {
 		return new ResponseEntity<Object> (responseHeaders , HttpStatus.OK);
 		
 	}
+	@RequestMapping(value="/myPage" , method=RequestMethod.GET)
+	public ModelAndView myPage(HttpServletRequest request) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("user/MyPage");
+		
+		HttpSession session = request.getSession();
+		session.getAttribute("loginUser");
+		mv.addObject("memberDto" , memberService.showOneMember((String)session.getAttribute("loginUser")));
+		mv.addObject("reviewList" , userService.showReviewList((String)session.getAttribute("loginUser")));
+		mv.addObject("orderList" , userService.showOrderList((String)session.getAttribute("loginUser")));
+		
+		return mv;
+		
+	}	
 }

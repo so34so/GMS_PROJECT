@@ -1377,22 +1377,12 @@ progress {
     flex: 0 0 auto;
     width: 25%;
   }
-@media (min-width: 992px) {
-  .col-lg-3 {
-    flex: 0 0 auto;
-    width: 33.33333333%;
-  }
-}
+
   .col-lg-4 {
     flex: 0 0 auto;
     width: 33.33333333%;
   }
-@media (min-width: 992px) {
-  .col-lg-4 {
-    flex: 0 0 auto;
-    width: 33.33333333%;
-  }
-}
+
   .col-lg-5 {
     flex: 0 0 auto;
     width: 41.66666667%;
@@ -11309,22 +11299,12 @@ html {
   font-size: 2.25rem;
   line-height: 2rem;
 }
-@media (min-width: 768px) {
-  section.page-section {
-    min-height: 100vh;
-  }
-}
 @media (min-width: 992px) {
   .page-section .page-section-heading {
     font-size: 3rem;
     line-height: 2.5rem;
-     padding-left: 3rem;
-    padding-right: 3rem;
-    padding-top: 5rem;
-    padding-bottom: 5rem;
   }
 }
-
 
 .divider-custom {
   margin: 1.25rem 0 1.5rem;
@@ -11527,4 +11507,3 @@ html {
 .copyright {
   background-color: #1a252f;
 }
-

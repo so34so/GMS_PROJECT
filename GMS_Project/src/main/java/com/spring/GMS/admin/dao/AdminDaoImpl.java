@@ -69,16 +69,6 @@ public class AdminDaoImpl implements AdminDao {
 	}
 
 	@Override
-	public void addart(AdminDto adminDto) {
-		sqlSession.insert("adminMapper.artadd" , adminDto);
-	}
-
-	@Override
-	public List<AdminDto> seleteAllArt() {
-		return sqlSession.selectList("adminMapper.listArt");
-	}
-
-	@Override
 	public AdminDto artArtnumselect(String artArtnum) {
 		return sqlSession.selectOne("adminMapper.artArtnumselect" , artArtnum);
 	}

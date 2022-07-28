@@ -46,7 +46,7 @@
                             <div class="col-lg-9">
                                 <!-- Basic login form-->
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">내용 수정 및 삭제</h3></div>
+                                    <div class="card-header justify-content-center"><h3 class="font-weight-light my-4">리뷰 정보</h3></div>
                                     <div class="card-body">
                                         <!-- Login form-->
                                         <form method="post" name="mod_gallery">

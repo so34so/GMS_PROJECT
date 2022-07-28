@@ -33,11 +33,6 @@ public class ShopDaoImpl implements ShopDao {
 	}
 
 	@Override
-	public List<ReviewDto> getreviewChart(Map<String, Object> searchInfo) throws Exception {
-		return sqlSession.selectList("shopMapper.getreviewChart" , searchInfo);
-	}
-
-	@Override
 	public int getAllReviewCount(Map<String, String> searchCountInfo) throws Exception {
 		return sqlSession.selectOne("shopMapper.getAllReviewCount" , searchCountInfo);
 	}

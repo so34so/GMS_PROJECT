@@ -1,5 +1,6 @@
 package com.spring.GMS.user.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.GMS.dto.MemberDto;
 import com.spring.GMS.dto.ReviewDto;
+import com.spring.GMS.dto.ShopDto;
 import com.spring.GMS.member.dao.MemberDao;
 import com.spring.GMS.user.dao.UserDao;
 
@@ -23,11 +25,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 	
-	@Override
-	public MemberDto showOneMember(String galleryId) throws Exception {
-		return userDao.selectOneMember(galleryId);
-	}
-
 	@Override
 	public boolean modifyUser(MemberDto memberDto) throws Exception {
 		
@@ -82,6 +79,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteReview(Map<String, Object> haveReview) throws Exception {
 		userDao.deleteReview(haveReview);
+	}
+
+	@Override
+	public List<ReviewDto> showReviewList(String galleryId) throws Exception {
+		return userDao.showReviewList(galleryId);
+	}
+
+	@Override
+	public List<ShopDto> showOrderList(String galleryId) throws Exception {
+		return userDao.showOrderList(galleryId);
 	}
 
 }

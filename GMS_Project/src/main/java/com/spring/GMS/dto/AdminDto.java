@@ -9,13 +9,9 @@ public class AdminDto {
 	
 	private String artTitle;
 	private String artContent;
-	private int artSell;
 	private String artStatus;
 	private int artArtnum;
 	private String artist;
-	private String artistArt;
-	private String artistComent;
-	private String mainArtist;
 	private String showName;
 	private Date startDate;
 	private Date endDate;
@@ -35,12 +31,6 @@ public class AdminDto {
 	public void setArtContent(String artContent) {
 		this.artContent = artContent;
 	}
-	public int getArtSell() {
-		return artSell;
-	}
-	public void setArtSell(int artSell) {
-		this.artSell = artSell;
-	}
 	public String getArtStatus() {
 		return artStatus;
 	}
@@ -58,24 +48,6 @@ public class AdminDto {
 	}
 	public void setArtist(String artist) {
 		this.artist = artist;
-	}
-	public String getArtistArt() {
-		return artistArt;
-	}
-	public void setArtistArt(String artistArt) {
-		this.artistArt = artistArt;
-	}
-	public String getArtistComent() {
-		return artistComent;
-	}
-	public void setArtistComent(String artistComent) {
-		this.artistComent = artistComent;
-	}
-	public String getMainArtist() {
-		return mainArtist;
-	}
-	public void setMainArtist(String mainArtist) {
-		this.mainArtist = mainArtist;
 	}
 	public String getShowName() {
 		return showName;

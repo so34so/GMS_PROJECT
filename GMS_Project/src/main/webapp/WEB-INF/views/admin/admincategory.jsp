@@ -57,7 +57,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-             <h1 class="mt-4">상품 조회</h1>
+             <h1 class="mt-4">작품 조회</h1>
              <div class="card mb-4">
                  <div class="card-header">
                      <i class="fas fa-table mr-1"></i>
@@ -93,7 +93,7 @@
 							  </colgroup>
 				              <thead>                                     
                                   <tr>
-                                      <th>상품 번호</th>
+                                      <th>작품 번호</th>
                                       <th>전시회 종류</th>
                                       <th>전시회 이름</th>
                                       <th>작품 이름</th>
@@ -133,7 +133,7 @@
 											<option <c:if test="${searchKeyword eq 'total'}"> selected</c:if> value="total">전체검색</option>
 											<option <c:if test="${searchKeyword eq 'artist'}"> selected</c:if> value="artist">작가검색</option>
 											<option <c:if test="${searchKeyword eq 'showName'}"> selected</c:if> value="showName">전시회검색</option>
-											<option <c:if test="${searchKeyword eq 'artStatus'}"> selected</c:if> value="artStatus">전시회종류검색</option>
+											<option <c:if test="${searchKeyword eq 'artStatus'}"> selected</c:if> value="artStatus">작품종류검색</option>
 										</select>
 				                             		<input type="text" style="width: 300px; display: inline;" class="form-control" id="searchWord" name="searchWord" value="${searchWord}" >
 										<input type="button" class="btn btn-outline-info btn-sm" value="Search" id="getSearchBoard">
