@@ -48,11 +48,11 @@ import com.spring.GMS.admin.service.AdminService;
 @RequestMapping("admin")
 public class AdminController {
 	
-	private static final String CURR_IMAGE_REPO_PATH = "C:\\file_repo";
-	String seperatorPath = "\\";	// window
+	//private static final String CURR_IMAGE_REPO_PATH = "C:\\file_repo";
+	//String seperatorPath = "\\";	// window
 
-	//private static final String CURR_IMAGE_REPO_PATH = "/var/lib/tomcat8/file_repo";
-	//String seperatorPath = "/";		// linux
+	private static final String CURR_IMAGE_REPO_PATH = "/var/lib/tomcat8/file_repo";
+	String seperatorPath = "/";		// linux
 	
 	@Autowired
 	private AdminService adminService;
@@ -68,15 +68,12 @@ public class AdminController {
 									  @RequestParam(name = "searchKeyword"     , defaultValue = "total") String searchKeyword,
 									  @RequestParam(name = "searchWord"        , defaultValue = "")      String searchWord) throws Exception {
 		
-		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("admin/adminuser");
-		
 		
 		// 페이지의 시작 게시글 인덱스
 		int startBoardIdx =  (currentPageNumber -1) * onePageViewCount + 1;
 		if (currentPageNumber == 1) startBoardIdx = 0;
-		
 		
 		// 관련 정보 Map 생성 ( 한페이지에 보여줄 게시글 숫자 , 시작페이지의 인덱스 , 검색 키워드 , 검색어 ) 
 		Map<String, Object> searchInfo = new HashMap<String, Object>();
@@ -96,24 +93,11 @@ public class AdminController {
 		int addPage = totalBoardCount % onePageViewCount == 0 ? 0 : 1; 		// 나머지가 0이면 추가 x , 나머지가 0이 아니면 +1 페이지 처리
 		int totalPageCount = totalBoardCount / onePageViewCount + addPage;
 		
-		
 		// 시작페이지
 		int startPage = 1;
 		
 		if (currentPageNumber % 10 == 0) startPage = (currentPageNumber / 10 - 1) * 10 + 1;
 		else 							 startPage = (currentPageNumber / 10) * 10 + 1;							
-		
-		/*
-		 
-			[ 예시 ]  
-			
-			currentPage가 10페이면 시작페이지는 1  		<>		currentPage가 2페이지면  시작페이지는 1  
-			currentPage가 20페이면 시작페이지는 11  	<>		currentPage가 12페이지면 시작페이지는 11  
-			currentPage가 30페이면 시작페이지는 21 		<>		currentPage가 22페이지면 시작페이지는 21  
-			
-		*/
-		
-	
 		
 		// 끝페이지
 		int endPage = startPage + 9;
@@ -128,7 +112,6 @@ public class AdminController {
 			startPage = 1;
 			endPage = 0;
 		}
-		
 				
 		mv.addObject("startPage"         , startPage);
 		mv.addObject("endPage"           , endPage);
@@ -138,20 +121,6 @@ public class AdminController {
 		mv.addObject("searchKeyword"     , searchKeyword);
 		mv.addObject("searchWord"        , searchWord);
 		mv.addObject("userList"      , userList);		
-		
-		
-		/*
-		System.out.println("====================================");
-		System.out.println("startPage : "         + startPage);
-		System.out.println("endPage : "           + endPage);
-		System.out.println("totalBoardCount : "   + totalBoardCount);
-		System.out.println("onePageViewCount : "  + onePageViewCount);
-		System.out.println("currentPageNumber : " + currentPageNumber);
-		System.out.println("searchKeyword : "     + searchKeyword);
-		System.out.println("searchWord : "        + searchWord);
-		System.out.println("====================================\n");
-		*/
-		
 		
 		return mv;
 		
@@ -366,7 +335,6 @@ public class AdminController {
 		adminService.modifyInfo(goodsMap);
 		
 		return new ResponseEntity<String>(HttpStatus.OK);
-
 	}
 	
 	@RequestMapping(value="/categoryadd" , method=RequestMethod.GET)

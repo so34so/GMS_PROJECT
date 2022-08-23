@@ -3,21 +3,36 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>P_Gallery</title>
-        <link rel="icon" type="image/x-icon" href="${contextPath }/resources/img/iconmonstr-picture-1-240.png" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
+<html lang="en">
+<head>
+  <title>P Gallery</title>
+  <link rel="icon" type="image/x-icon" href="${contextPath }/resources/img/iconmonstr-picture-1-240.png" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="${contextPath}/resources/fonts/icomoon/style.css">
+
+  <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/magnific-popup.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/jquery-ui.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="${contextPath}/resources/css/owl.theme.default.min.css">
+
+  <link rel="stylesheet" href="${contextPath}/resources/css/lightgallery.min.css">    
+
+  <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap-datepicker.css">
+
+  <link rel="stylesheet" href="${contextPath}/resources/fonts/flaticon/font/flaticon.css">
+
+  <link rel="stylesheet" href="${contextPath}/resources/css/swiper.css">
+
+  <link rel="stylesheet" href="${contextPath}/resources/css/aos.css">
+
+  <link rel="stylesheet" href="${contextPath}/resources/css/style.css">
+  
+  	<script src="${contextPath}/resources/jquery/jquery-3.5.1.min.js"></script>
+	
 <script>
 
 		function movegallery(artTitle){
@@ -49,230 +64,203 @@
 			}
 				
 		}	
+		
+		function moveAllGallery(){
+			
+			var loginUser = document.getElementById("loginUser").value;
+			
+			if(loginUser == null || loginUser == ""){
+				alert("로그인 후 이용가능합니다.");
+				location.href = "${contextPath}/member/login";
+				return;
+			}
+			else{
+				location.href = "${contextPath }/gallery/All";
+			}
+				
+		}	
+</script>  
+</head>
+<body>
+<input type="hidden" name="loginUser" id="loginUser" value="${loginUser}"/>
+  <div class="site-wrap">
 
-</script>
-    </head>
-    <body id="page-top">
-    <input type="hidden" name="loginUser" id="loginUser" value="${loginUser}"/>
-        <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-block d-lg-none">P_Gallery</span>
-                <span class="d-none d-lg-block"><img class="img-fluid img-profile rounded-3 mx-auto mb-2" src="${contextPath }/resources/img/20200830_142314.jpg" alt="..." /></span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">P_Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">사진 전시</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">그림 전시</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">전시인물 소개</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="javascript:moveshop();">작품판매쳐</a></li>
-                    <c:choose>
-                        <c:when test="${isLogOn == true and loginUser == 'admin'}">
-        	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminpage">관리페이지</a></li>
-		                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/logout">로그아웃</a></li>
-        	            </c:when>
-                    	<c:when test="${isLogOn == true and not empty loginUser}">
-        	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/myPage">마이페이지</a></li>
-		                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/logout">로그아웃</a></li>
-        	            </c:when>
-        	            <c:otherwise>
-							<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/login">로그인</a></li>
-							<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/register">회원가입</a></li>
-        	            </c:otherwise>	
-                    </c:choose>
-                </ul>
-            </div>
-        </nav>
-        <!-- Page Content-->
-        <div class="container-fluid p-0">
-            <!-- About-->
-            <section class="resume-section" id="about">
-                <div class="resume-section-content">
-                    <h1 class="mb-0">
-                        P GALLERY
-                        <span class="text-primary"></span>
-                    </h1>
-                    <div class="subheading mb-5">
-                        오프라인으로 즐기던 전시회를 온라인으로!
-                    </div>
-                    <p class="lead mb-5">사진 및 그림 작가들의 다양한 작품을 바로 이곳에서 즐기세요!<br>보시다 원하는게 있으면 바로 구매 가능합니다!</p>
-                    <div class="social-icons">
-                        <a class="social-icon" href="https://www.instagram.com"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon" href="https://www.youtube.com"><i class="fa-brands fa-youtube"></i></a>
-                        <a class="social-icon" href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
-                        <a class="social-icon" href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Experience-->
-            <section class="section-meals resume-section"id="experience">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">사진 전시</h2>
-                     	<div class="row">
-	                    	<c:forEach var="item1" items="${photoList }" varStatus="status">
+    <div class="site-mobile-menu">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+    
+
+
+
+    <header class="site-navbar py-3" role="banner">
+
+      <div class="container-fluid">
+        <div class="row align-items-center">
+
+          <div class="col-6 col-xl-2" data-aos="fade-down">
+            <h1 class="mb-0"><a href="${contextPath}/member/index" class="text-white h2 mb-0">P Gallery</a></h1>
+          </div>
+          <div class="col-10 col-md-8 d-none d-xl-block" data-aos="fade-down">
+            <nav class="site-navigation position-relative text-right text-lg-center" role="navigation">
+
+              <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+                <li><a href="${contextPath}/member/index">Home</a></li>
+                <li class="has-children">
+                  <a href="javascript:moveAllGallery();">Gallery</a>
+                  <ul class="dropdown">
+                    <li class="has-children">
+                      <a href="#">Photo</a>
+                      <ul class="dropdown">
+                     		<c:forEach var="item1" items="${photoList }">
 	                    		<c:if test="${item1.mainArt eq 'Y' }">
-			                        <div class="col-lg-6">
-			                            <div class="team-member">
-			                                <img class="img-fluid img-profile rounded-3 mx-auto mb-2" onclick="movegallery('${item1.artTitle}')" src="${contextPath}/thumbnails?artImage=${item1.artImage}" alt="카테고리 사진"style="width:250px;height:250px;" />
-			                                <h4>${item1.showName } 전시회</h4>
-			                                <p class="text-muted">${item1.artist }</p>
-			                                <p><strong>전시기한 : <fmt:formatDate value="${item1.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item1.endDate}" pattern="yyyy-MM-dd"/></strong></p>
-			                                <div class="d-grid gap-2">
-			                                <button class="btn btn-lg btn-danger" onclick="movegallery('${item1.artTitle}')" >보러가기</button>
-			                                </div>
-			                            </div>
-			                        </div>
+			                        <li><a onclick="movegallery('${item1.artTitle}')">${item1.showName }</a></li>
 		                        </c:if>
 	                        </c:forEach>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0"/>
-            <!-- Education-->
- 			<section class="resume-section" id="education">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">그림 전시</h2>
-                    <div class="row">
-                    	<c:forEach var="item2" items="${paintList }" varStatus="status"> 
-	                    	<c:if test="${item2.mainArt eq 'Y' }">
-		                        <div class="col-lg-6">
-		                            <div class="team-member">
-		                                <img class="img-fluid img-profile rounded-3 mx-auto mb-2" onclick="movegallery('${item2.artTitle}')" src="${contextPath}/thumbnails?artImage=${item2.artImage}" alt="..."style="width:250px;height:250px;" />
-		                                <h4>${item2.showName } 전시회</h4>
-			                                <p class="text-muted">${item2.artist }</p>
-			                                <p><strong>전시기한 : <fmt:formatDate value="${item2.startDate}" pattern="yyyy-MM-dd"/> ~ <fmt:formatDate value="${item2.endDate}" pattern="yyyy-MM-dd"/></strong></p>
-		                                <div class="d-grid gap-2">
-		                                	<button class="btn btn-lg btn-danger" onclick="movegallery('${item2.artTitle}')">보러가기</button>
-			                            </div>
-		                            </div>
-		                        </div>
-		                    </c:if>
-                        </c:forEach>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Skills-->
-            <section class="resume-section" id="skills">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">전시인물 소개</h2>
-                    <div class="row">
-                    <c:forEach var="item3" items="${artistList }" varStatus="status"> 
-                        <div class="col-lg-4">
-                            <div class="team-member">
-                                <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="${contextPath}/image?artistImage=${item3.artistImage}" alt="..."style="width:250px;height:250px;" />
-                                <h4>${item3.artist }</h4><br>
-                                <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Parveen Anand Twitter Profile" data-bs-toggle="modal" data-bs-target="#Infomation${status.count }"><i class="fa-solid fa-book"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="https://www.facebook.com" aria-label="Parveen Anand Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-dark btn-social mx-2" href="https://www.instagram.com" aria-label="Parveen Anand LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                    </c:forEach>
-                    </div>
-                </div>
-            </section>
-            <hr class="m-0" />
-            <!-- Interests-->
-            <section class="resume-section" id="awards">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">FAQ</h2>
-                    <ul class="qna">
-                        <li>
-                            <input type="checkbox" id="qna-1">
-                            <label for="qna-1">다른 사람 명의의 계좌로 환불받을 수 있나요?</label>
-                            <div>
-                                <p>다른 사람 명의로는 환불할 수 없습니다. 고객님 본인 명의 계좌로만 환불이 가능합니다.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="qna-2">
-                            <label for="qna-2">등록한 환불계좌를 등록/변경하고 싶어요.</label>
-                            <div>
-                                <p>마이페이지에서 환불계좌 등록 및 수정이 가능합니다. 환불계좌는 주문자 명의의 본인 계좌만 등록할 수 있습니다.</p>
-                                <p>주문 진행 상태가 '환불진행중' 또는 '환불완료' 에서는 환불계좌를 변경할 수 없습니다.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="qna-3">
-                            <label for="qna-3">반품 신청을 철회하고 싶어요.</label>
-                            <div>
-                                <p>반품할 상품을 아직 보내지 않은 경우, 마이페이지에서 반품철회를 하실 수 있습니다.</p>
-                                <p>반품철회 후 택배사에서 상품 수거가 된 것으로 확인될 경우 해당 주문은 반품처리한 것으로 재 변경됩니다.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="qna-4">
-                            <label for="qna-4">배송된 상품이 부재중으로 반송된 경우 어떻게 하나요?</label>
-                            <div>
-                                <p>부재 등의 사유로 반송된 상품은 "마이페이지 > 주문 조회"]"에서 택배사 영업소, 또는 배송 담당 택배원 연락처를 통해 재배송 요청을 할 수 있습니다. 상품이 이미 반송되어 해당 업체로 입고된 경우, 왕복 배송비를 추가 부담하셔야 합니다.</p>
-                            </div>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="qna-5">
-                            <label for="qna-5">상품에 대해서 문의하려면 어떻게 해야 하나요?</label>
-                            <div>
-                                <p>상품에 관한 내용은 상품상세 화면에 자세히 안내되어 있습니다. 마이페이지 > 주문내역에서 주문한 상품을 선택하면 상세페이지로 이동합니다.</p>
-                                <p>상품 상세 내용에 표시되어 있지 않은 내용은 판매자에게 문의해 주십시오.</p>
-                                <p>> 판매자에게 문의</p>
-                                <p>1. "마이페이지 > 주문내역에서 상품 선택 > 배송/교환/반품 안내"에 표기된 판매자 연락처로 문의</p>
-                                <p>2. "마이페이지 > 1:1문의하기 > 문읜타입에서 판매자에게 문의하기"를 선택한 후 질의 내용 작성</p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            <hr class="m-0" />
-        </div>
-        
-        
-                <!-- Portfolio Modal 1-->
-     <c:forEach var="item3" items="${artistList }" varStatus="status"> 
-        <div class="portfolio-modal modal fade" id="Infomation${status.count }" tabindex="-1" aria-labelledby="Infomation" aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-						            <div class="container px-4 px-lg-5 my-5">
-						                <div class="row gx-4 gx-lg-5 align-items-center">
-						                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="${contextPath}/image?artistImage=${item3.artistImage}" alt="..." /></div>
-						                    <div class="col-md-6">
-						                        <h2 class="display-5 fw-bolder">작가 : ${item3.artist }</h2>
-						                        <div class="fs-5 mb-5">
-						                            <span>대표작 : ${item3.mainArtist}</span>
-						                        </div>
-						                        <p class="lead">작가 설명 : ${item3.artistComent}</p>
-						                    </div>
-						                </div>
-						            </div>
-                                    <button style="color:white;"class="btn btn-primary" data-bs-dismiss="modal">
-                                        <i class="fas fa-xmark fa-fw"></i>
-                                        닫기
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                      </ul>
+                    </li>
+                    <li class="has-children">
+                      <a href="#">Picture</a>
+                      <ul class="dropdown">
+                        <c:forEach var="item2" items="${paintList }">
+	                    		<c:if test="${item2.mainArt eq 'Y' }">
+			                        <li><a onclick="movegallery('${item2.artTitle}')">${item2.showName }</a></li>
+		                        </c:if>
+	                        </c:forEach>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+                <li><a href="javascript:moveshop();">Shop</a></li>
+                <c:choose>
+                        <c:when test="${isLogOn == true and loginUser == 'admin'}">
+        	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminpage">AdminPage</a></li>
+		                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/logout">Logout</a></li>
+        	            </c:when>
+                    	<c:when test="${isLogOn == true and not empty loginUser}">
+        	            	<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/user/myPage">MyPage</a></li>
+		                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/logout">Logout</a></li>
+        	            </c:when>
+        	            <c:otherwise>
+							<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/login">Login</a></li>
+							<li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/register">Join</a></li>
+        	            </c:otherwise>	
+               </c:choose>
+              </ul>
+            </nav>
+          </div>
+
+          <div class="col-6 col-xl-2 text-right" data-aos="fade-down">
+            <div class="d-none d-xl-inline-block">
+              <ul class="site-menu js-clone-nav ml-auto list-unstyled d-flex text-right mb-0" data-class="social">
+                <li>
+                  <a href="https://www.facebook.com" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
+                </li>
+                <li>
+                  <a href="https://www.twitter.com" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
+                </li>
+                <li>
+                  <a href="https://www.instagram.com" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+                </li>
+                <li>
+                  <a href="https://www.youtube.com" class="pl-3 pr-3"><span class="icon-youtube-play"></span></a>
+                </li>
+              </ul>
             </div>
+
+            <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle text-white js-menu-toggle"><span class="icon-menu h3"></span></a></div>
+
+          </div>
+
         </div>
-     </c:forEach>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="${contextPath }/resources/js/scripts.js"></script>
-                        <!-- Bootstrap core JS-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
+      </div>
+      
+    </header>
+
+
+
+    <div class="site-section"  data-aos="fade">
+      <div class="container-fluid">
+
+        <div class="row justify-content-center">
+
+          <div class="col-md-7">
+            <div class="row mb-5">
+              <div class="col-12 ">
+                <h2 class="site-section-heading text-center">온라인 전시회</h2>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+        <div class="row mb-5">
+          <div class="col-md-7">
+            <img src="${contextPath}/resources/img/mainImage.jpg" alt="Images" class="img-fluid">
+          </div>
+          <div class="col-md-4 ml-auto">
+            <h3 class="text-white">온라인 전시회</h3>
+            <p style="color:white;">오프라인으로만 즐기던 전시회를 온라인으로 그대로 옮겼습니다. 언제 어디서든 핸드폰으로 컴퓨터로 원하는 방식대로 작품들을 감상하고 원하는 작품은 직접 구매도 가능합니다.
+               원하시는 작품을 구매하셔서 인테리어를 바꿔보세요.</p>
+          </div>
+        </div>
+
+		<h1 style="text-align:center; color:white;">이번 전시회 작가님들</h1>
+        <div class="row site-section">
+	        <c:forEach var="item3" items="${artistList }" varStatus="status"> 
+	          <div class="col-md-6 col-lg-6 col-xl-4 text-center mb-5">
+	            <img src="${contextPath}/image?artistImage=${item3.artistImage}" alt="작가 사진" class="img-fluid w-50 rounded-circle mb-4" style="width:250px;height:250px;">
+	            <h2 class="font-weight-light mb-4" style="color:white;">${item3.artist }</h2>
+	            <p class="mb-4" style="color:white;">${item3.artistComent}</p>
+	            <p>
+	              <a href="https://www.twitter.com" class="pl-0 pr-3"><span class="icon-twitter"></span></a>
+	              <a href="https://www.instagram.com" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
+	              <a href="https://www.facebook.com" class="pl-3 pr-3"><span class="icon-facebook"></span></a>
+	            </p>
+	          </div>
+	        </c:forEach>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer py-4">
+      <div class="container-fluid text-center">
+        <p>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
+      </div>
+    </div>
+    </div>
+
+
+  <script src="${contextPath}/resources/js/jquery-3.3.1.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery-ui.js"></script>
+  <script src="${contextPath}/resources/js/popper.min.js"></script>
+  <script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+  <script src="${contextPath}/resources/js/owl.carousel.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.stellar.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.countdown.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.magnific-popup.min.js"></script>
+  <script src="${contextPath}/resources/js/bootstrap-datepicker.min.js"></script>
+  <script src="${contextPath}/resources/js/swiper.min.js"></script>
+  <script src="${contextPath}/resources/js/aos.js"></script>
+
+  <script src="${contextPath}/resources/js/picturefill.min.js"></script>
+  <script src="${contextPath}/resources/js/lightgallery-all.min.js"></script>
+  <script src="${contextPath}/resources/js/jquery.mousewheel.min.js"></script>
+
+  <script src="${contextPath}/resources/js/main.js"></script>
+  <script>
+    $(document).ready(function(){
+      $('#lightgallery').lightGallery();
+    });
+  </script>
+</body>
 </html>

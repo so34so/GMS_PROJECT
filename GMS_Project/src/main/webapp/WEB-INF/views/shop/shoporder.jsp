@@ -138,19 +138,19 @@
 							  </colgroup>
 				              <thead>                                     
                                   <tr>
+                                      <th>총 금액</th>
                                       <th>작품 가격</th>
                                       <th>배송비</th>
-                                      <th>총 금액</th>
                                   </tr>
                               </thead>
                               <tbody>
                               		<tr>
-                              			<td>${artInfo.artPrice }원</td>
-                              			<td>${artInfo.deliveryPrice }원</td>
                               			<td>
                               				${artInfo.artPrice + artInfo.deliveryPrice }원
                               				<input type="hidden" id="totalOrderPrice" value="${artInfo.artPrice + artInfo.deliveryPrice}">
                               			</td>
+                              			<td>${artInfo.artPrice }원</td>
+                              			<td>${artInfo.deliveryPrice }원</td>
                               		</tr>
                               </tbody>
             </table>
@@ -159,7 +159,7 @@
 			<br>
 			<h1>2.배송 정보</h1>
 			<div>
-				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0"style=" white-space: nowrap;">
 					<tbody>
 						<tr>
 							<td>이름</td>

@@ -2,51 +2,85 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>AdminPage</title>
-        
-        <link href="${contextPath }/resources/css/mypage.css?a" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="${contextPath }/resources/img/user.png" />
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
-  
-</head>
-<body>
-<div id="page-wrapper">
-  <!-- 사이드바 -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                <span class="d-block d-lg-none">P_Gallery</span>
-                <span class="d-none d-lg-block"></span>
-            </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav">
-                    <h6>관리 페이지</h6>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminuser">회원 관리</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminartist">작가 관리</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/admincategory">작품 관리</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/admin/adminorder">주문 관리</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="${contextPath }/member/index">메인 페이지</a></li>
-                </ul>
-            </div>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>AdminPage</title>
+        <link href="${contextPath}/resources/css/styles.css" rel="stylesheet" />
+        <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+        <link rel="icon" type="image/x-icon" href="${contextPath}/resources/img/user.png" />
+        <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="nav-fixed">
+        <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
+            <!-- Navbar Brand-->
+            <!-- * * Tip * * You can use text or an image for your navbar brand.-->
+            <!-- * * * * * * When using an image, we recommend the SVG format.-->
+            <!-- * * * * * * Dimensions: Maximum height: 32px, maximum width: 240px-->
+            <a class="navbar-brand" href="${contextPath}/member/index">P Gallery</a>
+            <!-- Sidenav Toggle Button-->
+            
+            <!-- Navbar Search Input-->
+            <!-- * * Note: * * Visible only on and above the md breakpoint-->
+            <!-- Navbar Items-->
+            <ul class="navbar-nav align-items-center ml-auto">
+                <!-- User Dropdown-->
+                <li class="nav-item dropdown no-caret mr-3 mr-lg-0 dropdown-user">
+                   <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 mr-lg-2" id="sidebarToggle"><i data-feather="menu"></i></button>
+                </li>
+            </ul>
         </nav>
-</div>
-
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="${contextPath }/resources/js/scripts.js"></script>
-                        <!-- Bootstrap core JS-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-</body>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sidenav shadow-right sidenav-dark">
+                    <div class="sidenav-menu">
+                        <div class="nav accordion" id="accordionSidenav">
+                            <!-- Sidenav Menu Heading (Core)-->
+                            <div class="sidenav-menu-heading"><h3 style="color:white;"><a href="${contextPath }/admin/adminpage" style="text-decoration:none; color:white;">관리페이지</a></h3></div>
+                            <!-- Sidenav Accordion (Dashboard)-->
+                            <a class="nav-link collapsed" href="${contextPath }/admin/adminuser">
+                                <div class="nav-link-icon"><i class="fa fa-users"></i></div>
+                                회원관리
+                            </a>
+                            <a class="nav-link collapsed" href="${contextPath }/admin/adminartist">
+                                <div class="nav-link-icon"><i class="fa fa-paint-brush"></i></div>
+                                작가관리
+                            </a>
+                            <a class="nav-link collapsed" href="${contextPath }/admin/admincategory">
+                                <div class="nav-link-icon"><i class="fa fa-picture-o"></i></div>
+                                작품관리
+                            </a>
+                            <a class="nav-link collapsed" href="${contextPath }/admin/adminorder">
+                                <div class="nav-link-icon"><i class="fa fa-shopping-cart"></i></div>
+                                주문관리
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Sidenav Footer-->
+                </nav>
+            </div>
+                        <div id="layoutSidenav_content">
+                <footer class="footer mt-auto footer-light">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6 small">Copyright &copy; Your Website 2021</div>
+                            <div class="col-md-6 text-md-right small">
+                                <a href="#!">Privacy Policy</a>
+                                &middot;
+                                <a href="#!">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="${contextPath}/resources/js/scripts1.js"></script>
+    </body>
 </html>

@@ -53,7 +53,16 @@ public class MemberController {
 	
 	@RequestMapping(value="/login" , method=RequestMethod.GET)
 	public ModelAndView login() throws Exception {
-		return new ModelAndView("member/login");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/login");
+		
+		List<AdminDto> photoList = adminService.listStatus("사진");
+		List<AdminDto> paintList = adminService.listStatus("그림");
+		
+		mv.addObject("photoList" , photoList);
+		mv.addObject("paintList" , paintList);
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/login" , method=RequestMethod.POST)
@@ -89,9 +98,19 @@ public class MemberController {
 		session.invalidate();
 		return new ModelAndView("redirect:/member/index");
 	}
+	
 	@RequestMapping(value="/register" , method=RequestMethod.GET)
 	public ModelAndView register() throws Exception {
-		return new ModelAndView("member/register");
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("member/register");
+		
+		List<AdminDto> photoList = adminService.listStatus("사진");
+		List<AdminDto> paintList = adminService.listStatus("그림");
+		
+		mv.addObject("photoList" , photoList);
+		mv.addObject("paintList" , paintList);
+		
+		return mv;
 	}
 	
 	@RequestMapping(value="/register" , method=RequestMethod.POST)

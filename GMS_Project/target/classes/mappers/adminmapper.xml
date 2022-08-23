@@ -222,6 +222,8 @@
 				*
 		FROM
 				GALLERY_ADMIN
+		ORDER BY
+				ART_STATUS DESC, SHOW_NAME ASC
 	</select>
 	
 	<select id="listArtist" resultType="ArtistDto">
