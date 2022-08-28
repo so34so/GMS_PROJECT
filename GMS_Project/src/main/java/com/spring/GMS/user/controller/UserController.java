@@ -193,18 +193,6 @@ public class UserController {
 		if (currentPageNumber % 10 == 0) startPage = (currentPageNumber / 10 - 1) * 10 + 1;
 		else 							 startPage = (currentPageNumber / 10) * 10 + 1;							
 		
-		/*
-		 
-			[ 예시 ]  
-			
-			currentPage가 10페이면 시작페이지는 1  		<>		currentPage가 2페이지면  시작페이지는 1  
-			currentPage가 20페이면 시작페이지는 11  	<>		currentPage가 12페이지면 시작페이지는 11  
-			currentPage가 30페이면 시작페이지는 21 		<>		currentPage가 22페이지면 시작페이지는 21  
-			
-		*/
-		
-	
-		
 		// 끝페이지
 		int endPage = startPage + 9;
 			
@@ -228,20 +216,6 @@ public class UserController {
 		mv.addObject("searchKeyword"     , searchKeyword);
 		mv.addObject("searchWord"        , searchWord);
 		mv.addObject("orderList"      , orderList);		
-		
-		
-		/*
-		 * System.out.println("====================================");
-		 * System.out.println("startPage : " + startPage);
-		 * System.out.println("endPage : " + endPage);
-		 * System.out.println("totalBoardCount : " + totalBoardCount);
-		 * System.out.println("onePageViewCount : " + onePageViewCount);
-		 * System.out.println("currentPageNumber : " + currentPageNumber);
-		 * System.out.println("searchKeyword : " + searchKeyword);
-		 * System.out.println("searchWord : " + searchWord);
-		 * System.out.println("====================================\n");
-		 */
-		
 		
 		return mv;
 		

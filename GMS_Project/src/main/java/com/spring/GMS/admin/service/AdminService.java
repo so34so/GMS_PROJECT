@@ -31,7 +31,7 @@ public interface AdminService {
 	public int getAllArtCount(Map<String, String> searchCountInfo) throws Exception;
 	public List<MemberDto> userList();
 	public void modifyInfo(Map<String,Object> goodsMap) throws Exception;
-	public void  modifyDeliveryState(Map<String, String> deliveryMap) throws Exception;
+	public void modifyDeliveryState(Map<String, String> deliveryMap) throws Exception;
 	public Map<String,Object> orderDetail(int orderId) throws Exception;
 	
 }

@@ -166,7 +166,7 @@ function modify_gallery(artArtnum, attribute){
                    	<div class="container mt-n10">
              <div class="card mb-4">
                  <div class="card-body">
-                     <form action="${contextPath }/admin/artistadd" method="post" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
+                     <form action="${contextPath }/admin/artistadd" method="post" name="mod_gallery" enctype="multipart/form-data" onsubmit="return formValidationCheck()">
 								 <div class="form-group">
 							        <label for="artStatus">전시회 종류</label>
 							        <input type="button" class="btn btn-outline-primary btn-sm" style="float:right;"value="수정" onClick="modify_gallery('${adminDto.artArtnum }','artStatus')" />

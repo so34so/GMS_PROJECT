@@ -10,7 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>404 Error</title>
-        <link href="${contextPath }/resources/css/styles5.css" rel="stylesheet" />
+        <link href="${contextPath }/resources/css/error.css" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="${contextPath }/resources/img/favicon.png" />
         <script data-search-pseudo-elements defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" crossorigin="anonymous"></script>
